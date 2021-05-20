@@ -1,19 +1,18 @@
 import { boardService } from "../../services/boardService"
 
 
-export function loadBoards() {
-    return async () => {
-        try {
-            const boards = await boardService.query()
-            const action = {
-                type: 'SET_BOARDS',
-                boards
-            }
-            return action
+export async function loadBoards() {
+    try {
+        const boards = await boardService.query()
+        const action = {
+            type: 'SET_BOARDS',
+            boards
         }
-        catch (err) { throw err }
+        return action
     }
+    catch (err) { throw err }
 }
+
 // export function setCurrBoard(boardId) {
 //     return async () => {
 //         try {

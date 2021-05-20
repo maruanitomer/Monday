@@ -1,13 +1,16 @@
 import React, { useEffect, useState, } from 'react'
 import { loadBoards } from '../store/actions/boardActions'
-import { connect, useDispatch } from 'react-redux';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import { BoardList } from '../cmps/BoardList';
 import { BoardPreview } from '../cmps/BoardPreview';
 import { boardService } from '../services/boardService';
 
-const _BoardsApp = ({ loadBoards, boards, match }) => {
+
+export const BoardsApp = ({ match }) => {
     const dispatch = useDispatch()
     const [board, setBoard] = useState(null)
+    const { boards } = useSelector(state => state.boardModule)
+
     useEffect(() => {
         (async () => {
             try {
@@ -18,7 +21,7 @@ const _BoardsApp = ({ loadBoards, boards, match }) => {
                 console.log(err);
             }
         })()
-    }, [loadBoards, dispatch])
+    }, [dispatch])
 
     useEffect(() => {
         (async () => {
@@ -29,26 +32,14 @@ const _BoardsApp = ({ loadBoards, boards, match }) => {
             else board = boards[0]
             setBoard(board)
         })()
-    }, [boards,match.params])
-    
+    }, [boards, match.params])
+
     return (
         (boards) ?
-        <div>
+            <div>
                 <BoardList boards={boards}></BoardList>
                 {(board) ? <BoardPreview board={board} /> : <p>Select board</p>}
             </div> :
             <h1>loading</h1>
     )
 }
-
-const mapGlobalStateToProps = (state) => {
-    return {
-        boards: state.boardModule.boards
-
-    }
-}
-const mapDistpatchToProps = {
-    loadBoards,
-
-}
-export const BoardsApp = connect(mapGlobalStateToProps, mapDistpatchToProps)(_BoardsApp)
