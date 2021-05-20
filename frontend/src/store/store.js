@@ -6,8 +6,8 @@ import { userReducer } from './reducers/userReducer.js'
 import { boardReducer } from './reducers/boardReducer.js'
 
 const rootReducer = combineReducers({
-    boardReducer,
-    userReducer
+    boardModule: boardReducer,
+    userModule: userReducer
 })
 
 export const store = createStore(rootReducer, applyMiddleware(thunk)) //Passing the reducer

@@ -1,9 +1,15 @@
-import logo from './logo.svg';
 import './App.css';
+import { routes } from './routes.js'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
-function App() {
+export function App() {
   return (
-    <h1>Hello</h1>
+    <BrowserRouter>
+      <Switch>
+        {routes.map(route => <Route key={route.path} exact component={route.component} path={route.path} />)}
+      </Switch>
+    </BrowserRouter>
+
   )
 }
 

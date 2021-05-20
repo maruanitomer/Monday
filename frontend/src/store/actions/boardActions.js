@@ -1,17 +1,17 @@
-import { boardService } from "../../services/boardService.js"
+import { boardService } from "../../services/boardService"
 
 
 export function loadBoards() {
-    return async (dispatch) => {
+    return async () => {
         try {
             const boards = await boardService.query()
             const action = {
                 type: 'SET_BOARDS',
                 boards
             }
-            dispatch(action)
+            return action
         }
-        catch (err) { console.log(err); }
+        catch (err) { throw err }
     }
 
 

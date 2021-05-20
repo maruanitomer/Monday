@@ -3,7 +3,7 @@ const initialState = {
     currBoard: null
 }
 
-export function boardReducer(state = initialState, action) {
+export function userReducer(state = initialState, action) {
     switch (action.type) {
         case 'SET_BOARDS':
             return { ...state, boards: action.boards }
