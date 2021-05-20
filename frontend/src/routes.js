@@ -10,10 +10,10 @@ export const routes = [
         path: '/board',
         component: BoardsApp,
     },
-    // {
-    //     path: '/toy/edit',
-    //     component: ToyEdit,
-    // },
+    {
+        path: '/board/:boardId',
+        component: BoardsApp,
+    },
     // {
     //     path: '/toy/edit/:id',
     //     component: ToyEdit,

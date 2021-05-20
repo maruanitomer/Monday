@@ -3,7 +3,7 @@ import { httpService } from './httpService.js'
 
 export const boardService = {
     query,
- 
+
     getById,
 }
 async function query() {
