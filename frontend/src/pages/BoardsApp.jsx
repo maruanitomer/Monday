@@ -1,16 +1,20 @@
 import React, { useEffect, useState, } from 'react'
-import { loadBoards } from '../store/actions/boardActions'
+import { addBoard, loadBoards } from '../store/actions/boardActions'
 import { useDispatch, useSelector } from 'react-redux';
 import { BoardPreview } from '../cmps/BoardPreview';
 import { boardService } from '../services/boardService';
 import { BoardHeader } from '../cmps/BoardHeader';
 import { BoardSideBar } from '../cmps/BoardSideBar';
+import { PopUpModal } from '../cmps/PopUpModal'
+import { BoardAdd } from '../cmps/BoardAdd';
+import { makeStyles } from '@material-ui/core';
+
 
 export const BoardsApp = ({ match }) => {
     const dispatch = useDispatch()
     const [board, setBoard] = useState(null)
     const { boards } = useSelector(state => state.boardModule)
-
+    const [modal, setModal] = useState(false)
     useEffect(() => {
         (async () => {
             try {
@@ -33,12 +37,33 @@ export const BoardsApp = ({ match }) => {
             setBoard(board)
         })()
     }, [boards, match.params])
+    const toggleModal = () => {
+        setModal(!modal);
+    }
+    //Modal Generic CSS
+    const useStyles = makeStyles({
+        popup: {
+            backgroundColor: 'white',
+            position: 'relative',
+            top: '25%',
+            left: '25%',
+            width: '35vw',
+            height: '35vh'
 
+        }
+    })
+    const classes = useStyles();
 
+    //Adding new Board
+    const onAddBoard = async (board) => {
+        const action = await addBoard(board);
+        dispatch(action)
+    }
     return (
         (boards) ?
             <div className="board-layout flex">
-                <BoardSideBar boards={boards}></BoardSideBar>
+                {modal && <PopUpModal popup={classes.popup}><BoardAdd onAdd={onAddBoard} toggleModal={toggleModal} /></PopUpModal>}
+                <BoardSideBar toggleModal={toggleModal} boards={boards}></BoardSideBar>
                 <div className="board-container flex column">
                     <BoardHeader></BoardHeader>
                     {(board) ? <BoardPreview board={board} /> : <p>Select board</p>}

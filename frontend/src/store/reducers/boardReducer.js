@@ -9,7 +9,7 @@ export function boardReducer(state = initialState, action) {
         case 'EDIT_BOARDS':
             return { ...state, boards: state.boards.map(board => (board._id === action.board._id) ? action.board : board) }
         case 'ADD_BOARD':
-            return { ...state, boards: [action.board, ...state.boards] }
+            return { ...state, boards: [ action.board,...state.boards] }
         case 'REMOVE_BOARD':
             return { ...state, boards: state.boards.filter(board => board._id !== action.boardId) }
         default:

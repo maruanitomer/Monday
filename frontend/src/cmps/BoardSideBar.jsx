@@ -1,7 +1,7 @@
 import { BoardList } from "./BoardList"
 
-export const BoardSideBar = ({ boards }) => {
-    console.log('boards::', boards);
+export const BoardSideBar = ({ boards ,toggleModal}) => {
+
     return (
         <section className="side-bar-container flex column">
             <div className="flex">
@@ -11,7 +11,7 @@ export const BoardSideBar = ({ boards }) => {
             <input type="text" name="" id="" />
             <div>
                 <span>+</span>
-                <button>Add Board</button>
+                <button onClick={toggleModal}>Add Board</button>
             </div>
             <BoardList boards={boards}></BoardList>
         </section>

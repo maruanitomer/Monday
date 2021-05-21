@@ -3,14 +3,13 @@ import { httpService } from './httpService.js'
 
 export const boardService = {
     query,
-
+    save,
     getById,
 }
 async function query() {
     try {
         return httpService.get('board')
     } catch (err) {
-        console.log(err);
         throw new Error('couldn\'t find boards')
     }
 }
@@ -19,8 +18,16 @@ async function getById(id) {
     try {
         return httpService.get(`board/${id}`, id)
     } catch (err) {
-        console.log(err);
         throw new Error('couldn\'t find boards')
+    }
+}
+
+async function save(board) {
+    try {
+        return httpService.post('board', board)
+    }
+    catch (err) {
+        throw new Error('couldn\'t add board')
     }
 }
 
