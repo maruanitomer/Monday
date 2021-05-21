@@ -6,9 +6,6 @@
             button {
                 padding: rem(1.5px);
                 margin-inline-end: rem(15px);
-                &:hover {
-                    background-color: $primary-background-hover-color;
-                }
             }
         }
     }

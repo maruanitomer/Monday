@@ -22,6 +22,9 @@ button {
   color: inherit;
   border: none;
   background-color: inherit;
+  &:hover{
+    background-color: $primary-background-hover-color;
+  }
 
   &:focus {
     outline: none;
