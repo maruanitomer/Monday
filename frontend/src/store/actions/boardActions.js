@@ -13,6 +13,17 @@ export async function loadBoards() {
     catch (err) { throw err }
 }
 
+export function addBoard(board) {
+    return boardService.save(board)
+        .then(board => {
+            const action = {
+                type: 'ADD_BOARD',
+                board
+            }
+            return action
+        })
+
+}
 // export function setCurrBoard(boardId) {
 //     return async () => {
 //         try {
@@ -35,18 +46,6 @@ export async function loadBoards() {
         //                 const action = {
         //                     type: 'REMOVE_Board',
         //                     BoardId
-        //                 }
-        //                 dispatch(action)
-        //             })
-        //     }
-        // }
-        // export function addBoard(Board) {
-        //     return (dispatch) => {
-        //         return BoardService.save(Board)
-        //             .then(Board => {
-        //                 const action = {
-        //                     type: 'ADD_Board',
-        //                     Board
         //                 }
         //                 dispatch(action)
         //             })

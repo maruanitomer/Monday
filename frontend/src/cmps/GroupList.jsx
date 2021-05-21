@@ -4,7 +4,7 @@ import { CardList } from './CardList'
 export const GroupList = ({ groups }) => {
     return (
         <section className="group-list">
-            {groups.map((group) => {
+            {groups && groups.map((group) => {
                 return (<div key={group._id}>
                     <span>{group.title}</span>
                     {/* <hr/> */}

@@ -1,0 +1,19 @@
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.4);
+    width: 100vw;
+    height: 100vh;
+    .btn-x {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: red;
+        font-size: rem(30px);
+    }
+    .btn-add{
+        color: white;
+        background-color: black;
+    }
+}
