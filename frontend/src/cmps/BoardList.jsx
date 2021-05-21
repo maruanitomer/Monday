@@ -2,9 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 export const BoardList = ({ boards }) => {
     return (
-        // <Router>
-        <ul>
-
+        <ul className="board-list-container">
             {boards.map((board) => {
                 return (
                     <li key={board._id} className="clean-list">
@@ -14,7 +12,5 @@ export const BoardList = ({ boards }) => {
                     </li>)
             })}
         </ul >
-
-
     )
 }

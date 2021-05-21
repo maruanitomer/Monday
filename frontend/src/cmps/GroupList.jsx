@@ -3,15 +3,14 @@ import { CardList } from './CardList'
 
 export const GroupList = ({ groups }) => {
     return (
-        <div className="group-list">
+        <section className="group-list">
             {groups.map((group) => {
                 return (<div key={group._id}>
-                    <h1>{group.title}</h1>
-                    <hr/>
+                    <span>{group.title}</span>
+                    {/* <hr/> */}
                     <CardList cards={group.cards} />
-                    
                 </div>)
             })}
-        </div>
+        </section>
     )
 }

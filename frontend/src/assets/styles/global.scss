@@ -10,3 +10,11 @@
 @import "basics/base.scss";
 @import "basics/animations";
 @import "basics/inputs";
+
+// Cmps
+@import "cmps/BoardList.scss";
+@import "cmps/BoardSideBar.scss";
+@import "cmps/BoardHeader.scss";
+
+//Pages
+@import "pages/BoardApp.scss";

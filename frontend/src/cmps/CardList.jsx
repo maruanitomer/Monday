@@ -2,7 +2,7 @@ import React from 'react'
 
 export const CardList = ({ cards }) => {
     return (<ul>
-        <li>
+        <li className="clean-list">
             {cards.map((card) => {
                 return (
                     <div key={card._id}>

@@ -1,10 +1,10 @@
 import React, { useEffect, useState, } from 'react'
 import { loadBoards } from '../store/actions/boardActions'
-import { connect, useDispatch, useSelector } from 'react-redux';
-import { BoardList } from '../cmps/BoardList';
+import { useDispatch, useSelector } from 'react-redux';
 import { BoardPreview } from '../cmps/BoardPreview';
 import { boardService } from '../services/boardService';
-
+import { BoardHeader } from '../cmps/BoardHeader';
+import { BoardSideBar } from '../cmps/BoardSideBar';
 
 export const BoardsApp = ({ match }) => {
     const dispatch = useDispatch()
@@ -34,11 +34,15 @@ export const BoardsApp = ({ match }) => {
         })()
     }, [boards, match.params])
 
+
     return (
         (boards) ?
-            <div>
-                <BoardList boards={boards}></BoardList>
-                {(board) ? <BoardPreview board={board} /> : <p>Select board</p>}
+            <div className="board-layout flex">
+                <BoardSideBar boards={boards}></BoardSideBar>
+                <div className="board-container flex column">
+                    <BoardHeader></BoardHeader>
+                    {(board) ? <BoardPreview board={board} /> : <p>Select board</p>}
+                </div>
             </div> :
             <h1>loading</h1>
     )

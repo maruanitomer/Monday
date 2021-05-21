@@ -1,0 +1,15 @@
+.board-header-content-wrapper {
+    padding: rem(16px) rem(30px) rem(0px) rem(30px);
+    .board-header-view-bar {
+        padding: rem(16px) rem(0px) rem(16px) rem(0px);
+        .monday-header {
+            button {
+                padding: rem(1.5px);
+                margin-inline-end: rem(15px);
+                &:hover {
+                    background-color: $primary-background-hover-color;
+                }
+            }
+        }
+    }
+}
