@@ -14,11 +14,11 @@ import ReorderTwoToneIcon from '@material-ui/icons/ReorderTwoTone';
 import FormatColorFillSharpIcon from '@material-ui/icons/FormatColorFillSharp';
 import BorderColorOutlinedIcon from '@material-ui/icons/BorderColorOutlined';
 
-export const BoardHeader = () => {
-    return (
+export const BoardHeader = ({ board }) => {
+    return (board) ? (
         <section className="board-header-content-wrapper flex column">
             <div className="head flex justify-space-between align-center" style={{ width: '80vw' }}>
-                <h2>Board Name</h2>
+                <h2>{board.title}</h2>
                 <div className="flex justify-space-between" style={{ width: '440px' }}>
                     <button className="flex align-center"> Last seen <AccountCircleIcon></AccountCircleIcon></button>
                     <button className="flex align-center"> Invite / <PersonOutlineIcon></PersonOutlineIcon></button>
@@ -38,19 +38,19 @@ export const BoardHeader = () => {
                 </div>
                 <div className="flex">
                     <div className="integrations-button-content flex">
-                        <span>Icon</span>
-                        <span>integrate</span>
+                        {/* <span>Icon</span> */}
+                        {/* <span>integrate</span> */}
                         <div className="apps-badges-container">
+                            {/* <span>Icon</span>
                             <span>Icon</span>
-                            <span>Icon</span>
-                            <span>Icon</span>
+                            <span>Icon</span> */}
                         </div>
                     </div>
                     <div className="automations-button">
-                        <button>Automate</button>
+                        {/* <button>Automate</button> */}
                     </div>
                     <div>
-                        <button>(^)</button>
+                        {/* <button>(^)</button> */}
                     </div>
                 </div>
             </div>
@@ -66,13 +66,9 @@ export const BoardHeader = () => {
                     <button className="flex align-center tooltip"><HeightIcon></HeightIcon><ReorderTwoToneIcon style={{ 'margin-left': '-0.6rem' }}></ReorderTwoToneIcon> <span className="tooltiptext">Item Height</span></button>
                     <button className="flex align-center tooltip"><FormatColorFillSharpIcon></FormatColorFillSharpIcon> <span className="tooltiptext">Condittional coloring</span></button>
                     <button className="flex align-center tooltip"><BorderColorOutlinedIcon></BorderColorOutlinedIcon><span className="tooltiptext">Item default values</span></button>
-                    {/* <button>Pin</button>
-                    <button>Hide</button>
-                    <button>Item-height</button>
-                    <button>Conditinal Coloring</button>
-                    <button>Item Defrault Values</button> */}
                 </div>
             </div>
         </section>
     )
+        : <div>loading</div>
 }

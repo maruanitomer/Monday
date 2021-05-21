@@ -298,3 +298,9 @@ form input.input-err {
   visibility: visible;
   opacity: 1;
 }
+
+.spacer {
+  border-bottom: 1px solid;
+  border-color: $layout-border-color;
+  margin: 0 20px;
+}

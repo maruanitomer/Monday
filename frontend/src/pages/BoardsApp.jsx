@@ -40,7 +40,7 @@ export const BoardsApp = ({ match }) => {
             <div className="board-layout flex">
                 <BoardSideBar boards={boards}></BoardSideBar>
                 <div className="board-container flex column">
-                    <BoardHeader></BoardHeader>
+                    <BoardHeader board={board}></BoardHeader>
                     {(board) ? <BoardPreview board={board} /> : <p>Select board</p>}
                 </div>
             </div> :
