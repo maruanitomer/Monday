@@ -37,7 +37,8 @@ export const BoardsApp = ({ match }) => {
             setBoard(board)
         })()
     }, [boards, match.params])
-    const toggleModal = () => {
+    const toggleModal = (ev) => {
+        ev.stopPropagation()
         setModal(!modal);
     }
     //Modal Generic CSS
@@ -55,9 +56,11 @@ export const BoardsApp = ({ match }) => {
     const classes = useStyles();
 
     //Adding new Board
-    const onAddBoard = async (board) => {
+    const onAddBoard = async (board, ev) => {
+        ev.stopPropagation();
         const action = await addBoard(board);
         dispatch(action)
+        toggleModal(ev)
     }
     return (
         (boards) ?
