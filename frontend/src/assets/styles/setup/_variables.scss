@@ -4,6 +4,7 @@ $narrow-breakpoint: 960px;
 $wide-breakpoint: 1260px;
 
 :root {
+ 
     --color-asphalt: #676879;
     --color-light_blue: #61caf7;
     --color-basic_blue: #0073ea;
@@ -31,6 +32,7 @@ $wide-breakpoint: 1260px;
     --color-aqua: #00d1d1;
     --color-highlight_blue: #dff0ff;
     --color-pulse_text_color: #333;
+    
     --color-highlight: #dff0ff;
     --color-placeholder_light_gray: #efefef;
     --color-scrollbar_gray: #b2b2b2;
@@ -183,13 +185,13 @@ $wide-breakpoint: 1260px;
     --color-brown: #7f5347;
     --color-brown-hover: #684943;
     --color-brown-selected: #bfa9a3;
-    --box-shadow-small: 0 4px 8px -1px rgba(0, 0, 0, 0.2);
-    --box-shadow-medium: 0px 6px 20px -2px rgba(0, 0, 0, 0.2);
-    --box-shadow-large: 0px 15px 50px -10px rgba(0, 0, 0, 0.3);
+    --box-shadow-small: 0 4px 8px -1px rgba(0,0,0,0.2);
+    --box-shadow-medium: 0px 6px 20px -2px rgba(0,0,0,0.2);
+    --box-shadow-large: 0px 15px 50px -10px rgba(0,0,0,0.3);
     --border-radius-small: 4px;
     --border-radius-medium: 8px;
     --border-radius-big: 16px;
-    --expand-animation-timing: cubic-bezier(0, 0, 0.35, 1);
+    --expand-animation-timing: cubic-bezier(0,0,0.35,1);
     --spacing-xs: 4px;
     --spacing-small: 8px;
     --spacing-medium: 16px;

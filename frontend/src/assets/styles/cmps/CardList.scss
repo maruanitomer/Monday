@@ -1,0 +1,11 @@
+.card-list-container {
+    .card-wrapper {
+        .sections-wrapper {
+            background-color: $grey-background-color;
+            &:hover {
+                cursor: pointer;
+                background-color: $primary-background-hover-color;
+            }
+        }
+    }
+}

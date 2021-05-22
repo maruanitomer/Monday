@@ -63,7 +63,7 @@ export const BoardsApp = ({ match }) => {
         (boards) ?
             <div className="board-layout flex">
                 {modal && <PopUpModal toggleModal={toggleModal} popup={classes.popup}><BoardAdd onAdd={onAddBoard} toggleModal={toggleModal} /></PopUpModal>}
-                <BoardSideBar toggleModal={toggleModal} boards={boards}></BoardSideBar>
+                <BoardSideBar boardId={match.params.boardId} toggleModal={toggleModal} boards={boards}></BoardSideBar>
                 <div className="board-container flex column">
                     <BoardHeader board={board}></BoardHeader>
                     {(board) ? <BoardPreview board={board} /> : <p>Select board</p>}

@@ -7,7 +7,6 @@ export const GroupList = ({ groups }) => {
             {groups && groups.map((group) => {
                 return (<div key={group._id}>
                     <span>{group.title}</span>
-                    {/* <hr/> */}
                     <CardList cards={group.cards} />
                 </div>)
             })}

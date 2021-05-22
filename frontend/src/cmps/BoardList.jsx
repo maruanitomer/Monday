@@ -2,28 +2,24 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import DashboardOutlinedIcon from '@material-ui/icons/DashboardOutlined';
 
-export const BoardList = ({ boards }) => {
-    const [numActiveBtn, setNumActiveBtn] = useState(0)
-
-    const setActiveBtn = (idx) => {
-        setNumActiveBtn(idx);
-    }
+export const BoardList = ({ boards, boardId }) => {
 
     return (
         <div className="board-list-wrapper">
             <div className="spacer">
             </div>
             {boards && <div className="board-list-container flex column align-start ">
-                {boards.map((board, idx) => {
+                {boards.map((board) => {
                     var className = "flex align-center side-bar-btns-width"
                     var spanAndIconClassName = ""
-                    if (numActiveBtn === idx) {
+                    if (!boardId) boardId = boards[0]._id
+                    if (boardId === board._id) {
                         className += ' active'
                         spanAndIconClassName += ' span-active'
                     }
                     return (
                         <Link key={board._id} to={`/board/${board._id}`}>
-                            <button className={className} onClick={() => setActiveBtn(idx)}>
+                            <button className={className}>
                                 <DashboardOutlinedIcon className={spanAndIconClassName}></DashboardOutlinedIcon>
                                 <span className={spanAndIconClassName}>{board.title}</span>
                             </button>

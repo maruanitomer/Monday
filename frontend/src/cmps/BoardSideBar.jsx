@@ -4,7 +4,7 @@ import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
 import HomeIcon from '@material-ui/icons/Home';
 
 
-export const BoardSideBar = ({ boards, toggleModal }) => {
+export const BoardSideBar = ({ boards, toggleModal, boardId }) => {
     return (
         <section className="side-bar-container flex column">
              <div className="workspace-title flex row align-center">
@@ -22,7 +22,7 @@ export const BoardSideBar = ({ boards, toggleModal }) => {
                     <input placeholder="Search boards..." type="text" />
                 </div>
             </div>
-            <BoardList boards={boards}></BoardList>
+            <BoardList boards={boards} boardId={boardId}></BoardList>
         </section>
     )
 }
