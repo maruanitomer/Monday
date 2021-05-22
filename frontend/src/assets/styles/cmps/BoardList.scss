@@ -1,7 +1,19 @@
-.board-list-container {
-    padding: rem(0px) rem(16px) rem(16px) rem(14px);
+.board-list-wrapper {
+    padding: rem(0px) rem(16px) rem(16px) rem(0px);
     margin-block-start: rem(30px);
-    ul {
-        margin: 0;
+    .board-list-container {
+        padding-block-start: rem(16px);
+        button {
+            padding: rem(5px);
+        }
+        span {
+            margin-inline-start: rem(5px);
+        }
+    }
+    .active {
+        background-color: $primary-selected-color;
+    }
+    .span-active {
+        color:$primary-color ;
     }
 }

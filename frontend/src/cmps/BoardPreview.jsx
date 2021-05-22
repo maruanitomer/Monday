@@ -3,9 +3,9 @@ import { GroupList } from './GroupList'
 
 export const BoardPreview = ({ board }) => {
     return (
-        <div className="board-list-container">
+        <section className="board-list-wrapper">
             {/* <BoardNav /> */}
             <GroupList groups={board.groups} />
-        </div >
+        </section >
     )
 }

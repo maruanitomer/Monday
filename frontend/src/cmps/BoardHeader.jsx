@@ -63,7 +63,7 @@ export const BoardHeader = ({ board }) => {
                     <button className="flex align-center tooltip"><ImportExportIcon></ImportExportIcon> <span className="tooltiptext">Sort By Any Column</span> Sort </button>
                     <button className="flex align-center tooltip"><FiberPinOutlinedIcon></FiberPinOutlinedIcon> <span className="tooltiptext">Pin Columns</span> </button>
                     <button className="flex align-center tooltip"><VisibilityOffOutlinedIcon></VisibilityOffOutlinedIcon> <span className="tooltiptext">Hidden Columns</span> </button>
-                    <button className="flex align-center tooltip"><HeightIcon></HeightIcon><ReorderTwoToneIcon style={{ 'margin-left': '-0.6rem' }}></ReorderTwoToneIcon> <span className="tooltiptext">Item Height</span></button>
+                    <button className="flex align-center tooltip"><HeightIcon></HeightIcon><ReorderTwoToneIcon style={{ 'marginleft': '-0.6rem' }}></ReorderTwoToneIcon> <span className="tooltiptext">Item Height</span></button>
                     <button className="flex align-center tooltip"><FormatColorFillSharpIcon></FormatColorFillSharpIcon> <span className="tooltiptext">Condittional coloring</span></button>
                     <button className="flex align-center tooltip"><BorderColorOutlinedIcon></BorderColorOutlinedIcon><span className="tooltiptext">Item default values</span></button>
                 </div>
