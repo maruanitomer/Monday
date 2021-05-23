@@ -35,7 +35,7 @@
         {
           "_id": "g101",
           "title": "Group 1",
-          "cards": [
+          "tasks": [
             {
               "_id": "c102",
               "title": "Help me",
@@ -176,7 +176,7 @@
         {
           "_id": "g102",
           "title": "Group 2",
-          "cards": [
+          "tasks": [
             {
               "_id": "c104",
               "title": "Help me",
@@ -261,7 +261,7 @@
         {
           "_id": "g103",
           "title": "Group 2",
-          "cards": [
+          "tasks": [
             {
               "_id": "c104",
               "title": "Help me",
@@ -328,54 +328,54 @@
     },
     {
       "title": "New board",
-      "cards": [],
+      "tasks": [],
       "members": [],
       "name": "New boardf",
       "_id": "JAnIq21"
     },
     {
       "title": "My board",
-      "cards": [],
+      "tasks": [],
       "members": [],
       "_id": "1U262rv"
     },
     {
       "title": "Dudi's board",
-      "cards": [],
+      "tasks": [],
       "members": [],
       "_id": "uNzq64x"
     },
     {
       "title": "board3",
-      "cards": [],
+      "tasks": [],
       "members": [],
       "type": "items",
       "_id": "49cxhgO"
     },
     {
       "title": "Board clients",
-      "cards": [],
+      "tasks": [],
       "members": [],
       "type": "items",
       "_id": "ImLVI6D"
     },
     {
       "title": "New board",
-      "cards": [],
+      "tasks": [],
       "members": [],
       "type": "Leads",
       "_id": "uAKI_hs"
     },
     {
       "title": "Board 5",
-      "cards": [],
+      "tasks": [],
       "members": [],
       "type": "Tasks",
       "_id": "lgMVRxl"
     },
     {
       "title": "Dudi board",
-      "cards": [],
+      "tasks": [],
       "members": [],
       "type": "Creatives",
       "_id": "T0FBx8v"

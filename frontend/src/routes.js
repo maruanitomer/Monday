@@ -1,5 +1,5 @@
 
-import { BoardsApp } from './pages/BoardsApp.jsx'
+import { Board } from './modules/board/pages/Board.jsx'
 
 export const routes = [
     // {
@@ -8,11 +8,11 @@ export const routes = [
     // },
     {
         path: '/board',
-        component: BoardsApp,
+        component: Board,
     },
     {
         path: '/board/:boardId',
-        component: BoardsApp,
+        component: Board,
     },
     // {
     //     path: '/toy/edit/:id',

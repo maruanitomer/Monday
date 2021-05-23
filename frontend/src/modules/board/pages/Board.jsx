@@ -1,46 +1,39 @@
 import React, { useEffect, useState, } from 'react'
-import { addBoard, loadBoards } from '../store/actions/boardActions'
+import { addBoard } from '../../../store/actions/boardActions'
 import { useDispatch, useSelector } from 'react-redux';
 import { BoardPreview } from '../cmps/BoardPreview';
-import { boardService } from '../services/boardService';
-import { BoardHeader } from '../cmps/BoardHeader';
 import { BoardSideBar } from '../cmps/BoardSideBar';
-import { PopUpModal } from '../cmps/PopUpModal'
+import { PopUpModal } from '../../../shared/cmps/PopUpModal'
 import { BoardAdd } from '../cmps/BoardAdd';
 import { makeStyles } from '@material-ui/core';
+import { getBoard, onSetBoards } from '../hooks/setBoards';
+import { BoardHeader } from '../cmps/BoardHeader'
 
-
-export const BoardsApp = ({ match }) => {
-    const dispatch = useDispatch()
+export const Board = ({ match }) => {
     const [board, setBoard] = useState(null)
-    const { boards } = useSelector(state => state.boardModule)
     const [modal, setModal] = useState(false)
+    const { boards } = useSelector(state => state.boardModule)
+    const dispatch = useDispatch()
+
+
     useEffect(() => {
-        (async () => {
-            try {
-                const action = await loadBoards();
-                dispatch(action)
-            }
-            catch (err) {
-                console.log(err);
-            }
-        })()
+        onSetBoards(dispatch)
     }, [dispatch])
 
     useEffect(() => {
         (async () => {
-            const boardId = match.params.boardId;
-            if (boardId) {
-                var board = await boardService.getById(boardId)
+            try {
+                setBoard(await getBoard(match.params.boardId, boards))
             }
-            else board = boards[0]
-            setBoard(board)
+            catch (err) { throw err }
         })()
     }, [boards, match.params])
+
     const toggleModal = (ev) => {
         ev.stopPropagation()
         setModal(!modal);
     }
+
     //Modal Generic CSS
     const useStyles = makeStyles({
         popup: {

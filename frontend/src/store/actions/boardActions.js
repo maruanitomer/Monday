@@ -1,42 +1,17 @@
-import { boardService } from "../../services/boardService"
+import { types } from '../reducers/boardReducer'
 
-
-export async function loadBoards() {
-    try {
-        const boards = await boardService.query()
-        const action = {
-            type: 'SET_BOARDS',
-            boards
-        }
-        return action
+export const loadBoards =  (boards) => ({
+    type: types.SET_BOARDS
+    , boards
+})
+export const addBoard = (board) => (
+    {
+        type: types.ADD_BOARD
+        , board
     }
-    catch (err) { throw err }
-}
+)
 
-export function addBoard(board) {
-    return boardService.save(board)
-        .then(board => {
-            const action = {
-                type: 'ADD_BOARD',
-                board
-            }
-            return action
-        })
 
-}
-// export function setCurrBoard(boardId) {
-//     return async () => {
-//         try {
-//             const currBoard = await boardService.getById(boardId)
-//             const action = {
-//                 type: 'SET_CURRENT_BOARD',
-//                 currBoard
-//             }
-//             return action
-//         }
-//         catch (err) { throw err }
-//     }
-// }
 
 
         // export function removeBoard(BoardId) {

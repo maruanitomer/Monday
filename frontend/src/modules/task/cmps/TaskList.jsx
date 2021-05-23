@@ -1,13 +1,13 @@
 import React from 'react'
 
-export const CardList = ({ cards }) => {
+export const TaskList = ({ tasks }) => {
     return (<ul>
         <li className="clean-list">
-            {cards.map((card) => {
+            {tasks.map((task) => {
                 return (
-                    <div key={card._id}>
-                        <p >{card.title}</p>
-                        {card.members.map((member) => {
+                    <div key={task._id}>
+                        <p >{task.title}</p>
+                        {task.members.map((member) => {
                             return <p key={member._id}>{member.fullname}</p>
                         })}
                     </div>)

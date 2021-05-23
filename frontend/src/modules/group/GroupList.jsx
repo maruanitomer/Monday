@@ -1,5 +1,5 @@
 import React from 'react'
-import { CardList } from './CardList'
+import { TaskList } from '../task/cmps/TaskList'
 
 export const GroupList = ({ groups }) => {
     return (
@@ -8,7 +8,7 @@ export const GroupList = ({ groups }) => {
                 return (<div key={group._id}>
                     <span>{group.title}</span>
                     {/* <hr/> */}
-                    <CardList cards={group.cards} />
+                    <TaskList tasks={group.tasks} />
                 </div>)
             })}
         </section>
