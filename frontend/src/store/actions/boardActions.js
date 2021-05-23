@@ -1,6 +1,7 @@
 import { boardService } from "../../services/boardService"
 
-
+//Redux Thunk instead of async actions..... 
+//desgin patterns - incorrect ....
 export async function loadBoards() {
     try {
         const boards = await boardService.query()
@@ -13,7 +14,7 @@ export async function loadBoards() {
     catch (err) { throw err }
 }
 
-export function addBoard(board) {
+export async function addBoard(board) {
     return boardService.save(board)
         .then(board => {
             const action = {
