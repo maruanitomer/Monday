@@ -325,25 +325,6 @@
           }
         }
       ]
-    },
-    {
-      "title": "New board",
-      "tasks": [],
-      "members": [],
-      "name": "New boardf",
-      "_id": "JAnIq21"
-    },
-    {
-      "title": "My board",
-      "tasks": [],
-      "members": [],
-      "_id": "1U262rv"
-    },
-    {
-      "title": "Dudi's board",
-      "tasks": [],
-      "members": [],
-      "_id": "uNzq64x"
     }
   ]
 }

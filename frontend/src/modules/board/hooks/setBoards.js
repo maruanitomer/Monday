@@ -1,7 +1,6 @@
 
-import { Redirect } from 'react-router';
 import { boardService } from '../../../services/boardService'
-import { loadBoards, removeBoard } from '../../../store/actions/boardActions'
+import { addBoard, loadBoards, removeBoard } from '../../../store/actions/boardActions'
 
 
 
@@ -28,9 +27,15 @@ export const getBoard = async (boardId, boards) => {
 
 export const onRemoveBoard = async (dispatch, id) => {
     try {
-        dispatch(removeBoard(id));
-        await boardService.remove(id);
-
+        dispatch(removeBoard(await boardService.remove(id)));
+    }
+    catch (err) {
+    }
+}
+export const onSaveBoard = async (dispatch, board) => {
+    try {
+        const boardWithId = await boardService.save(board);
+        dispatch(addBoard(boardWithId));
     }
     catch (err) {
     }

@@ -32,8 +32,9 @@ async function save(board) {
     }
 }
 async function remove(id) {
-    try { 
-        return httpService.delete(`board/${id}`, id)
+    try {
+        httpService.delete(`board/${id}`, id)
+        return id;
     }
     catch (err) {
         throw new Error('couldn\'t add board')

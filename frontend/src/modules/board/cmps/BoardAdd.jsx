@@ -1,8 +1,4 @@
-import {
-  FormControlLabel,
-  Radio,
-  RadioGroup,
-} from "@material-ui/core";
+import { FormControlLabel, Radio, RadioGroup } from "@material-ui/core";
 import React, { useState } from "react";
 
 export const BoardAdd = ({ toggleModal, onAdd, types }) => {
@@ -52,9 +48,14 @@ export const BoardAdd = ({ toggleModal, onAdd, types }) => {
         name="type"
         onChange={inputHandler}
       >
-        {types.map((type,idx) => {
+        {types.map((type, idx) => {
           return (
-            <FormControlLabel key={idx} value={type} control={<Radio />} label={type} />
+            <FormControlLabel
+              key={idx}
+              value={type}
+              control={<Radio />}
+              label={type}
+            />
           );
         })}
       </RadioGroup>

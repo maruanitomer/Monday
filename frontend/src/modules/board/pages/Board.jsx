@@ -6,7 +6,7 @@ import { BoardSideBar } from "../cmps/BoardSideBar";
 import { PopUpModal } from "../../../shared/cmps/PopUpModal";
 import { BoardAdd } from "../cmps/BoardAdd";
 import { makeStyles } from "@material-ui/core";
-import { getBoard, onSetBoards } from "../hooks/setBoards";
+import { getBoard, onSaveBoard, onSetBoards } from "../hooks/setBoards";
 import { BoardHeader } from "../cmps/BoardHeader";
 
 export const Board = ({ match }) => {
@@ -50,10 +50,10 @@ export const Board = ({ match }) => {
   //Adding new Board
   const onAddBoard = async (board, ev) => {
     ev.stopPropagation();
-    const action = addBoard(board);
-    dispatch(action);
+    onSaveBoard(dispatch, board);
     toggleModal(ev);
   };
+
   return boards ? (
     <div className="board-layout flex">
       {modal && (

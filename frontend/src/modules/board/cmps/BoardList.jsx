@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import DashboardOutlinedIcon from "@material-ui/icons/DashboardOutlined";
 import { onRemoveBoard } from "../hooks/setBoards";
 import { useDispatch } from "react-redux";
-export const BoardList = ({ boards, boardId, ...props }) => {
+export const BoardList = ({ boards, boardId }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
+
   return (
-    
     <div className="board-list-wrapper">
       <div className="spacer"></div>
-      {console.log(props)}
       {boards && (
         <div className="board-list-container flex column align-start ">
           {boards.map((board) => {
@@ -21,22 +21,24 @@ export const BoardList = ({ boards, boardId, ...props }) => {
               spanAndIconClassName += " span-active";
             }
             return (
-              <Link key={board._id} to={`/board/${board._id}`}>
-                <button className={className}>
-                  <DashboardOutlinedIcon
-                    className={spanAndIconClassName}
-                  ></DashboardOutlinedIcon>
-                  <span className={spanAndIconClassName}>{board.title}</span>
-                </button>
+              <>
+                <Link key={board._id} to={`/board/${board._id}`}>
+                  <button className={className}>
+                    <DashboardOutlinedIcon
+                      className={spanAndIconClassName}
+                    ></DashboardOutlinedIcon>
+                    <span className={spanAndIconClassName}>{board.title}</span>
+                  </button>
+                </Link>
                 <button
                   onClick={() => {
+                    history.push("/board");
                     onRemoveBoard(dispatch, board._id);
-                    // this.props.history.push("/board");
                   }}
                 >
                   Delete
                 </button>
-              </Link>
+              </>
             );
           })}
         </div>
