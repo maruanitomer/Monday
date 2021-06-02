@@ -1,20 +1,28 @@
 import React from "react";
 import ChatBubbleOutlineRoundedIcon from "@material-ui/icons/ChatBubbleOutlineRounded";
-import AccountCircleRoundedIcon from "@material-ui/icons/AccountCircleRounded";
+import ExpandMoreRoundedIcon from "@material-ui/icons/ExpandMoreRounded";
+// import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 
 export const TaskList = ({ tasks }) => {
-    return (<ul>
-        <li className="clean-list">
-            {tasks.map((task) => {
+  return (
+    <section className="task-wrapper">
+      {tasks.map((task) => {
+        return (
+          <div className="task-container">
+            <ExpandMoreRoundedIcon className="task-option-btn"></ExpandMoreRoundedIcon>
+            <div className="flex justify-space-between">
+              {task.members.map((member) => {
                 return (
-                    <div key={task._id}>
-                        <p >{task.title}</p>
-                        {task.members.map((member) => {
-                            return <p key={member._id}>{member.fullname}</p>
-                        })}
-                    </div>)
-            })}
-        </li>
-    </ul>
-    )
-}
+                  <span className="task-title" key={member._id}>
+                    {member.fullname}
+                  </span>
+                );
+              })}
+              <ChatBubbleOutlineRoundedIcon></ChatBubbleOutlineRoundedIcon>
+            </div>
+          </div>
+        );
+      })}
+    </section>
+  );
+};

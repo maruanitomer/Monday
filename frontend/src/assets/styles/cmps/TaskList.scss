@@ -1,0 +1,22 @@
+.task-wrapper {
+    .task-container {
+        display: grid;
+        grid-template-columns: 0.026fr 0.612fr 0.0841fr 0.12fr 0.12fr 0.0329fr;
+        grid-template-areas: "options title persons status date end";
+        background-color: $grey-background-color;
+        .task-option-btn {
+            display: flex;
+            justify-self: center;
+            width: 50%;
+            &:hover {
+                background-color: $primary-background-hover-color;
+                cursor: pointer;
+            }
+        }
+        .task-title {
+            grid-area: title;
+            align-self: center;
+            align-self: center;
+        }
+    }
+}
