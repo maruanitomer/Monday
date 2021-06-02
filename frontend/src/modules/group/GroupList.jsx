@@ -14,7 +14,6 @@ export const GroupList = ({ groups }) => {
                 <span className="status">Status</span>
                 <span className="date">Date</span>
               </div>
-              {/* <hr/> */}
               <TaskList tasks={group.tasks} />
             </div>
           );

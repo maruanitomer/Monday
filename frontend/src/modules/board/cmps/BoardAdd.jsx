@@ -13,15 +13,8 @@ export const BoardAdd = ({ toggleModal, onAdd, types }) => {
     const { value } = ev.target;
     const targetName = ev.target.name;
     const boardCopy = { ...board };
-    switch (targetName) {
-      case "title":
-      case "type":
-        boardCopy[targetName] = value;
-        setboard({ ...boardCopy });
-        break;
-      default:
-        break;
-    }
+    boardCopy[targetName] = value;
+    setboard({ ...boardCopy });
   };
   return (
     <div className="flex column align-center">

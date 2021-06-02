@@ -27,8 +27,11 @@ export const TaskList = ({ tasks }) => {
             <button className="members flex justify-center aling-center">
               <AccountCircleIcon></AccountCircleIcon>
             </button>
-            <button className="status flex justify-center aling-center">
-              <span>status</span>
+            <button
+              style={{ backgroundColor: task.status.color }}
+              className="status flex justify-center aling-center"
+            >
+              <span>{task.status.text}</span>
             </button>
             <button className="date flex justify-center align-center">
               {/* <input type="date" /> */}
