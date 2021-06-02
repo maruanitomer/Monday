@@ -10,6 +10,12 @@ export const addBoard = (board) => (
         , board
     }
 )
+export const removeBoard = (boardId) => (
+    {
+        type: types.REMOVE_BOARD
+        , boardId
+    }
+)
 
 
 

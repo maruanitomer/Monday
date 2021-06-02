@@ -5,6 +5,7 @@ export const boardService = {
     query,
     save,
     getById,
+    remove
 }
 async function query() {
     try {
@@ -30,24 +31,13 @@ async function save(board) {
         throw new Error('couldn\'t add board')
     }
 }
+async function remove(id) {
+    try { 
+        return httpService.delete(`board/${id}`, id)
+    }
+    catch (err) {
+        throw new Error('couldn\'t add board')
+    }
+}
 
-
-// function save(toy) {
-//     if (toy._id) {
-//         return axios.put(`${url}/${toy._id}`, toy)
-//             .then(res => res.data)
-//     }
-//     else {
-//         return axios.post(url, toy)
-//             .then(res => res.data)
-//     }
-// }
-// function remove(toyId) {
-//     return axios.delete(`${url}/${toyId}`)
-//         .then(res => res.data)
-// }
-// function getById(id) {
-//     return axios.get(`${url}/${id}`)
-//         .then(res => res.data)
-// }
 
