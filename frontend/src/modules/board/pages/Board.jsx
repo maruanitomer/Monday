@@ -72,7 +72,7 @@ export const Board = ({ match }) => {
           />
         </PopUpModal>
       )}
-      <BoardSideBar toggleModal={toggleModal} boards={boards}></BoardSideBar>
+      <BoardSideBar boardId = {match.params.boardId} toggleModal={toggleModal} boards={boards}></BoardSideBar>
       <div className="board-container flex column">
         <BoardHeader board={board}></BoardHeader>
         {board ? <BoardPreview board={board} /> : <p>Select board</p>}

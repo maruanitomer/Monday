@@ -8,7 +8,7 @@ export const TaskList = ({ tasks }) => {
     <section className="task-wrapper">
       {tasks.map((task) => {
         return (
-          <div className="task-container">
+          <div key={task._id} className="task-container grid-tasks-layout">
             <div className="task-option-btn-container">
               <ExpandMoreRoundedIcon className="task-option-btn"></ExpandMoreRoundedIcon>
             </div>
@@ -34,16 +34,13 @@ export const TaskList = ({ tasks }) => {
               {/* <input type="date" /> */}
               <span>23 May</span>
             </button>
-          <div className="end flex justify-space-between">
-              <div className="start-end">
-
-              </div>
-              <div className="block-end">
-              </div>
-          </div>
+            <div className="end flex justify-space-between">
+              <div className="start-end"></div>
+              <div className="block-end"></div>
+            </div>
           </div>
         );
-    })}
+      })}
     </section>
   );
 };
