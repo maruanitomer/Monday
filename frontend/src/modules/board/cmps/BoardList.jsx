@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import DashboardOutlinedIcon from "@material-ui/icons/DashboardOutlined";
 import { onRemoveBoard } from "../hooks/setBoards";
 import { useDispatch } from "react-redux";
+import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
+
 export const BoardList = ({ boards, boardId }) => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -21,8 +23,8 @@ export const BoardList = ({ boards, boardId }) => {
               spanAndIconClassName += " span-active";
             }
             return (
-              <>
-                <Link key={board._id} to={`/board/${board._id}`}>
+              <div key={board._id}>
+                <Link to={`/board/${board._id}`}>
                   <button className={className}>
                     <DashboardOutlinedIcon
                       className={spanAndIconClassName}
@@ -30,15 +32,13 @@ export const BoardList = ({ boards, boardId }) => {
                     <span className={spanAndIconClassName}>{board.title}</span>
                   </button>
                 </Link>
-                <button
+                <MoreHorizIcon
                   onClick={() => {
                     history.push("/board");
                     onRemoveBoard(dispatch, board._id);
                   }}
-                >
-                  Delete
-                </button>
-              </>
+                ></MoreHorizIcon>
+              </div>
             );
           })}
         </div>
