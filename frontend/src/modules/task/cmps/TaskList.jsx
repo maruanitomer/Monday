@@ -43,7 +43,7 @@ export const TaskList = ({ tasks }) => {
           </div>
           </div>
         );
-      })}
+    })}
     </section>
   );
 };
