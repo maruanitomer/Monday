@@ -29,7 +29,6 @@ export const Board = ({ match }) => {
     })();
   }, [boards, match.params]);
 
-  //Modal Generic CSS
   const toggleModal = (ev) => {
     ev.stopPropagation();
     setModal(!modal);
@@ -46,13 +45,12 @@ export const Board = ({ match }) => {
       height: "35vh",
     },
   });
-
   const classes = useStyles();
 
   //Adding new Board
   const onAddBoard = async (board, ev) => {
     ev.stopPropagation();
-    const action = await addBoard(board);
+    const action = addBoard(board);
     dispatch(action);
     toggleModal(ev);
   };
@@ -60,14 +58,21 @@ export const Board = ({ match }) => {
     <div className="board-layout flex">
       {modal && (
         <PopUpModal toggleModal={toggleModal} popup={classes.popup}>
-          <BoardAdd onAdd={onAddBoard} toggleModal={toggleModal} />
+          <BoardAdd
+            types={[
+              "Employees",
+              "Campaigns",
+              "Projects",
+              "Creatives",
+              "Clients",
+              "Tasks",
+            ]}
+            onAdd={onAddBoard}
+            toggleModal={toggleModal}
+          />
         </PopUpModal>
       )}
-      <BoardSideBar
-        boardId={match.params.boardId}
-        toggleModal={toggleModal}
-        boards={boards}
-      ></BoardSideBar>
+      <BoardSideBar toggleModal={toggleModal} boards={boards}></BoardSideBar>
       <div className="board-container flex column">
         <BoardHeader board={board}></BoardHeader>
         {board ? <BoardPreview board={board} /> : <p>Select board</p>}
