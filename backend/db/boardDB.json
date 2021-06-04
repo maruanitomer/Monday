@@ -325,6 +325,13 @@
           }
         }
       ]
+    },
+    {
+      "title": "test1",
+      "cards": [],
+      "members": [],
+      "type": "Campaigns",
+      "_id": "8VwgQ36"
     }
   ]
 }
