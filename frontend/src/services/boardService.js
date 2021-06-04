@@ -5,7 +5,8 @@ export const boardService = {
     query,
     save,
     getById,
-    remove
+    remove,
+    edit
 }
 async function query() {
     try {
@@ -35,6 +36,15 @@ async function remove(id) {
     try {
         httpService.delete(`board/${id}`, id)
         return id;
+    }
+    catch (err) {
+        throw new Error('couldn\'t add board')
+    }
+}
+async function edit(id, board) {
+    try {
+        httpService.put(`board/${id}`, board)
+        return board;
     }
     catch (err) {
         throw new Error('couldn\'t add board')

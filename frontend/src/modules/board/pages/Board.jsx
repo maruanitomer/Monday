@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { addBoard } from "../../../store/actions/boardActions";
 import { useDispatch, useSelector } from "react-redux";
 import { BoardPreview } from "../cmps/BoardPreview";
 import { BoardSideBar } from "../cmps/BoardSideBar";
@@ -79,7 +78,7 @@ export const Board = ({ match }) => {
       ></BoardSideBar>
       <div className="board-container flex column">
         <BoardHeader board={board}></BoardHeader>
-        {board && <BoardPreview board={board} />}
+        {board && <BoardPreview board={board} groups={board.groups} />}
       </div>
     </div>
   ) : (

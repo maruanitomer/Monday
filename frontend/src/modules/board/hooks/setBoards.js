@@ -1,6 +1,6 @@
 
 import { boardService } from '../../../services/boardService'
-import { addBoard, loadBoards, removeBoard } from '../../../store/actions/boardActions'
+import { addBoard, loadBoards, removeBoard, editBoard } from '../../../store/actions/boardActions'
 
 
 
@@ -36,6 +36,13 @@ export const onSaveBoard = async (dispatch, board) => {
     try {
         const boardWithId = await boardService.save(board);
         dispatch(addBoard(boardWithId));
+    }
+    catch (err) {
+    }
+}
+export const onEditBoard = async (dispatch, board) => {
+    try {
+        dispatch(editBoard(await boardService.edit(board._id, board)));
     }
     catch (err) {
     }
