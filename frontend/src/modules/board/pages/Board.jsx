@@ -6,9 +6,10 @@ import { PopUpModal } from "../../../shared/cmps/PopUpModal";
 import { BoardAdd } from "../cmps/BoardAdd";
 import { makeStyles } from "@material-ui/core";
 import { BoardHeader } from "../cmps/BoardHeader";
-import { OnSetBoards } from "../hooks/onSetBoardHook";
+import { OnSetBoards } from "../cmps/SetBoardEffect";
 import { boardService } from "../service/boardService";
 import { addBoard } from "../../../store/actions/boardActions";
+import { BoardNav } from "../cmps/BoardNav";
 
 export const Board = ({ match }) => {
   const [board, setBoard] = useState(null);
@@ -68,30 +69,33 @@ export const Board = ({ match }) => {
 
   return boards ? (
     <div className="board-layout flex">
-      {modal && (
-        <PopUpModal toggleModal={toggleModal} popup={classes.popup}>
-          <BoardAdd
-            types={[
-              "Employees",
-              "Campaigns",
-              "Projects",
-              "Creatives",
-              "Clients",
-              "Tasks",
-            ]}
-            onAdd={onAddBoard}
-            toggleModal={toggleModal}
-          />
-        </PopUpModal>
-      )}
-      <BoardSideBar
-        boardId={board && board._id}
-        toggleModal={toggleModal}
-        boards={boards}
-      ></BoardSideBar>
-      <div className="board-container flex column">
-        <BoardHeader board={board}></BoardHeader>
-        {board && <BoardPreview board={board} groups={board.groups} />}
+      <div className="board-wrapper flex coulmn">
+        <BoardNav/>
+        {modal && (
+          <PopUpModal toggleModal={toggleModal} popup={classes.popup}>
+            <BoardAdd
+              types={[
+                "Employees",
+                "Campaigns",
+                "Projects",
+                "Creatives",
+                "Clients",
+                "Tasks",
+              ]}
+              onAdd={onAddBoard}
+              toggleModal={toggleModal}
+            />
+          </PopUpModal>
+        )}
+        <BoardSideBar
+          boardId={board && board._id}
+          toggleModal={toggleModal}
+          boards={boards}
+        ></BoardSideBar>
+        <div className="board-container flex column">
+          <BoardHeader board={board}></BoardHeader>
+          {board && <BoardPreview board={board} groups={board.groups} />}
+        </div>
       </div>
     </div>
   ) : (

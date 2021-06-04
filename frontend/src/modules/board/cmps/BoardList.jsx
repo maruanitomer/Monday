@@ -30,6 +30,7 @@ export const BoardList = ({ boards, boardId }) => {
           {boards.map((board) => {
             return (
               <BoardListPreview
+                key={board._id}
                 board={board}
                 boardId={boardId}
                 boards={boards}

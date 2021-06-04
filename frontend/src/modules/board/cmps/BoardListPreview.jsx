@@ -6,7 +6,7 @@ import { useHistory } from "react-router";
 export const BoardListPreview = ({ board, onRemoveBoard, boardId, boards }) => {
   const history = useHistory();
 
-  let className = "flex align-center side-bar-btns-width";
+  let className = "flex justify-space-between align-center side-bar-btns-width";
   let spanAndIconClassName = "";
   if (!boardId) boardId = boards[0]._id;
   if (boardId === board._id) {
@@ -15,21 +15,21 @@ export const BoardListPreview = ({ board, onRemoveBoard, boardId, boards }) => {
   }
 
   return (
-    <div key={board._id}>
-      <Link to={`/board/${board._id}`}>
-        <button className={className}>
-          <DashboardOutlinedIcon
-            className={spanAndIconClassName}
-          ></DashboardOutlinedIcon>
-          <span className={spanAndIconClassName}>{board.title}</span>
-        </button>
+    <section className={"board-list-preview-wrapper " + className}>
+      <Link
+        className={"link flex align-center" + spanAndIconClassName}
+        to={`/board/${board._id}`}
+      >
+        <DashboardOutlinedIcon></DashboardOutlinedIcon>
+        <span className={spanAndIconClassName}>{board.title}</span>
       </Link>
       <MoreHorizIcon
+        className={"options-btn " + spanAndIconClassName}
         onClick={() => {
           history.push("/board");
           onRemoveBoard();
         }}
       ></MoreHorizIcon>
-    </div>
+    </section>
   );
 };

@@ -1,5 +1,9 @@
-.board-container {
-    ul {
-        padding: 0;
+.board-layout {
+    height: 100vh;
+    .board-container {
+        padding: rem(14px) rem(30px) rem(0px) rem(30px);
+        ul {
+            padding: 0;
+        }
     }
 }

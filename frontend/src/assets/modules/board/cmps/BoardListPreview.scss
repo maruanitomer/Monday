@@ -1,0 +1,20 @@
+.board-list-preview-wrapper {
+    padding: rem(8px);
+    .link {
+        span {
+            align-self: center;
+        }
+        Button {
+            &:hover {
+                background: none;
+            }
+        }
+        width: 90%;
+    }
+    .options-btn {
+        cursor: pointer;
+        &:hover{
+            background-color: red;
+        }
+    }
+}

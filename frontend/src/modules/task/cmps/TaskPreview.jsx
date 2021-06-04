@@ -4,14 +4,14 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
 export const TaskPreview = ({ task }) => {
   return (
-    <section key={task._id} className="task-preview-container grid-tasks-layout">
+    <section className="task-preview-container grid-tasks-layout">
       <div className="task-option-btn-container">
         <ExpandMoreRoundedIcon className="task-option-btn"></ExpandMoreRoundedIcon>
       </div>
       <div className="flex justify-space-between">
         {task.members.map((member) => {
           return (
-            <span className="task-title" key={member._id}>
+            <span key={member._id} className="task-title">
               {member.fullname}
             </span>
           );

@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { TaskList } from "../../task/cmps/TaskList";
 import { utilService } from "../../../shared/services/utilService";
 import { editBoard } from "../../../store/actions/boardActions";
-import { boardService } from "../../board/service/boardService"
+import { boardService } from "../../board/service/boardService";
 
 export const GroupList = ({ groups, board }) => {
   const dispatch = useDispatch();
