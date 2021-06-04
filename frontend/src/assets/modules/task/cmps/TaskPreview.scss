@@ -1,0 +1,40 @@
+.task-preview-container {
+    background-color: $grey-background-color;
+    .task-option-btn-container {
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        .task-option-btn {
+            width: 50%;
+        }
+    }
+    border-bottom: 1px solid white;
+    .status {
+        padding: rem(11px);
+        width: 100%;
+        height: 100%;
+        background-color: rgb(0, 200, 117); //Todo - fix that later - change to a dynamic color and veriable
+        color: white;
+    }
+    .task-title {
+        grid-area: task;
+        align-self: center;
+        align-self: center;
+    }
+    .end {
+        width: 100%;
+        height: 100%;
+        .start-end {
+            background-color: $grey-background-color !important; //Todo - fix that too :)
+            width: 80%;
+        }
+        .block-end {
+            width: 20%;
+            background-color: $primary-background-hover-color;
+        }
+    }
+    &:hover {
+        cursor: pointer;
+        background-color: $primary-background-hover-on-secondary-color;
+    }
+}

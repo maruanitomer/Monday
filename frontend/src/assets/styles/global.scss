@@ -12,14 +12,15 @@
 @import "basics/inputs";
 
 // Cmps
-@import "cmps/BoardList.scss";
-@import "cmps/BoardSideBar.scss";
-@import "cmps/BoardHeader.scss";
-@import "cmps/CardList.scss";
-@import "cmps/TaskList.scss";
-@import "cmps/GroupList.scss";
-
+@import "../modules/board/cmps/BoardList.scss";
+@import "../modules/board/cmps/BoardSideBar.scss";
+@import "../modules/board/cmps/BoardHeader.scss";
+@import "../modules/task/cmps/TaskList.scss";
+@import "../modules/task/cmps/TaskPreview.scss";
+@import "../modules/group/cmps/GroupList.scss";
 
 //Pages
-@import "pages/BoardApp.scss";
-@import "pages/PopUpModal.scss"
+@import "../modules/board/pages/BoardApp.scss";
+
+//Shared
+@import "../shared/cmps/PopUpModal.scss";

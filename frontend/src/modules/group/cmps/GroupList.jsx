@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { onEditBoard } from "../board/hooks/setBoards";
-import { TaskList } from "../task/cmps/TaskList";
-import { utilService } from "../../services/utilService";
+import { TaskList } from "../../task/cmps/TaskList";
+import { utilService } from "../../../shared/services/utilService";
+import { editBoard } from "../../../store/actions/boardActions";
+import { boardService } from "../../board/service/boardService"
+
 export const GroupList = ({ groups, board }) => {
   const dispatch = useDispatch();
   const [task, SetTask] = useState({
@@ -23,10 +25,18 @@ export const GroupList = ({ groups, board }) => {
     },
   });
   const onAddTask = (task, group) => {
-    const copyTask = {...task};
+    const copyTask = { ...task };
     copyTask._id = utilService.makeId();
     group.tasks.push(task);
-    onEditBoard(dispatch, board);
+    const onEditBoard = async () => {
+      try {
+        const res = editBoard(await boardService.edit(board._id, board));
+        dispatch(res);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    onEditBoard();
   };
 
   const inputHandler = (ev) => {

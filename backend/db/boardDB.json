@@ -540,11 +540,18 @@
       ]
     },
     {
-      "title": "test1",
+      "title": "dudi2",
       "cards": [],
       "members": [],
-      "type": "Campaigns",
-      "_id": "8VwgQ36"
+      "type": "items",
+      "_id": "1W6kX64"
+    },
+    {
+      "title": "dfsfdf",
+      "cards": [],
+      "members": [],
+      "type": "items",
+      "_id": "fpxcLGm"
     }
   ]
 }

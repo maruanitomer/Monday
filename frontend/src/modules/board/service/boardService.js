@@ -1,5 +1,5 @@
 // import { utilService } from '../services/utilService.js'
-import { httpService } from './httpService.js'
+import { httpService } from '../../../shared/services/httpService'
 
 export const boardService = {
     query,
@@ -17,6 +17,7 @@ async function query() {
 }
 
 async function getById(id) {
+    console.log("getById , id", id)
     try {
         return httpService.get(`board/${id}`, id)
     } catch (err) {

@@ -5,8 +5,10 @@ import { BoardSideBar } from "../cmps/BoardSideBar";
 import { PopUpModal } from "../../../shared/cmps/PopUpModal";
 import { BoardAdd } from "../cmps/BoardAdd";
 import { makeStyles } from "@material-ui/core";
-import { getBoard, onSaveBoard, onSetBoards } from "../hooks/setBoards";
 import { BoardHeader } from "../cmps/BoardHeader";
+import { OnSetBoards } from "../hooks/onSetBoardHook";
+import { boardService } from "../service/boardService";
+import { addBoard } from "../../../store/actions/boardActions";
 
 export const Board = ({ match }) => {
   const [board, setBoard] = useState(null);
@@ -14,18 +16,22 @@ export const Board = ({ match }) => {
   const { boards } = useSelector((state) => state.boardModule);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    onSetBoards(dispatch);
-  }, [dispatch]);
+  OnSetBoards();
 
   useEffect(() => {
-    (async () => {
+    const getBoard = async () => {
+      let board = { ...boards[0] };
+      let boardId = match.params.boardId;
       try {
-        setBoard(await getBoard(match.params.boardId, boards));
+        if (boardId) {
+          board = await boardService.getById(boardId);
+        }
+        setBoard(board);
       } catch (err) {
-        throw err;
+        console.log(err);
       }
-    })();
+    };
+    getBoard();
   }, [boards, match.params]);
 
   const toggleModal = (ev) => {
@@ -49,8 +55,15 @@ export const Board = ({ match }) => {
   //Adding new Board
   const onAddBoard = async (board, ev) => {
     ev.stopPropagation();
-    onSaveBoard(dispatch, board);
-    toggleModal(ev);
+    // onSaveBoard(dispatch, board);
+    try {
+      const boardWithId = await boardService.save(board);
+      const actionRes = addBoard(boardWithId);
+      dispatch(actionRes);
+      toggleModal(ev);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return boards ? (

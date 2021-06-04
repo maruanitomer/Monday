@@ -1,13 +1,26 @@
-import { useHistory } from "react-router";
-import { Link } from "react-router-dom";
-import DashboardOutlinedIcon from "@material-ui/icons/DashboardOutlined";
-import { onRemoveBoard } from "../hooks/setBoards";
+// import { Link } from "react-router-dom";
+// import DashboardOutlinedIcon from "@material-ui/icons/DashboardOutlined";
+// import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
+import { removeBoard } from "../../../store/actions/boardActions";
+import { boardService } from "../service/boardService";
 import { useDispatch } from "react-redux";
-import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
+import { BoardListPreview } from "./BoardListPreview";
 
 export const BoardList = ({ boards, boardId }) => {
-  const dispatch = useDispatch();
-  const history = useHistory();
+  const dispacth = useDispatch();
+  // const history = useHistory();
+
+  const onRemoveBoard = () => {
+    const remove = async () => {
+      try {
+        const actionRes = removeBoard(await boardService.remove(boardId));
+        dispacth(actionRes);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    remove();
+  };
 
   return (
     <div className="board-list-wrapper">
@@ -15,30 +28,13 @@ export const BoardList = ({ boards, boardId }) => {
       {boards && (
         <div className="board-list-container flex column align-start ">
           {boards.map((board) => {
-            var className = "flex align-center side-bar-btns-width";
-            var spanAndIconClassName = "";
-            if (!boardId) boardId = boards[0]._id;
-            if (boardId === board._id) {
-              className += " active";
-              spanAndIconClassName += " span-active";
-            }
             return (
-              <div key={board._id}>
-                <Link to={`/board/${board._id}`}>
-                  <button className={className}>
-                    <DashboardOutlinedIcon
-                      className={spanAndIconClassName}
-                    ></DashboardOutlinedIcon>
-                    <span className={spanAndIconClassName}>{board.title}</span>
-                  </button>
-                </Link>
-                <MoreHorizIcon
-                  onClick={() => {
-                    history.push("/board");
-                    onRemoveBoard(dispatch, board._id);
-                  }}
-                ></MoreHorizIcon>
-              </div>
+              <BoardListPreview
+                board={board}
+                boardId={boardId}
+                boards={boards}
+                onRemoveBoard={onRemoveBoard}
+              ></BoardListPreview>
             );
           })}
         </div>
@@ -52,16 +48,3 @@ export const BoardList = ({ boards, boardId }) => {
     </div>
   );
 };
-
-//for backup
-
-// {boards && <ul className="list">
-// {boards.map((board) => {
-//     return (
-//         <li key={board._id} className="clean-list">
-//             <Link to={`/board/${board._id}`}>
-//                 {board.title}
-//             </Link>
-//         </li>)
-// })}
-// </ul >}
