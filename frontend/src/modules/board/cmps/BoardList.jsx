@@ -8,13 +8,12 @@ import { BoardListPreview } from "./BoardListPreview";
 
 export const BoardList = ({ boards, boardId }) => {
   const dispacth = useDispatch();
-  // const history = useHistory();
 
   const onRemoveBoard = () => {
     const remove = async () => {
       try {
-        const actionRes = removeBoard(await boardService.remove(boardId));
-        dispacth(actionRes);
+        const res = await boardService.remove(boardId);
+        dispacth(removeBoard(res));
       } catch (err) {
         console.log(err);
       }

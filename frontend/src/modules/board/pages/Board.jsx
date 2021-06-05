@@ -58,9 +58,8 @@ export const Board = ({ match }) => {
     ev.stopPropagation();
     // onSaveBoard(dispatch, board);
     try {
-      const boardWithId = await boardService.save(board);
-      const actionRes = addBoard(boardWithId);
-      dispatch(actionRes);
+      const res = await boardService.save(board);
+      dispatch(addBoard(res));
       toggleModal(ev);
     } catch (err) {
       console.log(err);
@@ -70,9 +69,13 @@ export const Board = ({ match }) => {
   return boards ? (
     <div className="board-layout flex">
       <div className="board-wrapper flex coulmn">
-        <BoardNav/>
+        <BoardNav />
         {modal && (
-          <PopUpModal toggleModal={toggleModal} popup={classes.popup}>
+          <PopUpModal
+            toggleModal={toggleModal}
+            popup={classes.popup}
+            isDark={true}
+          >
             <BoardAdd
               types={[
                 "Employees",

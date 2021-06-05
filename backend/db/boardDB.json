@@ -278,6 +278,91 @@
                 "start": "",
                 "end": ""
               }
+            },
+            {
+              "title": "dd",
+              "comments": [],
+              "members": [],
+              "status": {
+                "text": "Not status yet",
+                "color": "#cccccc"
+              },
+              "priority": {
+                "text": "Set Piority",
+                "color": "#cccccc"
+              },
+              "dueDate": {
+                "start": "",
+                "end": ""
+              }
+            },
+            {
+              "title": "dudi",
+              "comments": [],
+              "members": [],
+              "status": {
+                "text": "Not status yet",
+                "color": "#cccccc"
+              },
+              "priority": {
+                "text": "Set Piority",
+                "color": "#cccccc"
+              },
+              "dueDate": {
+                "start": "",
+                "end": ""
+              }
+            },
+            {
+              "title": "dsadasd",
+              "comments": [],
+              "members": [],
+              "status": {
+                "text": "Not status yet",
+                "color": "#cccccc"
+              },
+              "priority": {
+                "text": "Set Piority",
+                "color": "#cccccc"
+              },
+              "dueDate": {
+                "start": "",
+                "end": ""
+              }
+            },
+            {
+              "title": "asdasdasd",
+              "comments": [],
+              "members": [],
+              "status": {
+                "text": "Not status yet",
+                "color": "#cccccc"
+              },
+              "priority": {
+                "text": "Set Piority",
+                "color": "#cccccc"
+              },
+              "dueDate": {
+                "start": "",
+                "end": ""
+              }
+            },
+            {
+              "title": "dsfsdf",
+              "comments": [],
+              "members": [],
+              "status": {
+                "text": "Not status yet",
+                "color": "#cccccc"
+              },
+              "priority": {
+                "text": "Set Piority",
+                "color": "#cccccc"
+              },
+              "dueDate": {
+                "start": "",
+                "end": ""
+              }
             }
           ],
           "style": {
@@ -377,6 +462,23 @@
                 "_id": "u101",
                 "fullname": "Tal Tarablus",
                 "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+              }
+            },
+            {
+              "title": "im group 2 new database",
+              "comments": [],
+              "members": [],
+              "status": {
+                "text": "Not status yet",
+                "color": "#cccccc"
+              },
+              "priority": {
+                "text": "Set Piority",
+                "color": "#cccccc"
+              },
+              "dueDate": {
+                "start": "",
+                "end": ""
               }
             }
           ],

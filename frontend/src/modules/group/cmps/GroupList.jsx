@@ -30,8 +30,8 @@ export const GroupList = ({ groups, board }) => {
     group.tasks.push(task);
     const onEditBoard = async () => {
       try {
-        const res = editBoard(await boardService.edit(board._id, board));
-        dispatch(res);
+        const res = await boardService.edit(board._id, board);
+        dispatch(editBoard(res));
       } catch (err) {
         console.log(err);
       }

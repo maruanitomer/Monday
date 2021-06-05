@@ -5,12 +5,12 @@ import { loadBoards } from "../../../store/actions/boardActions";
 
 export const OnSetBoards = () => {
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
     const getBoards = async () => {
       try {
-        const res = loadBoards(await boardService.query());
-        dispatch(res);
+        const res = await boardService.query();
+        dispatch(loadBoards(res));
       } catch {
         console.log("err");
       }

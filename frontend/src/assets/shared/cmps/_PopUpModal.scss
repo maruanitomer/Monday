@@ -3,7 +3,7 @@
     z-index: 2;
     top: 0;
     left: 0;
-    background: rgba(0, 0, 0, 0.4);
+    // background: rgba(0, 0, 0, 0.4);
     width: 100vw;
     height: 100vh;
     .btn-x {
@@ -13,8 +13,11 @@
         background-color: red;
         font-size: rem(30px);
     }
-    .btn-add{
+    .btn-add {
         color: white;
         background-color: black;
     }
+}
+.darkModal {
+    background: rgba(0, 0, 0, 0.4);
 }
