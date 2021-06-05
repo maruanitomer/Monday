@@ -1,3 +1,3 @@
-import { Board } from "../board/pages/Board";
+import { Board } from "../board/screens/Board";
 
 export { Board };

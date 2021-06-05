@@ -1,3 +1,3 @@
-import { MainNav } from "./pages/MainNav.jsx";
+import { MainNav } from "./screens/MainNav.jsx";
 
 export { MainNav };
