@@ -9,7 +9,6 @@ import { BoardHeader } from "../cmps/BoardHeader";
 import { OnSetBoards } from "../cmps/SetBoardEffect";
 import { boardService } from "../service/boardService";
 import { addBoard } from "../../../store/actions/boardActions";
-import { BoardNav } from "../cmps/BoardNav";
 
 export const Board = ({ match }) => {
   const [board, setBoard] = useState(null);
@@ -56,7 +55,6 @@ export const Board = ({ match }) => {
   //Adding new Board
   const onAddBoard = async (board, ev) => {
     ev.stopPropagation();
-    // onSaveBoard(dispatch, board);
     try {
       const res = await boardService.save(board);
       dispatch(addBoard(res));
@@ -69,12 +67,11 @@ export const Board = ({ match }) => {
   return boards ? (
     <div className="board-layout flex">
       <div className="board-wrapper flex coulmn">
-        <BoardNav />
         {modal && (
           <PopUpModal
             toggleModal={toggleModal}
             popup={classes.popup}
-            isDark={true}
+            isDark //isDark={True}
           >
             <BoardAdd
               types={[

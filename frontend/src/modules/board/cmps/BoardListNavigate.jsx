@@ -1,12 +1,10 @@
-// import { Link } from "react-router-dom";
-// import DashboardOutlinedIcon from "@material-ui/icons/DashboardOutlined";
-// import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
+
 import { removeBoard } from "../../../store/actions/boardActions";
 import { boardService } from "../service/boardService";
 import { useDispatch } from "react-redux";
-import { BoardListPreview } from "./BoardListPreview";
+import { BoardListNavigatePreview } from "./BoardListNavigatePreview";
 
-export const BoardList = ({ boards, boardId }) => {
+export const BoardListNavigate = ({ boards, boardId }) => {
   const dispacth = useDispatch();
 
   const onRemoveBoard = () => {
@@ -22,19 +20,19 @@ export const BoardList = ({ boards, boardId }) => {
   };
 
   return (
-    <div className="board-list-wrapper">
+    <div className="board-list-navigate-wrapper">
       <div className="spacer"></div>
       {boards && (
         <div className="board-list-container flex column align-start ">
           {boards.map((board) => {
             return (
-              <BoardListPreview
+              <BoardListNavigatePreview
                 key={board._id}
                 board={board}
                 boardId={boardId}
                 boards={boards}
                 onRemoveBoard={onRemoveBoard}
-              ></BoardListPreview>
+              ></BoardListNavigatePreview>
             );
           })}
         </div>

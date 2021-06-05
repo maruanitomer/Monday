@@ -3,9 +3,9 @@ import NotificationsNoneOutlinedIcon from "@material-ui/icons/NotificationsNoneO
 import sundayIcon from "../../../assets/imgs/sundayIcon.svg"
 
 import InboxIcon from "@material-ui/icons/Inbox";
-export const BoardNavTopLogos = () => {
+export const MainNavTopLogos = () => {
   return (
-    <section className="board-nav-top-logo-container flex column align-center">
+    <section className="main-nav-top-logo-container flex column align-center">
       <img className="logo" src={sundayIcon} alt="" />
       <BorderAllOutlinedIcon className="option" />
       <NotificationsNoneOutlinedIcon className="notification" />

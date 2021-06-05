@@ -1,4 +1,4 @@
-import { BoardList } from "./BoardList";
+import { BoardListNavigate } from "./BoardListNavigate";
 import AddCircleOutlineOutlinedIcon from "@material-ui/icons/AddCircleOutlineOutlined";
 import SearchOutlinedIcon from "@material-ui/icons/SearchOutlined";
 import HomeIcon from "@material-ui/icons/Home";
@@ -28,7 +28,7 @@ export const BoardSideBar = ({ boards, toggleModal, boardId }) => {
           <input placeholder="Search boards..." type="text" />
         </div>
       </div>
-      <BoardList boards={boards} boardId={boardId}></BoardList>
+      <BoardListNavigate boards={boards} boardId={boardId}></BoardListNavigate>
     </section>
   );
 };

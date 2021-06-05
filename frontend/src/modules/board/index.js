@@ -1,1 +1,3 @@
-//Here we should export only the main things from board folder :)
+import { Board } from "../board/pages/Board";
+
+export { Board };

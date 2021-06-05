@@ -3,7 +3,7 @@ import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import DashboardOutlinedIcon from "@material-ui/icons/DashboardOutlined";
 import { useHistory } from "react-router";
 
-export const BoardListPreview = ({ board, onRemoveBoard, boardId, boards }) => {
+export const BoardListNavigatePreview = ({ board, onRemoveBoard, boardId, boards }) => {
   const history = useHistory();
 
   let className = "flex justify-space-between align-center side-bar-btns-width";
@@ -15,7 +15,7 @@ export const BoardListPreview = ({ board, onRemoveBoard, boardId, boards }) => {
   }
 
   return (
-    <section className={"board-list-preview-wrapper " + className}>
+    <section className={"board-list-navigate-preview-wrapper " + className}>
       <Link
         className={"link flex align-center" + spanAndIconClassName}
         to={`/board/${board._id}`}

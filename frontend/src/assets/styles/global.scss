@@ -12,16 +12,16 @@
 @import "basics/inputs";
 
 // Cmps
-@import "../modules/board/cmps/BoardList.scss";
-@import "../modules/board/cmps/BoardListPreview.scss";
+@import "../modules/board/cmps/BoardListNavigate.scss";
+@import "../modules/board/cmps/BoardListNavigatePreview.scss";
 @import "../modules/board/cmps/BoardSideBar.scss";
 @import "../modules/board/cmps/BoardHeader.scss";
 @import "../modules/task/cmps/TaskList.scss";
 @import "../modules/task/cmps/TaskPreview.scss";
 @import "../modules/group/cmps/GroupList.scss";
-@import "../modules/board/cmps/BoardNav.scss";
-@import "../modules/board/cmps/BoardNavTopLogos.scss";
-@import "../modules/board/cmps/BoardNavDownLogos.scss";
+@import "../modules/navigation/pages/MainNav.scss";
+@import "../modules/navigation/cmps/MainNavTopLogos.scss";
+@import "../modules/navigation/cmps/MainNavDownLogos.scss";
 
 //Pages
 @import "../modules/board/pages/BoardApp.scss";

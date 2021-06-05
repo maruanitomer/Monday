@@ -1,5 +1,5 @@
 import React from "react";
-import { GroupList } from "../../group/cmps/GroupList";
+import { GroupList } from "../../group";
 
 export const BoardPreview = ({ groups, board }) => {
   return (
