@@ -2,12 +2,12 @@
 import { removeBoard } from "../../../store/actions/boardActions";
 import { boardService } from "../service/boardService";
 import { useDispatch } from "react-redux";
-import { BoardListNavigatePreview } from "./BoardListNavigatePreview";
+import { BoardNavigationPreview } from "./BoardNavigationPreview";
 
-export const BoardListNavigate = ({ boards, boardId }) => {
+export const BoardNavigationList = ({ boards }) => {
   const dispacth = useDispatch();
 
-  const onRemoveBoard = () => {
+  const onRemoveBoard = (boardId) => {
     const remove = async () => {
       try {
         const res = await boardService.remove(boardId);
@@ -26,13 +26,12 @@ export const BoardListNavigate = ({ boards, boardId }) => {
         <div className="board-list-container flex column align-start ">
           {boards.map((board) => {
             return (
-              <BoardListNavigatePreview
+              <BoardNavigationPreview
                 key={board._id}
                 board={board}
-                boardId={boardId}
                 boards={boards}
                 onRemoveBoard={onRemoveBoard}
-              ></BoardListNavigatePreview>
+              ></BoardNavigationPreview>
             );
           })}
         </div>

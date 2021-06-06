@@ -5,7 +5,6 @@ import { loadBoards } from "../../../store/actions/boardActions";
 
 export const OnSetBoards = () => {
   const dispatch = useDispatch();
-
   useEffect(() => {
     const getBoards = async () => {
       try {

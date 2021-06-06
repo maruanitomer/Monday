@@ -20,7 +20,7 @@ export const Board = ({ match }) => {
 
   useEffect(() => {
     const getBoard = async () => {
-      let board = { ...boards[0] };
+      let board = boards[0];
       let boardId = match.params.boardId;
       try {
         if (boardId) {
@@ -87,11 +87,7 @@ export const Board = ({ match }) => {
             />
           </PopUpModal>
         )}
-        <BoardSideBar
-          boardId={board && board._id}
-          toggleModal={toggleModal}
-          boards={boards}
-        ></BoardSideBar>
+        <BoardSideBar toggleModal={toggleModal} boards={boards}></BoardSideBar>
         <div className="board-container flex column">
           <BoardHeader board={board}></BoardHeader>
           {board && <BoardPreview board={board} groups={board.groups} />}

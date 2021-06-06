@@ -1,14 +1,22 @@
 import { Link } from "react-router-dom";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import DashboardOutlinedIcon from "@material-ui/icons/DashboardOutlined";
-import { useHistory } from "react-router";
+import { useHistory, useParams } from "react-router";
 
-export const BoardListNavigatePreview = ({ board, onRemoveBoard, boardId, boards }) => {
+export const BoardNavigationPreview = ({
+  board,
+  onRemoveBoard,
+  boards,
+  match,
+}) => {
+  console.log("match", match);
   const history = useHistory();
+  let { boardId } = useParams();
+  if (!boardId) boardId = boards[0]._id;
 
+  //added class for scss
   let className = "flex justify-space-between align-center side-bar-btns-width";
   let spanAndIconClassName = "";
-  if (!boardId) boardId = boards[0]._id;
   if (boardId === board._id) {
     className += " active";
     spanAndIconClassName += " span-active";
@@ -27,7 +35,7 @@ export const BoardListNavigatePreview = ({ board, onRemoveBoard, boardId, boards
         className={"options-btn " + spanAndIconClassName}
         onClick={() => {
           history.push("/board");
-          onRemoveBoard();
+          onRemoveBoard(board._id);
         }}
       ></MoreHorizIcon>
     </section>

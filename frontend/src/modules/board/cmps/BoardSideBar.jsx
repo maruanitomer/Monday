@@ -1,9 +1,9 @@
-import { BoardListNavigate } from "./BoardListNavigate";
+import { BoardNavigationList } from "./BoardNavigationList";
 import AddCircleOutlineOutlinedIcon from "@material-ui/icons/AddCircleOutlineOutlined";
 import SearchOutlinedIcon from "@material-ui/icons/SearchOutlined";
 import HomeIcon from "@material-ui/icons/Home";
 
-export const BoardSideBar = ({ boards, toggleModal, boardId }) => {
+export const BoardSideBar = ({ boards, toggleModal }) => {
   return (
     <section className="side-bar-container flex column">
       <div className="workspace-title flex row align-center">
@@ -28,7 +28,7 @@ export const BoardSideBar = ({ boards, toggleModal, boardId }) => {
           <input placeholder="Search boards..." type="text" />
         </div>
       </div>
-      <BoardListNavigate boards={boards} boardId={boardId}></BoardListNavigate>
+      <BoardNavigationList boards={boards}></BoardNavigationList>
     </section>
   );
 };

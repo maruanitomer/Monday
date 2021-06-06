@@ -78,7 +78,7 @@
               }
             },
             {
-              "_id": "123",
+              "_id": "u123",
               "title": "Help me2 ",
               "comments": [
                 {
@@ -463,23 +463,6 @@
                 "fullname": "Tal Tarablus",
                 "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
               }
-            },
-            {
-              "title": "im group 2 new database",
-              "comments": [],
-              "members": [],
-              "status": {
-                "text": "Not status yet",
-                "color": "#cccccc"
-              },
-              "priority": {
-                "text": "Set Piority",
-                "color": "#cccccc"
-              },
-              "dueDate": {
-                "start": "",
-                "end": ""
-              }
             }
           ],
           "style": {
@@ -512,11 +495,18 @@
       "_id": "1W6kX64"
     },
     {
-      "title": "dfsfdf",
+      "title": "dudidu",
       "cards": [],
       "members": [],
-      "type": "items",
-      "_id": "fpxcLGm"
+      "type": "Campaigns",
+      "_id": "oUskQaG"
+    },
+    {
+      "title": "",
+      "cards": [],
+      "members": [],
+      "type": "Campaigns",
+      "_id": "pgiQZer"
     }
   ]
 }

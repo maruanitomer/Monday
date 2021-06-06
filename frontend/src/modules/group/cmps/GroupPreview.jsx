@@ -1,9 +1,8 @@
-
 import { TaskList } from "../../task";
 
 export const GroupPreview = ({ group, board }) => {
   return (
-    <div key={group._id}>
+    <div >
       <div className="grid-tasks-layout">
         <span className="title">{group.title}</span>
         <span className="person">Person</span>

@@ -87,5 +87,5 @@ input {
   grid-template-columns: 0.026fr 0.612fr 0.0841fr 0.12fr 0.12fr 0.0379fr;
   grid-template-areas: "start title person status date last";
   align-items: center;
-  grid-gap: 5px;
+  grid-gap: rem(5px);
 }
