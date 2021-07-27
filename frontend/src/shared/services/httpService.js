@@ -31,6 +31,7 @@ async function ajax(endpoint, method = 'get', data = null) {
             method,
             data
         })
+        if(method=== "PUT") console.log("UPDATING in server");
         return res.data
     } catch (err) {
         if (err.response && err.response.status === 401) {

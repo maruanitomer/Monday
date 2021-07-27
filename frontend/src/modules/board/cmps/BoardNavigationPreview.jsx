@@ -7,9 +7,8 @@ export const BoardNavigationPreview = ({
   board,
   onRemoveBoard,
   boards,
-  match,
+  
 }) => {
-  console.log("match", match);
   const history = useHistory();
   let { boardId } = useParams();
   if (!boardId) boardId = boards[0]._id;

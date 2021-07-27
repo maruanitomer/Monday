@@ -17,8 +17,8 @@ async function query() {
 }
 
 async function getById(id) {
-    console.log("getById , id", id)
     try {
+        
         return httpService.get(`board/${id}`, id)
     } catch (err) {
         throw new Error('couldn\'t find boards')
@@ -45,6 +45,7 @@ async function remove(id) {
 async function edit(id, board) {
     try {
         httpService.put(`board/${id}`, board)
+        console.log("UPDATED in server");
         return board;
     }
     catch (err) {

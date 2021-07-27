@@ -5,19 +5,16 @@ import { useDispatch } from "react-redux";
 import { BoardNavigationPreview } from "./BoardNavigationPreview";
 
 export const BoardNavigationList = ({ boards }) => {
-  const dispacth = useDispatch();
+  const dispatch = useDispatch();
 
-  const onRemoveBoard = (boardId) => {
-    const remove = async () => {
+  const onRemoveBoard = async (boardId) => {
       try {
-        const res = await boardService.remove(boardId);
-        dispacth(removeBoard(res));
+        const res = await boardService.remove(boardId); // return id of deleted
+        dispatch(removeBoard(res));
       } catch (err) {
         console.log(err);
       }
     };
-    remove();
-  };
 
   return (
     <div className="board-list-navigate-wrapper">
