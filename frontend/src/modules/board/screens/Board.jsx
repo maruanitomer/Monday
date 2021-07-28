@@ -19,13 +19,13 @@ export const Board = ({ match }) => {
 
   useEffect(() => {
     const getBoard = async () => {
-      let board = boards[0];
-      let boardId = match.params.boardId;
       try {
+        let boardId = match.params.boardId;
         if (boardId && (!currBoard || boardId !== currBoard._id)) {
-          board = await boardService.getById(boardId);
+          const board = await boardService.getById(boardId);
           dispatch(loadBoard(board));
         }
+        else if (!currBoard) dispatch(loadBoard(boards[0]));
       } catch (err) {
         console.log(err);
       }
@@ -89,7 +89,9 @@ export const Board = ({ match }) => {
         <BoardSideBar toggleModal={toggleModal} boards={boards}></BoardSideBar>
         <div className="board-container flex column">
           <BoardHeader board={currBoard}></BoardHeader>
-          {currBoard && <BoardPreview board={currBoard} groups={currBoard.groups} />}
+          {currBoard && (
+            <BoardPreview board={currBoard} groups={currBoard.groups} />
+          )}
         </div>
       </div>
     </div>
