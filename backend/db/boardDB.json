@@ -33,14 +33,93 @@
       ],
       "groups": [
         {
-          "_id": "uBkxA",
+          "_id": "RVpW0",
           "title": "New Group",
           "tasks": []
         },
         {
+          "_id": "uBkxA",
+          "title": "New Group",
+          "tasks": [
+            {
+              "title": "gfgdfg",
+              "comments": [],
+              "members": [],
+              "status": {
+                "text": "done",
+                "color": "#33d391"
+              },
+              "priority": {
+                "text": "Set Piority",
+                "color": "#cccccc"
+              },
+              "dueDate": {
+                "start": "",
+                "end": ""
+              },
+              "_id": "a1bqw"
+            },
+            {
+              "title": "fdgfdg",
+              "comments": [],
+              "members": [],
+              "status": {
+                "text": "done",
+                "color": "#33d391"
+              },
+              "priority": {
+                "text": "Set Piority",
+                "color": "#cccccc"
+              },
+              "dueDate": {
+                "start": "",
+                "end": ""
+              },
+              "_id": "4y0DS"
+            },
+            {
+              "title": "dfgdfg",
+              "comments": [],
+              "members": [],
+              "status": {
+                "text": "done",
+                "color": "#33d391"
+              },
+              "priority": {
+                "text": "Set Piority",
+                "color": "#cccccc"
+              },
+              "dueDate": {
+                "start": "",
+                "end": ""
+              },
+              "_id": "PyKJp"
+            }
+          ]
+        },
+        {
           "_id": "hm7sS",
           "title": "New Group",
-          "tasks": []
+          "tasks": [
+            {
+              "title": "gdfgdf",
+              "comments": [],
+              "members": [],
+              "status": {
+                "text": "working on it",
+                "color": "#fec06e"
+              },
+              "priority": {
+                "text": "Set Piority",
+                "color": "#cccccc"
+              },
+              "dueDate": {
+                "start": "",
+                "end": ""
+              },
+              "_id": "L6o67"
+            }
+          ]
         },
         {
           "_id": "yGK8X",
@@ -56,8 +135,8 @@
               "comments": [],
               "members": [],
               "status": {
-                "text": "Not status yet",
-                "color": "#c4c4c4"
+                "text": "working on it",
+                "color": "#fec06e"
               },
               "priority": {
                 "text": "Set Piority",
@@ -68,6 +147,24 @@
                 "end": ""
               },
               "_id": "8tV6w"
+            },
+            {
+              "title": "fdggg",
+              "comments": [],
+              "members": [],
+              "status": {
+                "text": "Not status yet",
+                "color": "#cccccc"
+              },
+              "priority": {
+                "text": "Set Piority",
+                "color": "#cccccc"
+              },
+              "dueDate": {
+                "start": "",
+                "end": ""
+              },
+              "_id": "9bVhC"
             }
           ]
         },
@@ -80,8 +177,8 @@
               "comments": [],
               "members": [],
               "status": {
-                "text": "Not status yet",
-                "color": "#c4c4c4"
+                "text": "done",
+                "color": "#33d391"
               },
               "priority": {
                 "text": "Set Piority",
@@ -98,8 +195,8 @@
               "comments": [],
               "members": [],
               "status": {
-                "text": "Not status yet",
-                "color": "#cccccc"
+                "text": "working on it",
+                "color": "#fec06e"
               },
               "priority": {
                 "text": "Set Piority",
@@ -122,8 +219,8 @@
               "comments": [],
               "members": [],
               "status": {
-                "text": "Not status yet",
-                "color": "#c4c4c4"
+                "text": "done",
+                "color": "#33d391"
               },
               "priority": {
                 "text": "Set Piority",
@@ -146,8 +243,8 @@
               "comments": [],
               "members": [],
               "status": {
-                "text": "Not status yet",
-                "color": "#cccccc"
+                "text": "done",
+                "color": "#33d391"
               },
               "priority": {
                 "text": "Set Piority",
@@ -164,8 +261,8 @@
               "comments": [],
               "members": [],
               "status": {
-                "text": "Not status yet",
-                "color": "#cccccc"
+                "text": "working on it",
+                "color": "#fec06e"
               },
               "priority": {
                 "text": "Set Piority",
@@ -182,8 +279,8 @@
               "comments": [],
               "members": [],
               "status": {
-                "text": "Not status yet",
-                "color": "#cccccc"
+                "text": "done",
+                "color": "#33d391"
               },
               "priority": {
                 "text": "Set Piority",
@@ -200,8 +297,8 @@
               "comments": [],
               "members": [],
               "status": {
-                "text": "Not status yet",
-                "color": "#c4c4c4"
+                "text": "stuck",
+                "color": "#e2445c"
               },
               "priority": {
                 "text": "Set Piority",
@@ -219,7 +316,7 @@
               "members": [],
               "status": {
                 "text": "Not status yet",
-                "color": "#cccccc"
+                "color": "#c4c4c4"
               },
               "priority": {
                 "text": "Set Piority",
@@ -230,6 +327,24 @@
                 "end": ""
               },
               "_id": "P1C2M"
+            },
+            {
+              "title": "jhjhjkhk",
+              "comments": [],
+              "members": [],
+              "status": {
+                "text": "Not status yet",
+                "color": "#cccccc"
+              },
+              "priority": {
+                "text": "Set Piority",
+                "color": "#cccccc"
+              },
+              "dueDate": {
+                "start": "",
+                "end": ""
+              },
+              "_id": "BhM5R"
             }
           ],
           "style": {
