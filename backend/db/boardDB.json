@@ -363,6 +363,57 @@
                 "start": "",
                 "end": ""
               }
+            },
+            {
+              "title": "",
+              "comments": [],
+              "members": [],
+              "status": {
+                "text": "Not status yet",
+                "color": "#cccccc"
+              },
+              "priority": {
+                "text": "Set Piority",
+                "color": "#cccccc"
+              },
+              "dueDate": {
+                "start": "",
+                "end": ""
+              }
+            },
+            {
+              "title": "jkjklj",
+              "comments": [],
+              "members": [],
+              "status": {
+                "text": "Not status yet",
+                "color": "#cccccc"
+              },
+              "priority": {
+                "text": "Set Piority",
+                "color": "#cccccc"
+              },
+              "dueDate": {
+                "start": "",
+                "end": ""
+              }
+            },
+            {
+              "title": "jkjkljklkl;kl",
+              "comments": [],
+              "members": [],
+              "status": {
+                "text": "Not status yet",
+                "color": "#cccccc"
+              },
+              "priority": {
+                "text": "Set Piority",
+                "color": "#cccccc"
+              },
+              "dueDate": {
+                "start": "",
+                "end": ""
+              }
             }
           ],
           "style": {
@@ -500,13 +551,6 @@
       "members": [],
       "type": "Campaigns",
       "_id": "oUskQaG"
-    },
-    {
-      "title": "",
-      "cards": [],
-      "members": [],
-      "type": "Campaigns",
-      "_id": "pgiQZer"
     }
   ]
 }

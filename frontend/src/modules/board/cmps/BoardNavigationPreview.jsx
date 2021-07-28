@@ -9,7 +9,6 @@ export const BoardNavigationPreview = ({
   boards,
   match,
 }) => {
-  console.log("match", match);
   const history = useHistory();
   let { boardId } = useParams();
   if (!boardId) boardId = boards[0]._id;

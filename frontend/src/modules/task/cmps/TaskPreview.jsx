@@ -2,9 +2,24 @@ import ChatBubbleOutlineRoundedIcon from "@material-ui/icons/ChatBubbleOutlineRo
 import ExpandMoreRoundedIcon from "@material-ui/icons/ExpandMoreRounded";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { toggleStatusPopUp } from "../../../store/actions/popUpActions";
+
 
 export const TaskPreview = ({ task }) => {
   const [isStatusModalOpen, setIsStatusModalOpen] = useState(false);
+  const dispatch = useDispatch()
+
+  // const onToggleStatusPopUp = async (board, ev) => {
+  //   ev.stopPropagation();
+  //   try {
+  //     const res = await boardService.save(board);
+  //     dispatch(addBoard(res));
+  //     toggleModal(ev);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
   const onToggleStatusModal = () => {
     setIsStatusModalOpen(!isStatusModalOpen);
@@ -12,7 +27,6 @@ export const TaskPreview = ({ task }) => {
   const onEditStatus = (text, color) => {
     task.status.text = text;
     task.status.color = color;
-    console.log("updated task", task.status);
   };
 
   return (
@@ -31,6 +45,7 @@ export const TaskPreview = ({ task }) => {
           <AccountCircleIcon />
         </button>
         <div
+          // onClick={onToggleStatusModal}
           onClick={onToggleStatusModal}
           style={{ backgroundColor: task.status.color, color: "#ffffff" }}
           className="main-status flex justify-center aling-center"

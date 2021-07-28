@@ -1,9 +1,11 @@
 import { createStore, applyMiddleware, combineReducers , compose } from 'redux'
 import thunk from 'redux-thunk';
 import { boardReducer } from './reducers/boardReducer.js'
+import { popUpReducer } from './reducers/popUpReducer.js';
 
 const rootReducer = combineReducers({
-    boardModule: boardReducer
+    boardModule: boardReducer,
+    popUpModule: popUpReducer
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
