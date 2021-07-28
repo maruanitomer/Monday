@@ -8,31 +8,30 @@ import { makeStyles } from "@material-ui/core";
 import { BoardHeader } from "../cmps/BoardHeader";
 import { OnSetBoards } from "../cmps/SetBoardEffect";
 import { boardService } from "../service/boardService";
-import { addBoard } from "../../../store/actions/boardActions";
+import { addBoard, loadBoard } from "../../../store/actions/boardActions";
 
 export const Board = ({ match }) => {
-  const [board, setBoard] = useState(null);
   const [modal, setModal] = useState(false);
-  const { boards } = useSelector((state) => state.boardModule);
+  const { currBoard, boards } = useSelector((state) => state.boardModule);
   const dispatch = useDispatch();
 
   OnSetBoards();
 
   useEffect(() => {
     const getBoard = async () => {
-      let board = boards[0];
-      let boardId = match.params.boardId;
       try {
-        if (boardId) {
-          board = await boardService.getById(boardId);
+        let boardId = match.params.boardId;
+        if (boardId && (!currBoard || boardId !== currBoard._id)) {
+          const board = await boardService.getById(boardId);
+          dispatch(loadBoard(board));
         }
-        setBoard(board);
+        else if (!currBoard) dispatch(loadBoard(boards[0]));
       } catch (err) {
         console.log(err);
       }
     };
     getBoard();
-  }, [boards, match.params]);
+  }, [boards, match.params, dispatch, currBoard]);
 
   const toggleModal = (ev) => {
     ev.stopPropagation();
@@ -89,8 +88,10 @@ export const Board = ({ match }) => {
         )}
         <BoardSideBar toggleModal={toggleModal} boards={boards}></BoardSideBar>
         <div className="board-container flex column">
-          <BoardHeader board={board}></BoardHeader>
-          {board && <BoardPreview board={board} groups={board.groups} />}
+          <BoardHeader board={currBoard}></BoardHeader>
+          {currBoard && (
+            <BoardPreview board={currBoard} groups={currBoard.groups} />
+          )}
         </div>
       </div>
     </div>

@@ -7,7 +7,7 @@ export const BoardNavigationPreview = ({
   board,
   onRemoveBoard,
   boards,
-  match,
+  
 }) => {
   const history = useHistory();
   let { boardId } = useParams();

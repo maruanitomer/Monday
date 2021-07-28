@@ -33,94 +33,116 @@
       ],
       "groups": [
         {
+          "_id": "uBkxA",
+          "title": "New Group",
+          "tasks": []
+        },
+        {
+          "_id": "hm7sS",
+          "title": "New Group",
+          "tasks": []
+        },
+        {
+          "_id": "yGK8X",
+          "title": "New Group",
+          "tasks": []
+        },
+        {
+          "_id": "YlgYU",
+          "title": "New Group",
+          "tasks": [
+            {
+              "title": "fgh",
+              "comments": [],
+              "members": [],
+              "status": {
+                "text": "Not status yet",
+                "color": "#c4c4c4"
+              },
+              "priority": {
+                "text": "Set Piority",
+                "color": "#cccccc"
+              },
+              "dueDate": {
+                "start": "",
+                "end": ""
+              },
+              "_id": "8tV6w"
+            }
+          ]
+        },
+        {
+          "_id": "p61Cf",
+          "title": "New Group",
+          "tasks": [
+            {
+              "title": "33",
+              "comments": [],
+              "members": [],
+              "status": {
+                "text": "Not status yet",
+                "color": "#c4c4c4"
+              },
+              "priority": {
+                "text": "Set Piority",
+                "color": "#cccccc"
+              },
+              "dueDate": {
+                "start": "",
+                "end": ""
+              },
+              "_id": "do3YX"
+            },
+            {
+              "title": "Cannot save a CarFF",
+              "comments": [],
+              "members": [],
+              "status": {
+                "text": "Not status yet",
+                "color": "#cccccc"
+              },
+              "priority": {
+                "text": "Set Piority",
+                "color": "#cccccc"
+              },
+              "dueDate": {
+                "start": "",
+                "end": ""
+              },
+              "_id": "gSbas"
+            }
+          ]
+        },
+        {
+          "_id": "soeVt",
+          "title": "New Group",
+          "tasks": [
+            {
+              "title": "11",
+              "comments": [],
+              "members": [],
+              "status": {
+                "text": "Not status yet",
+                "color": "#c4c4c4"
+              },
+              "priority": {
+                "text": "Set Piority",
+                "color": "#cccccc"
+              },
+              "dueDate": {
+                "start": "",
+                "end": ""
+              },
+              "_id": "L2Ea6"
+            }
+          ]
+        },
+        {
           "_id": "g101",
           "title": "Group 1",
           "tasks": [
             {
-              "_id": "c102",
-              "title": "Help me",
-              "comments": [
-                {
-                  "_id": "ZdPnm",
-                  "txt": "a comment",
-                  "createdAt": 1590999817436,
-                  "byMember": {
-                    "_id": "u101",
-                    "fullname": "Roger Federer",
-                    "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
-                  }
-                }
-              ],
-              "members": [
-                {
-                  "_id": "u101",
-                  "fullname": "Tal Tarablus",
-                  "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
-                }
-              ],
-              "status": {
-                "text": "Stuck",
-                "color": "#61bd8f"
-              },
-              "priority": {
-                "text": "Low",
-                "color": "#61bd4f"
-              },
-              "createdAt": 1590999730348,
-              "dueDate": {
-                "start": "4/20/20",
-                "end": "4/25/20"
-              },
-              "createdBy": {
-                "_id": "u101",
-                "fullname": "Tal Tarablus",
-                "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
-              }
-            },
-            {
-              "_id": "u123",
-              "title": "Help me2 ",
-              "comments": [
-                {
-                  "_id": "ZdPnm",
-                  "txt": "a comment",
-                  "createdAt": 1590999817436,
-                  "byMember": {
-                    "_id": "u101",
-                    "fullname": "Roger Federer",
-                    "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
-                  }
-                }
-              ],
-              "members": [
-                {
-                  "_id": "u101",
-                  "fullname": "Tal Tarablus",
-                  "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
-                }
-              ],
-              "status": {
-                "text": "Stuck",
-                "color": "#61bd8f"
-              },
-              "priority": {
-                "text": "Low",
-                "color": "#61bd4f"
-              },
-              "createdAt": 1590999730348,
-              "dueDate": {
-                "start": "4/20/20",
-                "end": "4/25/20"
-              },
-              "createdBy": {
-                "_id": "u101",
-                "fullname": "Tal Tarablus",
-                "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
-              }
-            },
-            {
-              "title": "a",
-              "_id": "dZLen",
+              "title": "I love Dudi",
               "comments": [],
               "members": [],
               "status": {
@@ -134,11 +156,11 @@
               "dueDate": {
                 "start": "",
                 "end": ""
-              }
+              },
+              "_id": "ebacY"
             },
             {
-              "title": "f",
-              "_id": "g7QCn",
+              "title": "Dudi is the King",
               "comments": [],
               "members": [],
               "status": {
@@ -152,11 +174,11 @@
               "dueDate": {
                 "start": "",
                 "end": ""
-              }
+              },
+              "_id": "lyLBg"
             },
             {
-              "title": "asdf",
-              "_id": "dyFeW",
+              "title": "af",
               "comments": [],
               "members": [],
               "status": {
@@ -170,11 +192,29 @@
               "dueDate": {
                 "start": "",
                 "end": ""
-              }
+              },
+              "_id": "o0aDt"
             },
             {
-              "title": "f",
-              "_id": "9lmAB",
+              "title": "af",
+              "comments": [],
+              "members": [],
+              "status": {
+                "text": "Not status yet",
+                "color": "#c4c4c4"
+              },
+              "priority": {
+                "text": "Set Piority",
+                "color": "#cccccc"
+              },
+              "dueDate": {
+                "start": "",
+                "end": ""
+              },
+              "_id": "wzPzv"
+            },
+            {
+              "title": "34",
               "comments": [],
               "members": [],
               "status": {
@@ -188,232 +228,8 @@
               "dueDate": {
                 "start": "",
                 "end": ""
-              }
-            },
-            {
-              "title": "a",
-              "_id": "7RxWq",
-              "comments": [],
-              "members": [],
-              "status": {
-                "text": "Not status yet",
-                "color": "#cccccc"
               },
-              "priority": {
-                "text": "Set Piority",
-                "color": "#cccccc"
-              },
-              "dueDate": {
-                "start": "",
-                "end": ""
-              }
-            },
-            {
-              "title": "bukbukl",
-              "_id": "7Rx34Wq",
-              "comments": [],
-              "members": [],
-              "status": {
-                "text": "Not status yet",
-                "color": "#cccccc"
-              },
-              "priority": {
-                "text": "Set Piority",
-                "color": "#cccccc"
-              },
-              "dueDate": {
-                "start": "",
-                "end": ""
-              }
-            },
-            {
-              "title": "av",
-              "_id": "RIdf6H5",
-              "comments": [],
-              "members": [],
-              "status": {
-                "text": "Not status yet",
-                "color": "#cccccc"
-              },
-              "priority": {
-                "text": "Set Piority",
-                "color": "#cccccc"
-              },
-              "dueDate": {
-                "start": "",
-                "end": ""
-              }
-            },
-            {
-              "title": "24",
-              "_id": "RI634H5",
-              "comments": [],
-              "members": [],
-              "status": {
-                "text": "Not status yet",
-                "color": "#cccccc"
-              },
-              "priority": {
-                "text": "Set Piority",
-                "color": "#cccccc"
-              },
-              "dueDate": {
-                "start": "",
-                "end": ""
-              }
-            },
-            {
-              "title": "d",
-              "comments": [],
-              "members": [],
-              "status": {
-                "text": "Not status yet",
-                "color": "#cccccc"
-              },
-              "priority": {
-                "text": "Set Piority",
-                "color": "#cccccc"
-              },
-              "dueDate": {
-                "start": "",
-                "end": ""
-              }
-            },
-            {
-              "title": "dd",
-              "comments": [],
-              "members": [],
-              "status": {
-                "text": "Not status yet",
-                "color": "#cccccc"
-              },
-              "priority": {
-                "text": "Set Piority",
-                "color": "#cccccc"
-              },
-              "dueDate": {
-                "start": "",
-                "end": ""
-              }
-            },
-            {
-              "title": "dudi",
-              "comments": [],
-              "members": [],
-              "status": {
-                "text": "Not status yet",
-                "color": "#cccccc"
-              },
-              "priority": {
-                "text": "Set Piority",
-                "color": "#cccccc"
-              },
-              "dueDate": {
-                "start": "",
-                "end": ""
-              }
-            },
-            {
-              "title": "dsadasd",
-              "comments": [],
-              "members": [],
-              "status": {
-                "text": "Not status yet",
-                "color": "#cccccc"
-              },
-              "priority": {
-                "text": "Set Piority",
-                "color": "#cccccc"
-              },
-              "dueDate": {
-                "start": "",
-                "end": ""
-              }
-            },
-            {
-              "title": "asdasdasd",
-              "comments": [],
-              "members": [],
-              "status": {
-                "text": "Not status yet",
-                "color": "#cccccc"
-              },
-              "priority": {
-                "text": "Set Piority",
-                "color": "#cccccc"
-              },
-              "dueDate": {
-                "start": "",
-                "end": ""
-              }
-            },
-            {
-              "title": "dsfsdf",
-              "comments": [],
-              "members": [],
-              "status": {
-                "text": "Not status yet",
-                "color": "#cccccc"
-              },
-              "priority": {
-                "text": "Set Piority",
-                "color": "#cccccc"
-              },
-              "dueDate": {
-                "start": "",
-                "end": ""
-              }
-            },
-            {
-              "title": "",
-              "comments": [],
-              "members": [],
-              "status": {
-                "text": "Not status yet",
-                "color": "#cccccc"
-              },
-              "priority": {
-                "text": "Set Piority",
-                "color": "#cccccc"
-              },
-              "dueDate": {
-                "start": "",
-                "end": ""
-              }
-            },
-            {
-              "title": "jkjklj",
-              "comments": [],
-              "members": [],
-              "status": {
-                "text": "Not status yet",
-                "color": "#cccccc"
-              },
-              "priority": {
-                "text": "Set Piority",
-                "color": "#cccccc"
-              },
-              "dueDate": {
-                "start": "",
-                "end": ""
-              }
-            },
-            {
-              "title": "jkjkljklkl;kl",
-              "comments": [],
-              "members": [],
-              "status": {
-                "text": "Not status yet",
-                "color": "#cccccc"
-              },
-              "priority": {
-                "text": "Set Piority",
-                "color": "#cccccc"
-              },
-              "dueDate": {
-                "start": "",
-                "end": ""
-              }
+              "_id": "P1C2M"
             }
           ],
           "style": {
@@ -470,6 +286,66 @@
         }
       ],
       "groups": [
+        {
+          "_id": "9GFQv",
+          "title": "New Group",
+          "tasks": [
+            {
+              "title": "Clean house",
+              "comments": [],
+              "members": [],
+              "status": {
+                "text": "Not status yet",
+                "color": "#cccccc"
+              },
+              "priority": {
+                "text": "Set Piority",
+                "color": "#cccccc"
+              },
+              "dueDate": {
+                "start": "",
+                "end": ""
+              },
+              "_id": "tXFjI"
+            },
+            {
+              "title": "Suck my dick",
+              "comments": [],
+              "members": [],
+              "status": {
+                "text": "Not status yet",
+                "color": "#cccccc"
+              },
+              "priority": {
+                "text": "Set Piority",
+                "color": "#cccccc"
+              },
+              "dueDate": {
+                "start": "",
+                "end": ""
+              },
+              "_id": "ixGa0"
+            },
+            {
+              "title": "ff",
+              "comments": [],
+              "members": [],
+              "status": {
+                "text": "Not status yet",
+                "color": "#cccccc"
+              },
+              "priority": {
+                "text": "Set Piority",
+                "color": "#cccccc"
+              },
+              "dueDate": {
+                "start": "",
+                "end": ""
+              },
+              "_id": "TtgDD"
+            }
+          ]
+        },
         {
           "_id": "g102",
           "title": "Group 2",
@@ -537,20 +413,6 @@
           }
         }
       ]
-    },
-    {
-      "title": "dudi2",
-      "cards": [],
-      "members": [],
-      "type": "items",
-      "_id": "1W6kX64"
-    },
-    {
-      "title": "dudidu",
-      "cards": [],
-      "members": [],
-      "type": "Campaigns",
-      "_id": "oUskQaG"
     }
   ]
 }

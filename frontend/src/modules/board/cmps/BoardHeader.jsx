@@ -13,8 +13,34 @@ import HeightIcon from "@material-ui/icons/Height";
 import ReorderTwoToneIcon from "@material-ui/icons/ReorderTwoTone";
 import FormatColorFillSharpIcon from "@material-ui/icons/FormatColorFillSharp";
 import BorderColorOutlinedIcon from "@material-ui/icons/BorderColorOutlined";
+import { useDispatch } from "react-redux";
+import { boardService } from "../service/boardService";
+import { editBoard } from "../../../store/actions/boardActions";
+import { utilService } from "../../../shared/services/utilService";
 
 export const BoardHeader = ({ board }) => {
+  const dispatch = useDispatch();
+   const EditBoard = async () => {
+  try {
+    // UPDATING THE BOARD (SERVER + STORE)
+    const res = await boardService.edit(board._id, board);
+    dispatch(editBoard(res));
+  } catch (err) {
+    console.log(err);
+  }
+};
+  const onAddGroup = () => {
+    const group = {
+      _id: utilService.makeId(),
+      title: "New Group",
+      tasks: [],
+    };
+    board.groups.unshift(group);
+    console.log("Board");
+    console.log(board);
+    EditBoard();
+  };
+
   return board ? (
     <section className="board-header-content-wrapper flex column">
       <div
@@ -80,7 +106,7 @@ export const BoardHeader = ({ board }) => {
       </div>
       <div className="board-header-view-bar">
         <div className="monday-header flex">
-          <button>New Item</button>
+          <button onClick={onAddGroup}>New Item</button>
           <button className="flex align-center ">
             <SearchOutlinedIcon></SearchOutlinedIcon> Search
           </button>

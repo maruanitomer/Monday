@@ -1,12 +1,13 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useRef, useState } from "react";
 import { utilService } from "../../../shared/services/utilService";
-import { editBoard } from "../../../store/actions/boardActions";
-import { boardService } from "../../board/service/boardService";
 import { TaskPreview } from "./TaskPreview";
+import { useDispatch } from "react-redux";
+import { boardService } from "../../board/service/boardService";
+import { editBoard } from "../../../store/actions/boardActions";
 
 export const TaskList = ({ tasks, board, group }) => {
   const dispatch = useDispatch();
+  const addInput = useRef(null);
   const [task, SetTask] = useState({
     title: "",
     comments: [],
@@ -31,30 +32,39 @@ export const TaskList = ({ tasks, board, group }) => {
     taskCopy[targetName] = value;
     SetTask({ ...taskCopy });
   };
+   const EditBoard = async () => {
+  try {
+    // UPDATING THE BOARD (SERVER + STORE)
+    const res = await boardService.edit(board._id, board);
+    dispatch(editBoard(res));
+  } catch (err) {
+    console.log(err);
+  }
+};
+  const onRemoveTask = (id) =>{
+    //REMOVE TASK
+    group.tasks =  group.tasks.filter((task) => task._id!==id)
+     EditBoard();
+  }
   const onAddTask = (task, group) => {
+    //ADD TASK
     const copyTask = { ...task };
     copyTask._id = utilService.makeId();
-    group.tasks.push(task);
-    const onEditBoard = async () => {
-      try {
-        const res = await boardService.edit(board._id, board);
-        dispatch(editBoard(res));
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    onEditBoard();
+    group.tasks.push(copyTask);
+    EditBoard();
+    addInput.current.value="";
   };
   return (
     <section className="task-wrapper">
       {tasks.map((task) => {
-        return <TaskPreview key={task._id} task={task} />;
+        return <TaskPreview key={task._id} task={task} onRemoveTask={onRemoveTask}/>;
       })}
       <input
         onChange={inputHandler}
         type="text"
         placeholder="Add + "
         name="title"
+        ref={addInput}
       />
       <button onClick={() => onAddTask(task, group)}>Add</button>
     </section>

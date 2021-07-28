@@ -6,6 +6,7 @@ export const BoardAdd = ({ toggleModal, onAdd, types }) => {
     title: "",
     cards: [],
     members: [],
+    groups:[],
     type: "items",
   });
 
