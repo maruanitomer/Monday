@@ -1,44 +1,30 @@
 import ChatBubbleOutlineRoundedIcon from "@material-ui/icons/ChatBubbleOutlineRounded";
 import ExpandMoreRoundedIcon from "@material-ui/icons/ExpandMoreRounded";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {  Popover } from "@material-ui/core";
+import { toggleAnchor } from "../../../store/actions/anchorActions";
+
 
 export const TaskPreview = ({ task, onRemoveTask }) => {
-  const [isStatusModalOpen, setIsStatusModalOpen] = useState(false);
-  const [anchor, setAnchor] = useState(null);
-  const onToggleStatusModal = () => {
-    setIsStatusModalOpen(!isStatusModalOpen);
-  };
+  const dispatch = useDispatch();
+  const {anchor} = useSelector((state) => state.anchorModule);
+   
   const onEditStatus = (text, color) => {
     task.status.text = text;
     task.status.color = color;
   };
-  const openPopover = (ev) => {
-    setAnchor(ev.currentTarget);
+  const togglePopover = () => {
+    dispatch(toggleAnchor())
   };
   return (
     <>
       <button onClick={() => onRemoveTask(task._id)}>Delete</button>
       <div>
-        <Popover
-          open={Boolean(anchor)}
-          anchorEl={anchor}
-          anchorOrigin={{
-            vertical: "bottom",
-            horizontal: "left",
-          }}
-          transformOrigin={{
-            vertical: "bottom",
-            horizontal: "center",
-          }}
-          onClose={() => setAnchor(null)}
-        >
-          POP UPPPP
-        </Popover>
+    
         <section
           className="task-preview-container grid-tasks-layout"
-          onClick={openPopover}
+          onClick={togglePopover}
         >
           <div className="task-option-btn-container">
             <ExpandMoreRoundedIcon className="task-option-btn" />
@@ -53,7 +39,6 @@ export const TaskPreview = ({ task, onRemoveTask }) => {
             <AccountCircleIcon />
           </button>
           <div
-            onClick={onToggleStatusModal}
             style={{ backgroundColor: task.status.color, color: "#ffffff" }}
             className="main-status flex justify-center aling-center"
           >
@@ -68,7 +53,20 @@ export const TaskPreview = ({ task, onRemoveTask }) => {
             <div className="block-end"></div>
           </div>
         </section>
-        {isStatusModalOpen && (
+        <Popover
+          open={Boolean(anchor)}
+          anchorEl={anchor}
+          anchorOrigin={{
+            vertical: "center",
+            horizontal: "center",
+          }}
+          transformOrigin={{
+            vertical: "center",
+            horizontal: "center",
+          }}
+          style={{width:"1000px",height:"1000px"}}
+          onClose={() => togglePopover()}
+        > 
           <div
             className="chnage-status-wrapper grid-tasks-layout"
             hidden={"true"}
@@ -77,8 +75,8 @@ export const TaskPreview = ({ task, onRemoveTask }) => {
               <div
                 className="status"
                 onClick={() => {
-                  onToggleStatusModal();
                   onEditStatus("done", "#33d391");
+                  togglePopover()
                 }}
                 style={{ backgroundColor: "#33d391" }}
               >
@@ -87,8 +85,8 @@ export const TaskPreview = ({ task, onRemoveTask }) => {
               <div
                 className="status"
                 onClick={() => {
-                  onToggleStatusModal();
                   onEditStatus("working on it", "#fec06e");
+                  togglePopover()
                 }}
                 style={{ backgroundColor: "#fec06e" }}
               >
@@ -97,8 +95,9 @@ export const TaskPreview = ({ task, onRemoveTask }) => {
               <div
                 className="status"
                 onClick={() => {
-                  onToggleStatusModal();
                   onEditStatus("stuck", "#e2445c");
+                  togglePopover()
+
                 }}
                 style={{ backgroundColor: "#e2445c" }}
               >
@@ -108,14 +107,14 @@ export const TaskPreview = ({ task, onRemoveTask }) => {
               <div
                 className="status"
                 onClick={() => {
-                  onToggleStatusModal();
                   onEditStatus("Not status yet", "#c4c4c4");
+                  togglePopover()
                 }}
                 style={{ backgroundColor: "#c4c4c4", borderStyle: "dotted" }}
               ></div>
             </div>
           </div>
-        )}
+        </Popover>
       </div>
     </>
   );
