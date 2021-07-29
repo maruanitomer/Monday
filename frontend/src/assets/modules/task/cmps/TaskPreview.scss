@@ -16,7 +16,6 @@
         background-color: rgb(0, 200, 117); //Todo - fix that later - change to a dynamic color and veriable
     }
     .task-title {
-        grid-area: task;
         align-self: center;
         align-self: center;
     }
@@ -37,15 +36,8 @@
         background-color: $primary-background-hover-on-secondary-color;
     }
 }
-.chnage-status-wrapper {
-    position: relative;
+
     .chnage-status-container {
-        position: absolute;
-        right: 0%;
-        top: 75%;
-        grid-area: status;
-        width: 100%;
-        // min-height: rem(400px);
         background-color: rgba(168, 168, 168, 0.658);
         border: rem(2px) solid black;
         .status {
@@ -60,5 +52,5 @@
             width: 100%;
             color: #fff;
         }
-    }
+    
 }

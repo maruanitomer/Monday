@@ -32,32 +32,39 @@ export const TaskList = ({ tasks, board, group }) => {
     taskCopy[targetName] = value;
     SetTask({ ...taskCopy });
   };
-   const EditBoard = async () => {
-  try {
-    // UPDATING THE BOARD (SERVER + STORE)
-    const res = await boardService.edit(board._id, board);
-    dispatch(editBoard(res));
-  } catch (err) {
-    console.log(err);
-  }
-};
-  const onRemoveTask = (id) =>{
+  const EditBoard = async () => {
+    try {
+      // UPDATING THE BOARD (SERVER + STORE)
+      const res = await boardService.edit(board._id, board);
+      dispatch(editBoard(res));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const onRemoveTask = (id) => {
     //REMOVE TASK
-    group.tasks =  group.tasks.filter((task) => task._id!==id)
-     EditBoard();
-  }
+    group.tasks = group.tasks.filter((task) => task._id !== id);
+    EditBoard();
+  };
   const onAddTask = (task, group) => {
     //ADD TASK
     const copyTask = { ...task };
     copyTask._id = utilService.makeId();
     group.tasks.push(copyTask);
     EditBoard();
-    addInput.current.value="";
+    addInput.current.value = "";
   };
   return (
     <section className="task-wrapper">
       {tasks.map((task) => {
-        return <TaskPreview key={task._id} task={task} onRemoveTask={onRemoveTask}/>;
+        return (
+          <TaskPreview
+            key={task._id}
+            EditBoard={EditBoard}
+            task={task}
+            onRemoveTask={onRemoveTask}
+          />
+        );
       })}
       <input
         onChange={inputHandler}
