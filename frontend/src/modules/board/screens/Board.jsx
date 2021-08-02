@@ -8,7 +8,11 @@ import { makeStyles } from "@material-ui/core";
 import { BoardHeader } from "../cmps/BoardHeader";
 import { OnSetBoards } from "../cmps/SetBoardEffect";
 import { boardService } from "../service/boardService";
-import { addBoard, loadBoard } from "../../../store/actions/boardActions";
+import {
+  addBoard,
+  editBoard,
+  loadBoard,
+} from "../../../store/actions/boardActions";
 
 export const Board = ({ match }) => {
   const [modal, setModal] = useState(false);
@@ -24,8 +28,7 @@ export const Board = ({ match }) => {
         if (boardId && (!currBoard || boardId !== currBoard._id)) {
           const board = await boardService.getById(boardId);
           dispatch(loadBoard(board));
-        }
-        else if (!currBoard) dispatch(loadBoard(boards[0]));
+        } else if (!currBoard) dispatch(loadBoard(boards[0]));
       } catch (err) {
         console.log(err);
       }
@@ -62,6 +65,15 @@ export const Board = ({ match }) => {
       console.log(err);
     }
   };
+  const onEditBoard = async () => {
+    try {
+      // UPDATING THE BOARD (SERVER + STORE)
+      const res = await boardService.edit(currBoard._id, currBoard);
+      dispatch(editBoard(res));
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return boards ? (
     <div className="board-layout flex">
@@ -90,7 +102,11 @@ export const Board = ({ match }) => {
         <div className="board-container flex column">
           <BoardHeader board={currBoard}></BoardHeader>
           {currBoard && (
-            <BoardPreview board={currBoard} groups={currBoard.groups} />
+            <BoardPreview
+              onEditBoard={onEditBoard}
+              board={currBoard}
+              groups={currBoard.groups}
+            />
           )}
         </div>
       </div>
