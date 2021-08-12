@@ -1,45 +1,81 @@
 import { TaskList } from "../../task";
-import { usePopper } from "react-popper";
+import FormatAlignLeftIcon from "@material-ui/icons/FormatAlignLeft";
+import { Popper } from "../../../shared/cmps/Popper";
 import { useState } from "react";
-import { Portal } from "../../../shared/hooks/Portal";
 import { useClickOutside } from "../../../shared/hooks/clickOutSide";
-import ExpandMoreRoundedIcon from "@material-ui/icons/ExpandMoreRounded";
+export const GroupPreview = ({ group, board, onEditBoard }) => {
+  const onRemoveGroup = (id) => {
+    //REMOVE Group
+    console.log("Deleting group...");
+    board.groups = board.groups.filter((group) => group._id !== id);
+    onEditBoard();
+  };
 
-export const GroupPreview = ({ group, board }) => {
- 
-  const [refEl, setRefEl] = useState();
-  const [popperEl, setpopperEl] = useState();
-  const [isOpen, setIsOpen] = useState(false);
+  const [toggleName, setToggleName] = useState(true);
+  const [groupTitle, setGroupTitle] = useState(group.title);
+  const inputHandler = (ev) => {
+    setGroupTitle(ev.target.value);
+  };
   let domNode = useClickOutside(() => {
-    setIsOpen(false);
+    if (toggleName === false) {
+      setToggleName(true);
+      if (group.title !== groupTitle) {
+        console.log("Changing group title...");
+        group.title = groupTitle;
+        onEditBoard();
+      }
+    }
   });
-  let { styles, attributes } = usePopper(refEl, popperEl);
+
   return (
-    <div>
-      <div ref={domNode}>
-        <button ref={setRefEl} onClick={() => setIsOpen(!isOpen)}>
-        <ExpandMoreRoundedIcon/>
-        </button>
-      </div>
-      <Portal>
-        <div
-          ref={setpopperEl}
-          hidden={!isOpen}
-          style={styles.popper}
-          {...attributes.popper}
-        >
-          <li style={{backgroundColor: 'red'}}>Delete</li>
-          <li style={{backgroundColor: 'red'}}>Rename</li>
-          
+    <div style={{ marginBottom: "30px" }}>
+      <div className="grid-tasks-layout" style={{ marginBottom: "5px" }}>
+        <Popper
+          button={<FormatAlignLeftIcon />}
+          popper={
+            <div className="flex column " style={{ backgroundColor: "salmon" }}>
+              <button
+                onClick={(ev) => {
+                  ev.stopPropagation();
+                  onRemoveGroup(group._id);
+                }}
+              >
+                Delete
+              </button>
+              <button>Rename</button>
+            </div>
+          }
+        />
+        <div ref={domNode}>
+          {toggleName ? (
+            <span
+              className="group-title"
+              onClick={() => setToggleName(!toggleName)}
+            >
+              {groupTitle}
+            </span>
+          ) : (
+            <div>
+              <input
+                className="group-title-edit"
+                type="text"
+                name="title"
+                onChange={inputHandler}
+                value={groupTitle}
+              />
+            </div>
+          )}
         </div>
-      </Portal>
-      <div className="grid-tasks-layout">
-        <span className="title">{group.title}</span>
         <span className="person">Person</span>
         <span className="status">Status</span>
         <span className="date">Date</span>
       </div>
-      <TaskList board={board} group={group} tasks={group.tasks} />
+      <TaskList
+        board={board}
+        onEditBoard={onEditBoard}
+        group={group}
+        tasks={group.tasks}
+      />
     </div>
   );
 };

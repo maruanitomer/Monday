@@ -1,14 +1,10 @@
 import React, { useRef, useState } from "react";
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { utilService } from "../../../shared/services/utilService";
 import { TaskPreview } from "./TaskPreview";
-import { useDispatch } from "react-redux";
-import { boardService } from "../../board/service/boardService";
-import { editBoard } from "../../../store/actions/boardActions";
 
-export const TaskList = ({ tasks, board, group }) => {
-  const dispatch = useDispatch();
-  const addInput = useRef(null);
-  const [task, SetTask] = useState({
+export const TaskList = ({ tasks, group, onEditBoard }) => {
+  const initialTask = {
     title: "",
     comments: [],
     members: [],
@@ -24,41 +20,61 @@ export const TaskList = ({ tasks, board, group }) => {
       start: "",
       end: "",
     },
-  });
+  };
+  const addInput = useRef(null);
+  const [taskToAdd, SetTaskToAdd] = useState(initialTask);
   const inputHandler = (ev) => {
     const { value } = ev.target;
     const targetName = ev.target.name;
-    const taskCopy = { ...task };
+    const taskCopy = { ...taskToAdd };
     taskCopy[targetName] = value;
-    SetTask({ ...taskCopy });
+    SetTaskToAdd({ ...taskCopy });
   };
-   const EditBoard = async () => {
-  try {
-    // UPDATING THE BOARD (SERVER + STORE)
-    const res = await boardService.edit(board._id, board);
-    dispatch(editBoard(res));
-  } catch (err) {
-    console.log(err);
-  }
-};
-  const onRemoveTask = (id) =>{
+
+  const onRemoveTask = (id) => {
     //REMOVE TASK
-    group.tasks =  group.tasks.filter((task) => task._id!==id)
-     EditBoard();
-  }
-  const onAddTask = (task, group) => {
+    group.tasks = group.tasks.filter((task) => task._id !== id);
+    onEditBoard();
+  };
+  const onAddTask = () => {
     //ADD TASK
-    const copyTask = { ...task };
+    const copyTask = { ...taskToAdd };
     copyTask._id = utilService.makeId();
     group.tasks.push(copyTask);
-    EditBoard();
-    addInput.current.value="";
+    onEditBoard();
+    SetTaskToAdd(initialTask);
+    addInput.current.value = "";
   };
+
   return (
     <section className="task-wrapper">
-      {tasks.map((task) => {
-        return <TaskPreview key={task._id} task={task} onRemoveTask={onRemoveTask}/>;
-      })}
+      <Droppable droppableId={group._id}>
+        {(provided) => (
+          <div {...provided.droppableProps} ref={provided.innerRef}>
+            {tasks.map((task, idx) => {
+              return (
+                <Draggable key={task._id} draggableId={task._id} index={idx}>
+                  {(provided) => (
+                    <div
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                      ref={provided.innerRef}
+                    >
+                      <TaskPreview
+                        onEditBoard={onEditBoard}
+                        task={task}
+                        onRemoveTask={onRemoveTask}
+                      />
+                    </div>
+                  )}
+                </Draggable>
+              );
+            })}
+            {provided.placeholder}
+          </div>
+        )}
+      </Droppable>
+
       <input
         onChange={inputHandler}
         type="text"
@@ -66,7 +82,7 @@ export const TaskList = ({ tasks, board, group }) => {
         name="title"
         ref={addInput}
       />
-      <button onClick={() => onAddTask(task, group)}>Add</button>
+      <button onClick={() => onAddTask()}>Add</button>
     </section>
   );
 };
