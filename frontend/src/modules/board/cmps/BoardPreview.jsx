@@ -1,11 +1,15 @@
 import React from "react";
 import { GroupList } from "../../group";
 
-export const BoardPreview = ({ groups, board, onEditBoard }) => {
+export const BoardPreview = ({ groups, board, onEditBoard, onOpenUpdates }) => {
   return (
     <section>
-      {/* <BoardNav /> */}
-      <GroupList board={board} onEditBoard={onEditBoard} groups={groups} />
+      <GroupList
+        board={board}
+        onOpenUpdates={onOpenUpdates}
+        onEditBoard={onEditBoard}
+        groups={groups}
+      />
     </section>
   );
 };

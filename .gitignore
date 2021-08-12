@@ -6,8 +6,13 @@ backend/node_modules
 /.pnp
 .pnp.js
 
+#secrets
+keys.js
+
+
 # testing
 /coverage
+logs
 
 # production
 /build

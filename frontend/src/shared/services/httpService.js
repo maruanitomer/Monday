@@ -2,7 +2,7 @@ import Axios from 'axios'
 
 const BASE_URL = process.env.NODE_ENV === 'production'
     ? '/api/'
-    : '//localhost:3030/'
+    : '//localhost:3030/api/'
 
 
 var axios = Axios.create({
@@ -24,16 +24,16 @@ export const httpService = {
     }
 }
 
-async function ajax(endpoint, method = 'get', data = null) {
+async function ajax(endpoint, method, data = null) {
     try {
         const res = await axios({
             url: `${BASE_URL}${endpoint}`,
             method,
             data
         })
-        if(method=== "PUT") console.log("UPDATING in server");
         return res.data
     } catch (err) {
+        console.log(err);
         if (err.response && err.response.status === 401) {
             window.location.assign('/#/login')
         }

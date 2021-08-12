@@ -3,10 +3,10 @@ import FormatAlignLeftIcon from "@material-ui/icons/FormatAlignLeft";
 import { Popper } from "../../../shared/cmps/Popper";
 import { useState } from "react";
 import { useClickOutside } from "../../../shared/hooks/clickOutSide";
-export const GroupPreview = ({ group, board, onEditBoard }) => {
+import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
+export const GroupPreview = ({ group, board, onEditBoard,onOpenUpdates }) => {
   const onRemoveGroup = (id) => {
     //REMOVE Group
-    console.log("Deleting group...");
     board.groups = board.groups.filter((group) => group._id !== id);
     onEditBoard();
   };
@@ -20,7 +20,6 @@ export const GroupPreview = ({ group, board, onEditBoard }) => {
     if (toggleName === false) {
       setToggleName(true);
       if (group.title !== groupTitle) {
-        console.log("Changing group title...");
         group.title = groupTitle;
         onEditBoard();
       }
@@ -31,7 +30,7 @@ export const GroupPreview = ({ group, board, onEditBoard }) => {
     <div style={{ marginBottom: "30px" }}>
       <div className="grid-tasks-layout" style={{ marginBottom: "5px" }}>
         <Popper
-          button={<FormatAlignLeftIcon />}
+          button={<KeyboardArrowDownIcon />}
           popper={
             <div className="flex column " style={{ backgroundColor: "salmon" }}>
               <button
@@ -75,6 +74,7 @@ export const GroupPreview = ({ group, board, onEditBoard }) => {
         onEditBoard={onEditBoard}
         group={group}
         tasks={group.tasks}
+        onOpenUpdates={onOpenUpdates}
       />
     </div>
   );

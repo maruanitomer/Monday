@@ -13,24 +13,29 @@ import {
   editBoard,
   loadBoard,
 } from "../../../store/actions/boardActions";
+import { TaskUpdates } from "../../task/cmps/TaskUpdates";
 
 export const Board = ({ match }) => {
   const [modal, setModal] = useState(false);
   const { currBoard, boards } = useSelector((state) => state.boardModule);
   const dispatch = useDispatch();
+  const [toggleUpdates, setToggleUpdates] = useState(false);
+  const [task, setTask] = useState();
 
   OnSetBoards();
 
   useEffect(() => {
     const getBoard = async () => {
-      try {
-        let boardId = match.params.boardId;
-        if (boardId && (!currBoard || boardId !== currBoard._id)) {
-          const board = await boardService.getById(boardId);
-          dispatch(loadBoard(board));
-        } else if (!currBoard) dispatch(loadBoard(boards[0]));
-      } catch (err) {
-        console.log(err);
+      if (boards.length !== 0) {
+        try {
+          let boardId = match.params.boardId;
+          if (boardId && (!currBoard || boardId !== currBoard._id)) {
+            const board = await boardService.getById(boardId);
+            dispatch(loadBoard(board));
+          } else if (!currBoard) dispatch(loadBoard(boards[0]));
+        } catch (err) {
+          console.log(err);
+        }
       }
     };
     getBoard();
@@ -74,8 +79,11 @@ export const Board = ({ match }) => {
       console.log(err);
     }
   };
-
-  return boards ? (
+  const onOpenUpdates = (task) => {
+    setTask(task);
+    setToggleUpdates(true);
+  };
+  return (
     <div className="board-layout flex">
       <div className="board-wrapper flex coulmn">
         {modal && (
@@ -99,19 +107,33 @@ export const Board = ({ match }) => {
           </PopUpModal>
         )}
         <BoardSideBar toggleModal={toggleModal} boards={boards}></BoardSideBar>
-        <div className="board-container flex column">
-          <BoardHeader board={currBoard}></BoardHeader>
-          {currBoard && (
-            <BoardPreview
-              onEditBoard={onEditBoard}
-              board={currBoard}
-              groups={currBoard.groups}
-            />
-          )}
-        </div>
+        {boards.length !== 0 ? (
+          <div className="flex">
+            <div className="board-container flex column">
+              <BoardHeader board={currBoard}></BoardHeader>
+              {currBoard && (
+                <BoardPreview
+                  onEditBoard={onEditBoard}
+                  board={currBoard}
+                  groups={currBoard.groups}
+                  onOpenUpdates={onOpenUpdates}
+                />
+              )}
+            </div>
+            {toggleUpdates && (
+              <TaskUpdates
+                task={task}
+                onEditBoard={onEditBoard}
+                close={() => setToggleUpdates(false)}
+              />
+            )}
+          </div>
+        ) : (
+      <h1>No Boards</h1>
+
+        
+        )}
       </div>
     </div>
-  ) : (
-    <h1>loading</h1>
   );
 };

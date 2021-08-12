@@ -34,38 +34,15 @@
       "groups": [
         {
           "_id": "Vwl0F",
-          "title": "Group one",
-          "tasks": []
-        },
-        {
-          "_id": "4KZXQ",
-          "title": "as",
+          "title": "My name",
           "tasks": [
             {
               "title": "dfdf",
               "comments": [],
               "members": [],
               "status": {
-                "text": "Stuck",
-                "color": "#e2445c"
-              },
-              "priority": {
-                "text": "Set Piority",
-                "color": "#cccccc"
-              },
-              "dueDate": {
-                "start": "",
-                "end": ""
-              },
-              "_id": "PWIps"
-            },
-            {
-              "title": "dfdf",
-              "comments": [],
-              "members": [],
-              "status": {
-                "text": "Stuck",
-                "color": "#e2445c"
+                "text": "Done",
+                "color": "#33d391"
               },
               "priority": {
                 "text": "Set Piority",
@@ -78,12 +55,12 @@
               "_id": "ZzMvZ"
             },
             {
-              "title": "Dudi is the King",
+              "title": "yoyo ",
               "comments": [],
               "members": [],
               "status": {
-                "text": "Stuck",
-                "color": "#e2445c"
+                "text": "Working on it",
+                "color": "#fec06e"
               },
               "priority": {
                 "text": "Set Piority",
@@ -93,13 +70,13 @@
                 "start": "",
                 "end": ""
               },
-              "_id": "lyLBg"
+              "_id": "X5pjY"
             }
           ]
         },
         {
-          "_id": "g101",
-          "title": "Group Two",
+          "_id": "4KZXQ",
+          "title": "Fuck Fuck Fuck",
           "tasks": [
             {
               "title": "I love Dudi man",
@@ -136,6 +113,48 @@
                 "end": ""
               },
               "_id": "LlLVF"
+            }
+          ]
+        },
+        {
+          "_id": "g101",
+          "title": "Group Two",
+          "tasks": [
+            {
+              "title": "dfdf",
+              "comments": [],
+              "members": [],
+              "status": {
+                "text": "Stuck",
+                "color": "#e2445c"
+              },
+              "priority": {
+                "text": "Set Piority",
+                "color": "#cccccc"
+              },
+              "dueDate": {
+                "start": "",
+                "end": ""
+              },
+              "_id": "PWIps"
+            },
+            {
+              "title": "Dudi is the King",
+              "comments": [],
+              "members": [],
+              "status": {
+                "text": "Working on it",
+                "color": "#fec06e"
+              },
+              "priority": {
+                "text": "Set Piority",
+                "color": "#cccccc"
+              },
+              "dueDate": {
+                "start": "",
+                "end": ""
+              },
+              "_id": "lyLBg"
             }
           ],
           "style": {
@@ -260,6 +279,39 @@
           }
         }
       ]
+    },
+    {
+      "title": "df",
+      "cards": [],
+      "members": [],
+      "groups": [
+        {
+          "_id": "0uBOv",
+          "title": "Dicky Dick",
+          "tasks": [
+            {
+              "title": "vbvb",
+              "comments": [],
+              "members": [],
+              "status": {
+                "text": "Done",
+                "color": "#33d391"
+              },
+              "priority": {
+                "text": "Set Piority",
+                "color": "#cccccc"
+              },
+              "dueDate": {
+                "start": "",
+                "end": ""
+              },
+              "_id": "frgJ5"
+            }
+          ]
+        }
+      ],
+      "type": "Campaigns",
+      "_id": "UPbhv63"
     }
   ]
 }
