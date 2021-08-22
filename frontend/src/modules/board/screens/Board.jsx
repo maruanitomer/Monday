@@ -60,11 +60,12 @@ export const Board = ({ match }) => {
   const useStyles = makeStyles({
     popup: {
       backgroundColor: "white",
-      position: "relative",
-      top: "25%",
-      left: "25%",
-      width: "35vw",
-      height: "35vh",
+      position: "absolute",
+      top: "50%",
+      left: "50%",
+      transform: "translate(-50%, -50%)",
+      width: "40vw",
+      height: "40vh",
     },
   });
   const classes = useStyles();
@@ -93,48 +94,51 @@ export const Board = ({ match }) => {
     setTask(task);
     setToggleUpdates(true);
   };
+  // var className;
+  // toggleUpdates? className="50%" : className="100%";
+  
   return (
     <div className="board-layout flex">
-      <div className="flex coulmn">
-        {modal && (
-          <PopUpModal
+      {/* <div className="flex coulmn"> */}
+      {modal && (
+        <PopUpModal
+          toggleModal={toggleModal}
+          popup={classes.popup}
+          isDark //isDark={True}
+        >
+          <BoardAdd
+            types={[
+              "Employees",
+              "Campaigns",
+              "Projects",
+              "Creatives",
+              "Clients",
+              "Tasks",
+            ]}
+            onAdd={onAddBoard}
             toggleModal={toggleModal}
-            popup={classes.popup}
-            isDark //isDark={True}
-          >
-            <BoardAdd
-              types={[
-                "Employees",
-                "Campaigns",
-                "Projects",
-                "Creatives",
-                "Clients",
-                "Tasks",
-              ]}
-              onAdd={onAddBoard}
-              toggleModal={toggleModal}
-            />
-          </PopUpModal>
-        )}
-        <MainNav />
+          />
+        </PopUpModal>
+      )}
+      <MainNav />
 
-        <BoardSideBar toggleModal={toggleModal} boards={boards}></BoardSideBar>
-        {boards.length !== 0 ? (
-          <div className="flex">
-            <div className="board-container flex column">
-              <BoardHeader
-                board={currBoard}
-                onEditBoard={onEditBoard}
-              ></BoardHeader>
-              {currBoard && (
+      <BoardSideBar toggleModal={toggleModal} boards={boards}></BoardSideBar>
+      {boards.length !== 0 ? (
+        <div className="flex">
+          <div className="board-container flex column ">
+            <BoardHeader
+              board={currBoard}
+              onEditBoard={onEditBoard}
+            ></BoardHeader>
+            {currBoard && (
                 <BoardPreview
                   onEditBoard={onEditBoard}
                   board={currBoard}
                   groups={currBoard.groups}
                   onOpenUpdates={onOpenUpdates}
+                  toggleUpdates = {toggleUpdates}
                 />
-              )}
-            </div>
+            )}
             {toggleUpdates && (
               <TaskUpdates
                 task={task}
@@ -143,12 +147,16 @@ export const Board = ({ match }) => {
               />
             )}
           </div>
-        ) : (
-          <div className="emptypage-logo">
+        </div>
+
+      ) : (
+        <div className="emptypage-logo-wrapper">
+          <div className="emptypage-img-container">
             <img src={emptypage} alt="icon"></img>
           </div>
-        )}
-      </div>
-    </div>
+        </div>
+      )
+      }
+    </div >
   );
 };

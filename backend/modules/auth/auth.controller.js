@@ -23,6 +23,7 @@ async function signup(req, res) {
         console.log(req.session.user);
         res.json(addedUsername)
     } catch (err) {
+        console.log(err);
         res.status(401).send(err.message)
     }
 }

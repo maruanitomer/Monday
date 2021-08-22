@@ -1,4 +1,4 @@
-import { Button } from "@material-ui/core";
+import { Button, makeStyles } from "@material-ui/core";
 import { useState } from "react";
 import { utilService } from "../../../shared/services/utilService";
 
@@ -15,8 +15,20 @@ export const TaskUpdates = ({ task, onEditBoard, close }) => {
   const inputHandler = (ev) => {
     setComment(ev.target.value);
   };
+
+  const useStyles = makeStyles({
+
+    p: {
+      height: '100vh',
+      position: 'absolute',
+      right: '0%',
+      top: '0%',
+      backgroundColor: 'aliceblue',
+    }
+  });
+  const classes = useStyles()
   return (
-    <div className="flex column " style={{ height: "100vh", width: "30vw" }}>
+    <div className={'flex column ' + classes.p} style={{ height: "100vh"}}>
       <div className="flex column align-start">
         <button onClick={close}>x</button>
         <h1> {task.title}</h1>

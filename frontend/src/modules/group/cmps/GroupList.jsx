@@ -1,8 +1,7 @@
-import React from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import { GroupPreview } from "./GroupPreview";
 
-export const GroupList = ({ groups, board, onEditBoard ,onOpenUpdates}) => {
+export const GroupList = ({ groups, board, onEditBoard, onOpenUpdates, toggleUpdates }) => {
   const onDragEndHandler = (result) => {
     const { destination, source } = result;
     if (!destination) {
@@ -29,22 +28,25 @@ export const GroupList = ({ groups, board, onEditBoard ,onOpenUpdates}) => {
       onEditBoard();
     }
   };
+  var width = toggleUpdates ? '60% ' : '100%';
   return (
     <section className="group-list-wrapper">
-      <DragDropContext onDragEnd={onDragEndHandler}>
-        {groups &&
-          groups.map((group) => {
-            return (
-              <GroupPreview
-                onEditBoard={onEditBoard}
-                key={group._id}
-                board={board}
-                group={group}
-                onOpenUpdates={onOpenUpdates}
-              ></GroupPreview>
-            );
-          })}
-      </DragDropContext>
+      <div style={{ position: 'absolute' , maxWidth:width }}>
+        <DragDropContext onDragEnd={onDragEndHandler}>
+          {groups &&
+            groups.map((group) => {
+              return (
+                <GroupPreview
+                  onEditBoard={onEditBoard}
+                  key={group._id}
+                  board={board}
+                  group={group}
+                  onOpenUpdates={onOpenUpdates}
+                ></GroupPreview>
+              );
+            })}
+        </DragDropContext>
+      </div>
     </section>
   );
 };

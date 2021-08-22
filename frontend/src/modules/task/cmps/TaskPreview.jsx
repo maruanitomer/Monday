@@ -40,6 +40,7 @@ export const TaskPreview = ({
           <AccountCircleIcon />
         </button>
         <Popper
+          y={-3}
           button={
             <div
               style={{ backgroundColor: task.status.color, color: "#ffffff" }}
@@ -77,9 +78,10 @@ export const TaskPreview = ({
             </div>
           }
         />
-        <div>
+        {/* <div>
           <input type="date" />
-        </div>
+        </div> */}
+        <span>Date</span>
       </div>
     </div>
   );

@@ -71,10 +71,11 @@ export const LoginSignup = () => {
     // (?=.*[0-9])	The string must contain at least 1 numeric character
     // (?=.*[!@#$%^&*])	The string must contain at least one special character, but we are escaping reserved RegEx characters to avoid conflict
     // (?=.{8,})	The string must be eight characters or longer
-    if (!password.match(strongPasswordRegex)) {
-      setMsg("Password is not strong enough");
-      return;
-    }
+    
+    // if (!password.match(strongPasswordRegex)) {
+    //   setMsg("Password is not strong enough");
+    //   return;
+    // }
     if (!username || !password || !fullname) {
       setMsg("One or more of the inputs are empty");
     } else

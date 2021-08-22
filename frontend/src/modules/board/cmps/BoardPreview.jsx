@@ -1,7 +1,7 @@
 import React from "react";
 import { GroupList } from "../../group";
 
-export const BoardPreview = ({ groups, board, onEditBoard, onOpenUpdates }) => {
+export const BoardPreview = ({ groups, board, onEditBoard, onOpenUpdates , toggleUpdates }) => {
   return (
     <section>
       <GroupList
@@ -9,6 +9,7 @@ export const BoardPreview = ({ groups, board, onEditBoard, onOpenUpdates }) => {
         onOpenUpdates={onOpenUpdates}
         onEditBoard={onEditBoard}
         groups={groups}
+        toggleUpdates = {toggleUpdates}
       />
     </section>
   );

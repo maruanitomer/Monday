@@ -15,6 +15,7 @@ async function login(username, password) {
 }
 
 async function signup(username, password, fullname) {
+
     const saltRounds = 10
     logger.debug(`auth.service - signup with username: ${username}, fullname: ${fullname}`)
     if (!username || !password || !fullname) throw new Error('fullname, username and password are required!')
@@ -25,6 +26,8 @@ async function signup(username, password, fullname) {
     }
     else
         throw new Error('Username exists')
+
+
 }
 
 module.exports = {

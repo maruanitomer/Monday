@@ -28,6 +28,7 @@ export const GroupPreview = ({ group, board, onEditBoard, onOpenUpdates }) => {
   return (
     <div style={{ marginBottom: "30px" }}>
       <div className="grid-tasks-layout" style={{ marginBottom: "5px" }}>
+        {/* <div className="grid-tasks-layout" style={{ marginBottom: "5px" }}> */}
         <Popper
           button={<KeyboardArrowDownIcon />}
           popper={
