@@ -5,16 +5,16 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 export function App() {
   return (
     <BrowserRouter>
-        <Switch>
-          {routes.map((route) => (
-            <Route
-              key={route.path}
-              exact
-              component={route.component}
-              path={route.path}
-            />
-          ))}
-        </Switch>
+      <Switch>
+        {routes.map((route) => (
+          <Route
+            key={route.path}
+            exact
+            component={route.component}
+            path={route.path}
+          />
+        ))}
+      </Switch>
     </BrowserRouter>
   );
 }
