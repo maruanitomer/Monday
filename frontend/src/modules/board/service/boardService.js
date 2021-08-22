@@ -1,4 +1,4 @@
-import { httpService } from '../../../shared/services/httpService'
+import { httpService } from '../../../shared/'
 
 export const boardService = {
     query,
@@ -11,7 +11,9 @@ async function query() {
     try {
         return httpService.get('board')
     } catch (err) {
-        throw new Error('couldn\'t find boards')
+        console.log("enter");
+        console.log(err);
+        console.log(err.message);
     }
 }
 

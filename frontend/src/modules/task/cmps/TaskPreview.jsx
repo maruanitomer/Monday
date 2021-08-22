@@ -2,7 +2,7 @@ import ChatBubbleOutlineRoundedIcon from "@material-ui/icons/ChatBubbleOutlineRo
 import ExpandMoreRoundedIcon from "@material-ui/icons/ExpandMoreRounded";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import { Status } from "./Status";
-import { Popper } from "../../../shared/cmps/Popper";
+import { Popper } from "../../../shared";
 export const TaskPreview = ({
   task,
   onRemoveTask,

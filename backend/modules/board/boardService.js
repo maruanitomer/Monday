@@ -38,7 +38,7 @@ async function query() {
         return boards
     }
     catch (err) {
-        throw err;
+        throw err
     }
 }
 async function getById(id) {

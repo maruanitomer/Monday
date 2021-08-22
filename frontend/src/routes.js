@@ -1,4 +1,5 @@
 import { Board } from "./modules/board";
+import { LoginSignup } from "./modules/user/cmps/LoginSignup";
 
 export const routes = [
   {
@@ -13,6 +14,10 @@ export const routes = [
     path: "/board/:boardId",
     component: Board,
   },
+  {
+    path: "/sign",
+    component: LoginSignup
+  }
   // {
   //     path: '/toy/edit/:id',
   //     component: ToyEdit,

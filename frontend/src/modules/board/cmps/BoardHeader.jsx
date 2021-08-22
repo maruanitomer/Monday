@@ -13,22 +13,19 @@ import HeightIcon from "@material-ui/icons/Height";
 import ReorderTwoToneIcon from "@material-ui/icons/ReorderTwoTone";
 import FormatColorFillSharpIcon from "@material-ui/icons/FormatColorFillSharp";
 import BorderColorOutlinedIcon from "@material-ui/icons/BorderColorOutlined";
-import { useDispatch } from "react-redux";
-import { boardService } from "../service/boardService";
-import { editBoard } from "../../../store/actions/boardActions";
 import { utilService } from "../../../shared/services/utilService";
+import { Popper } from "../../../shared";
+import { InviteUsers } from "../../../shared/cmps/InviteUsers";
+import { useEffect, useState } from "react";
+import { useClickOutside } from "../../../shared/hooks/clickOutSide";
+import { title } from "process";
 
-export const BoardHeader = ({ board }) => {
-  const dispatch = useDispatch();
-  const EditBoard = async () => {
-    try {
-      // UPDATING THE BOARD (SERVER + STORE)
-      const res = await boardService.edit(board._id, board);
-      dispatch(editBoard(res));
-    } catch (err) {
-      console.log(err);
-    }
-  };
+export const BoardHeader = ({ board, onEditBoard }) => {
+  const [descriptionInput, setDescriptionInput] = useState(board?.description);
+  const [titleInput, setTitleInput] = useState(board?.title);
+  const [toggleDesc, setToggleDesc] = useState(true);
+  const [toggleTitle, setToggleTitle] = useState(true);
+
   const onAddGroup = () => {
     const group = {
       _id: utilService.makeId(),
@@ -36,9 +33,38 @@ export const BoardHeader = ({ board }) => {
       tasks: [],
     };
     board.groups.unshift(group);
-
-    EditBoard();
+    onEditBoard();
   };
+  useEffect(() => {
+    if (board) {
+      setDescriptionInput(board.description);
+      setTitleInput(board.title);
+    }
+  }, [board]);
+
+  const descInputHandler = (ev) => {
+    setDescriptionInput(ev.target.value);
+  };
+  const titleInputHandler = (ev) => {
+    setTitleInput(ev.target.value);
+  };
+
+  let domNodeDescription = useClickOutside(() => {
+    if (toggleDesc === false) {
+      setToggleDesc(true);
+      if (board.description === descriptionInput) return;
+      board.description = descriptionInput;
+      onEditBoard();
+    }
+  });
+  let domNodeTitle = useClickOutside(() => {
+    if (toggleTitle === false) {
+      setToggleTitle(true);
+      if (board.title === titleInput) return;
+      board.title = titleInput;
+      onEditBoard();
+    }
+  });
 
   return (
     board && (
@@ -47,7 +73,26 @@ export const BoardHeader = ({ board }) => {
           className="head flex justify-space-between align-center"
           style={{ width: "80vw" }}
         >
-          <h2>{board.title}</h2>
+          <div ref={domNodeTitle}>
+            {toggleTitle ? (
+              <h1
+                className="board-title"
+                onClick={() => setToggleTitle(!toggleTitle)}
+              >
+                {titleInput && titleInput.length > 15
+                  ? titleInput.slice(0, 15) + "..."
+                  : titleInput}
+              </h1>
+            ) : (
+              <input
+                className="board-title-edit"
+                type="text"
+                name="title"
+                onChange={titleInputHandler}
+                value={titleInput}
+              />
+            )}
+          </div>
           <div
             className="flex justify-space-between"
             style={{ width: "440px" }}
@@ -55,9 +100,14 @@ export const BoardHeader = ({ board }) => {
             <button className="flex align-center">
               Last seen <AccountCircleIcon></AccountCircleIcon>
             </button>
-            <button className="flex align-center">
-              Invite / <PersonOutlineIcon></PersonOutlineIcon>
-            </button>
+            <Popper
+              button={
+                <button className="flex align-center">
+                  Invite<PersonOutlineIcon></PersonOutlineIcon>
+                </button>
+              }
+              popper={<InviteUsers />}
+            />
             <button className="flex align-center">
               Activity <TrendingUpIcon></TrendingUpIcon>
             </button>
@@ -67,10 +117,29 @@ export const BoardHeader = ({ board }) => {
             </button>
           </div>
         </div>
-        <input
-          style={{ border: "none", margin: "10px 10px 10px 0px" }}
-          placeholder="Add board description"
-        />
+        <div ref={domNodeDescription}>
+          {toggleDesc ? (
+            <div onClick={() => setToggleDesc(!toggleDesc)}>
+              <span>
+                {descriptionInput === "" ? "Add description" : descriptionInput}
+              </span>
+            </div>
+          ) : (
+            <textarea
+              name="description"
+              style={{
+                border: "1px solid black",
+                width: "40vw",
+                height: "10vh",
+
+                resize: "none",
+              }}
+              placeholder="Add board description"
+              onChange={descInputHandler}
+              value={descriptionInput}
+            />
+          )}
+        </div>
         <div
           className="flex justify-space-between"
           style={{
@@ -99,10 +168,6 @@ export const BoardHeader = ({ board }) => {
                             <span>Icon</span> */}
               </div>
             </div>
-            <div className="automations-button">
-              {/* <button>Automate</button> */}
-            </div>
-            <div>{/* <button>(^)</button> */}</div>
           </div>
         </div>
         <div className="board-header-view-bar">

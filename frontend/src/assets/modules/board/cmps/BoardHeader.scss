@@ -8,4 +8,19 @@
             }
         }
     }
+    .board-title {
+        font-size: rem(30px);
+        padding: rem(3px);
+        border: rem(1px) solid transparent;
+        &:hover {
+            border: rem(1px) dotted lightgray;
+        }
+    }
+    .board-title-edit {
+        font-size: rem(30px);
+        font-weight: bold;
+        padding: rem(3px);
+        width: 40vw;
+        border: rem(1px) dotted lightgray;
+    }
 }

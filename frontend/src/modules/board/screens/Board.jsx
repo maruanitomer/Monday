@@ -14,6 +14,9 @@ import {
   loadBoard,
 } from "../../../store/actions/boardActions";
 import { TaskUpdates } from "../../task/cmps/TaskUpdates";
+import { MainNav } from "../../index";
+import emptypage from "../../../assets/imgs/emptypage.png";
+import { userService } from "../../user/service/userService";
 
 export const Board = ({ match }) => {
   const [modal, setModal] = useState(false);
@@ -21,6 +24,13 @@ export const Board = ({ match }) => {
   const dispatch = useDispatch();
   const [toggleUpdates, setToggleUpdates] = useState(false);
   const [task, setTask] = useState();
+  const [loggedinUser, setLoggedinUser] = useState();
+
+  useEffect(() => {
+    const user = userService.getLoggedinUser();
+    if (user) setLoggedinUser(user);
+    else window.location.assign("/sign");
+  }, []);
 
   OnSetBoards();
 
@@ -85,7 +95,7 @@ export const Board = ({ match }) => {
   };
   return (
     <div className="board-layout flex">
-      <div className="board-wrapper flex coulmn">
+      <div className="flex coulmn">
         {modal && (
           <PopUpModal
             toggleModal={toggleModal}
@@ -106,11 +116,16 @@ export const Board = ({ match }) => {
             />
           </PopUpModal>
         )}
+        <MainNav />
+
         <BoardSideBar toggleModal={toggleModal} boards={boards}></BoardSideBar>
         {boards.length !== 0 ? (
           <div className="flex">
             <div className="board-container flex column">
-              <BoardHeader board={currBoard}></BoardHeader>
+              <BoardHeader
+                board={currBoard}
+                onEditBoard={onEditBoard}
+              ></BoardHeader>
               {currBoard && (
                 <BoardPreview
                   onEditBoard={onEditBoard}
@@ -129,9 +144,9 @@ export const Board = ({ match }) => {
             )}
           </div>
         ) : (
-      <h1>No Boards</h1>
-
-        
+          <div className="emptypage-logo">
+            <img src={emptypage} alt="icon"></img>
+          </div>
         )}
       </div>
     </div>

@@ -6,4 +6,15 @@
             padding: 0;
         }
     }
+    .emptypage-logo {
+        display: flex;
+        justify-items: center;
+        align-items: center;
+        min-height: rem(912px);
+        min-width: rem(1350px);
+        margin-inline-start: rem(150px);
+        img {
+            width: 100%;
+        }
+    }
 }

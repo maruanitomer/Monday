@@ -9,7 +9,7 @@ async function setupAsyncLocalStorage(req, res, next) {
       store.sessionId = req.sessionID
       if (req.session.user) {
         store.userId = req.session.user._id
-        store.isAdmin = req.session.user.isAdmin
+        // store.isAdmin = req.session.user.isAdmin
       }
     }
     next()

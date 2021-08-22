@@ -13,7 +13,8 @@ async function getUser(req, res) {
 
 async function getUsers(req, res) {
     try {
-        const users = await userService.query(filterBy)
+        const username = req.query?.username || ''
+        const users = await userService.query(username)
         res.send(users)
     } catch (err) {
         logger.error('Failed to get users', err)

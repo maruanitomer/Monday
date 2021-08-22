@@ -1,10 +1,9 @@
 import { TaskList } from "../../task";
-import FormatAlignLeftIcon from "@material-ui/icons/FormatAlignLeft";
-import { Popper } from "../../../shared/cmps/Popper";
 import { useState } from "react";
 import { useClickOutside } from "../../../shared/hooks/clickOutSide";
-import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
-export const GroupPreview = ({ group, board, onEditBoard,onOpenUpdates }) => {
+import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
+import { Popper } from "../../index";
+export const GroupPreview = ({ group, board, onEditBoard, onOpenUpdates }) => {
   const onRemoveGroup = (id) => {
     //REMOVE Group
     board.groups = board.groups.filter((group) => group._id !== id);
@@ -32,7 +31,7 @@ export const GroupPreview = ({ group, board, onEditBoard,onOpenUpdates }) => {
         <Popper
           button={<KeyboardArrowDownIcon />}
           popper={
-            <div className="flex column " style={{ backgroundColor: "salmon" }}>
+            <div className="flex column" style={{ backgroundColor: "salmon" }}>
               <button
                 onClick={(ev) => {
                   ev.stopPropagation();
