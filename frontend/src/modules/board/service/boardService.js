@@ -1,4 +1,3 @@
-// import { utilService } from '../services/utilService.js'
 import { httpService } from '../../../shared/services/httpService'
 
 export const boardService = {
@@ -44,8 +43,7 @@ async function remove(id) {
 }
 async function edit(id, board) {
     try {
-       await httpService.put(`board/${id}`, board)
-        console.log("UPDATED in server");
+        await httpService.put(`board/${id}`, board)
         return board;
     }
     catch (err) {

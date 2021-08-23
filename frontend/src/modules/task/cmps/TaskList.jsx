@@ -1,9 +1,9 @@
 import React, { useRef, useState } from "react";
-import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import { Draggable, Droppable } from "react-beautiful-dnd";
 import { utilService } from "../../../shared/services/utilService";
 import { TaskPreview } from "./TaskPreview";
 
-export const TaskList = ({ tasks, group, onEditBoard }) => {
+export const TaskList = ({ tasks, group, onEditBoard, onOpenUpdates }) => {
   const initialTask = {
     title: "",
     comments: [],
@@ -61,6 +61,7 @@ export const TaskList = ({ tasks, group, onEditBoard }) => {
                       ref={provided.innerRef}
                     >
                       <TaskPreview
+                        onOpenUpdates={onOpenUpdates}
                         onEditBoard={onEditBoard}
                         task={task}
                         onRemoveTask={onRemoveTask}
@@ -71,18 +72,19 @@ export const TaskList = ({ tasks, group, onEditBoard }) => {
               );
             })}
             {provided.placeholder}
+            <div className="flex">
+              <input
+                onChange={inputHandler}
+                type="text"
+                placeholder="Add + "
+                name="title"
+                ref={addInput}
+              />
+              <button onClick={() => onAddTask()}>Add</button>
+            </div>
           </div>
         )}
       </Droppable>
-
-      <input
-        onChange={inputHandler}
-        type="text"
-        placeholder="Add + "
-        name="title"
-        ref={addInput}
-      />
-      <button onClick={() => onAddTask()}>Add</button>
     </section>
   );
 };

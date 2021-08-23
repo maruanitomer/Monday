@@ -34,20 +34,15 @@
       "groups": [
         {
           "_id": "Vwl0F",
-          "title": "Group one",
-          "tasks": []
-        },
-        {
-          "_id": "4KZXQ",
-          "title": "as",
+          "title": "My name",
           "tasks": [
             {
               "title": "dfdf",
               "comments": [],
               "members": [],
               "status": {
-                "text": "Not status yet",
-                "color": "#c4c4c4"
+                "text": "Done",
+                "color": "#33d391"
               },
               "priority": {
                 "text": "Set Piority",
@@ -58,6 +53,66 @@
                 "end": ""
               },
               "_id": "ZzMvZ"
+            },
+            {
+              "title": "yoyo ",
+              "comments": [],
+              "members": [],
+              "status": {
+                "text": "Working on it",
+                "color": "#fec06e"
+              },
+              "priority": {
+                "text": "Set Piority",
+                "color": "#cccccc"
+              },
+              "dueDate": {
+                "start": "",
+                "end": ""
+              },
+              "_id": "X5pjY"
+            }
+          ]
+        },
+        {
+          "_id": "4KZXQ",
+          "title": "Fuck Fuck Fuck",
+          "tasks": [
+            {
+              "title": "I love Dudi man",
+              "comments": [],
+              "members": [],
+              "status": {
+                "text": "Done",
+                "color": "#33d391"
+              },
+              "priority": {
+                "text": "Set Piority",
+                "color": "#cccccc"
+              },
+              "dueDate": {
+                "start": "",
+                "end": ""
+              },
+              "_id": "QtUKF"
+            },
+            {
+              "title": "dfdf",
+              "comments": [],
+              "members": [],
+              "status": {
+                "text": "Done",
+                "color": "#33d391"
+              },
+              "priority": {
+                "text": "Set Piority",
+                "color": "#cccccc"
+              },
+              "dueDate": {
+                "start": "",
+                "end": ""
+              },
+              "_id": "LlLVF"
             }
           ]
         },
@@ -100,42 +155,6 @@
                 "end": ""
               },
               "_id": "lyLBg"
-            },
-            {
-              "title": "I love Dudi man",
-              "comments": [],
-              "members": [],
-              "status": {
-                "text": "Working on it",
-                "color": "#fec06e"
-              },
-              "priority": {
-                "text": "Set Piority",
-                "color": "#cccccc"
-              },
-              "dueDate": {
-                "start": "",
-                "end": ""
-              },
-              "_id": "QtUKF"
-            },
-            {
-              "title": "dfdf",
-              "comments": [],
-              "members": [],
-              "status": {
-                "text": "Done",
-                "color": "#33d391"
-              },
-              "priority": {
-                "text": "Set Piority",
-                "color": "#cccccc"
-              },
-              "dueDate": {
-                "start": "",
-                "end": ""
-              },
-              "_id": "LlLVF"
             }
           ],
           "style": {
@@ -260,6 +279,39 @@
           }
         }
       ]
+    },
+    {
+      "title": "df",
+      "cards": [],
+      "members": [],
+      "groups": [
+        {
+          "_id": "0uBOv",
+          "title": "Dicky Dick",
+          "tasks": [
+            {
+              "title": "vbvb",
+              "comments": [],
+              "members": [],
+              "status": {
+                "text": "Done",
+                "color": "#33d391"
+              },
+              "priority": {
+                "text": "Set Piority",
+                "color": "#cccccc"
+              },
+              "dueDate": {
+                "start": "",
+                "end": ""
+              },
+              "_id": "frgJ5"
+            }
+          ]
+        }
+      ],
+      "type": "Campaigns",
+      "_id": "UPbhv63"
     }
   ]
 }

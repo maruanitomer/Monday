@@ -7,7 +7,6 @@ export const EditBoard = async (board) => {
   try {
     // UPDATING THE BOARD (SERVER + STORE)
     const res = await boardService.edit(board._id, board);
-    console.log("Something");
     dispatch(editBoard(res));
   } catch (err) {
     console.log(err);

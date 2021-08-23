@@ -3,16 +3,21 @@ import ExpandMoreRoundedIcon from "@material-ui/icons/ExpandMoreRounded";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import { Status } from "./Status";
 import { Popper } from "../../../shared/cmps/Popper";
-export const TaskPreview = ({ task, onRemoveTask, onEditBoard }) => {
+export const TaskPreview = ({
+  task,
+  onRemoveTask,
+  onEditBoard,
+  onOpenUpdates,
+}) => {
   const onEditStatus = (text, color) => {
-    task.status.text = text;
-    task.status.color = color;
+    if (task.status.text === text && task.status.color === color) return;
+    task.status = { text, color };
     onEditBoard();
   };
 
   return (
     <div>
-      <section className="task-preview-container grid-tasks-layout">
+      <div className="task-grid ">
         <Popper
           button={<ExpandMoreRoundedIcon />}
           popper={
@@ -24,11 +29,14 @@ export const TaskPreview = ({ task, onRemoveTask, onEditBoard }) => {
         />
         <div className="flex justify-space-between">
           <span className="task-title">{task.title}</span>
-          <div className="flex align-center justify-center">
+          <div
+            className="flex align-center justify-center"
+            onClick={() => onOpenUpdates(task)}
+          >
             <ChatBubbleOutlineRoundedIcon />
           </div>
         </div>
-        <button className="members flex justify-center aling-center">
+        <button className="members ">
           <AccountCircleIcon />
         </button>
         <Popper
@@ -69,15 +77,10 @@ export const TaskPreview = ({ task, onRemoveTask, onEditBoard }) => {
             </div>
           }
         />
-        <button className="date flex justify-center align-center">
+        <div>
           <input type="date" />
-          {/* <span>{parseInt(Math.floor(Math.random() * 31))} May</span> */}
-        </button>
-        <div className="end flex justify-space-between">
-          <div className="start-end"></div>
-          <div className="block-end"></div>
         </div>
-      </section>
+      </div>
     </div>
   );
 };

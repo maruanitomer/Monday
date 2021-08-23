@@ -9,10 +9,9 @@ export const OnSetBoards = () => {
     const getBoards = async () => {
       try {
         const res = await boardService.query();
+        console.log(res);
         dispatch(loadBoards(res));
-      } catch {
-        console.log("err");
-      }
+      } catch {}
     };
     getBoards();
   }, [dispatch]);

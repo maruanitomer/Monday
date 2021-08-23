@@ -2,7 +2,7 @@ import React from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import { GroupPreview } from "./GroupPreview";
 
-export const GroupList = ({ groups, board, onEditBoard }) => {
+export const GroupList = ({ groups, board, onEditBoard ,onOpenUpdates}) => {
   const onDragEndHandler = (result) => {
     const { destination, source } = result;
     if (!destination) {
@@ -40,6 +40,7 @@ export const GroupList = ({ groups, board, onEditBoard }) => {
                 key={group._id}
                 board={board}
                 group={group}
+                onOpenUpdates={onOpenUpdates}
               ></GroupPreview>
             );
           })}
