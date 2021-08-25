@@ -2,6 +2,7 @@ import { Button, makeStyles } from "@material-ui/core";
 import { useState } from "react";
 import RichTextEditor from "../../../shared/cmps/RichTextEditor";
 import { utilService } from "../../../shared/services/utilService";
+import { TaskComments } from "./TaskComments";
 
 export const TaskUpdates = ({ task, onEditBoard, close }) => {
   const onAddComment = (comment) => {
@@ -16,22 +17,21 @@ export const TaskUpdates = ({ task, onEditBoard, close }) => {
   const useStyles = makeStyles({
 
     style: {
-      height: '100vh',
       position: 'absolute',
       right: '0%',
       top: '0%',
       backgroundColor: 'aliceblue',
-      width: '30vw'
+      width: '45vw'
     }
   });
   const classes = useStyles()
   return (
-    <div className={'comments-wrapper flex column ' + classes.style} style={{ height: "100vh" }}>
+    <div className={'comments-wrapper flex column ' + classes.style} style={{ height: "100vh",overflowY: 'scroll' }}>
       <div className="flex column align-start">
-        <button onClick={close}>x</button>
-        <h1 style={{ margin: '0 auto' }}> {task.title}</h1>
+        <button className="x" onClick={close}>x</button>
+        <h2>{task.title}</h2>
       </div>
-      <div className="flex column">
+      <div className="rich-text-editor-wrapper flex column">
         {/* <input
           type="text"
           placeholder="Write an update..."
@@ -42,14 +42,15 @@ export const TaskUpdates = ({ task, onEditBoard, close }) => {
       {task.comments.length === 0 ? (
         <span className="align-self-center">No updates yet...</span>
       ) : (
-        task.comments.map((c) => (
-          <div className="flex justify-space-around" key={c._id}>
-            <div
-              dangerouslySetInnerHTML={{
-                __html: c.text
-              }}></div>
-            <button onClick={() => onDeleteComment(c._id)}>Delete</button>
-          </div>
+        task.comments.map((task) => (
+          // <div className="flex justify-space-around" key={c._id}>
+          //   <div
+          //     dangerouslySetInnerHTML={{
+          //       __html: c.text
+          //     }}></div>
+          //   <button onClick={() => onDeleteComment(c._id)}>Delete</button>
+          // </div>
+          <TaskComments task = {task} onDeleteComment = {onDeleteComment}/>
         ))
       )}
     </div>
