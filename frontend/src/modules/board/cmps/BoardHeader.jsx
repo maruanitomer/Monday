@@ -106,7 +106,7 @@ export const BoardHeader = ({ board, onEditBoard }) => {
                   Invite<PersonOutlineIcon></PersonOutlineIcon>
                 </button>
               }
-              popper={<InviteUsers />}
+              popper={<InviteUsers board={board} onEditBoard={onEditBoard} />}
             />
             <button className="flex align-center">
               Activity <TrendingUpIcon></TrendingUpIcon>
