@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { userService } from "../../modules/user/service/userService";
 
-export const InviteUsers = () => {
+export const InviteUsers = ({ board, onEditBoard }) => {
   const [usernames, setUsernames] = useState(null);
   const [usernameToDelete] = useState(userService.getLoggedinUser());
   const OnSetUsernames = () => {
@@ -11,19 +11,25 @@ export const InviteUsers = () => {
           let users = await userService.getUsernames();
           users = users.filter((user) => user !== usernameToDelete.username);
           setUsernames(users);
-        } catch {}
+        } catch { }
       };
       getUsernames();
     }, []);
   };
   OnSetUsernames();
 
+  const onInvite = (user) => {
+    console.log(user)
+    board.members.push(user)
+    onEditBoard()
+  }
+
   return (
     <div className="flex column align-center" style={{ backgroundColor: "salmon" }}>
       <div>
         {usernames &&
-          usernames.map((user) => {
-            return <button key={user}>{user}</button>;
+          usernames.map((username) => {
+            return <button key={username} onClick={() => onInvite(username)}>{username}</button>;
           })}
       </div>
     </div>
