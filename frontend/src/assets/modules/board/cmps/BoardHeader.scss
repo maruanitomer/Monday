@@ -23,4 +23,12 @@
         width: 40vw;
         border: rem(1px) dotted lightgray;
     }
+    #standard-basic {
+        &:hover {
+            cursor: pointer;
+        }
+        &:focus {
+            cursor: auto;
+        }
+    }
 }

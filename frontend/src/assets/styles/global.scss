@@ -10,6 +10,7 @@
 @import "basics/base.scss";
 @import "basics/animations";
 @import "basics/inputs";
+@import "./basics/buttons";
 
 // Cmps
 @import "../modules/board/cmps/BoardNavigationList.scss";
@@ -23,8 +24,8 @@
 @import "../modules/navigation/screens/MainNav.scss";
 @import "../modules/navigation/cmps/MainNavTopLogos.scss";
 @import "../modules/navigation/cmps/MainNavDownLogos.scss";
-@import "../modules/user/cmps/LoginSignup.scss";
-
+@import "../modules/task/cmps/TaskUpdates.scss";
+@import "../modules/task/cmps/TaskComments.scss";
 //Pages
 @import "../modules/board/screens/BoardApp.scss";
 @import "../modules/user/screens/Register.scss";

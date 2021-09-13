@@ -49,7 +49,7 @@ async function edit(id, board) {
         return board;
     }
     catch (err) {
-        throw new Error('couldn\'t add board')
+        throw new Error('failed on board editting')
     }
 }
 

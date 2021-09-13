@@ -18,7 +18,6 @@ import { Popper } from "../../../shared";
 import { InviteUsers } from "../../../shared/cmps/InviteUsers";
 import { useEffect, useState } from "react";
 import { useClickOutside } from "../../../shared/hooks/clickOutSide";
-import { title } from "process";
 
 export const BoardHeader = ({ board, onEditBoard }) => {
   const [descriptionInput, setDescriptionInput] = useState(board?.description);
@@ -106,7 +105,7 @@ export const BoardHeader = ({ board, onEditBoard }) => {
                   Invite<PersonOutlineIcon></PersonOutlineIcon>
                 </button>
               }
-              popper={<InviteUsers />}
+              popper={<InviteUsers board={board} onEditBoard={onEditBoard} />}
             />
             <button className="flex align-center">
               Activity <TrendingUpIcon></TrendingUpIcon>
@@ -149,14 +148,14 @@ export const BoardHeader = ({ board, onEditBoard }) => {
           }}
         >
           <div
-            style={{ width: "200px" }}
+            style={{margin:"5px"}}
             className="flex justify-space-between align-center"
           >
-            <button className="flex align-center">
+            <button style={{padding:"10px", maxWidth:"180px" }} className="flex align-center">
               <HomeWorkOutlinedIcon></HomeWorkOutlinedIcon> Main Table
             </button>
-            <span>|</span>
-            <button>+ Add View</button>
+            <span style={{height:"50px",marginInlineStart:"5px", marginInlineEnd:"5px"}}></span>
+            <button style={{padding:"10px", maxWidth:"180px"}}>+ Add View</button>
           </div>
           <div className="flex">
             <div className="integrations-button-content flex">
@@ -172,10 +171,17 @@ export const BoardHeader = ({ board, onEditBoard }) => {
         </div>
         <div className="board-header-view-bar">
           <div className="monday-header flex">
-            <button onClick={onAddGroup}>New Item</button>
-            <button className="flex align-center ">
-              <SearchOutlinedIcon></SearchOutlinedIcon> Search
-            </button>
+            {/* <button onClick={onAddGroup}>New Item</button> */}
+            <button class="basic-small-button" onClick={onAddGroup}>New Item</button>
+            {/* <button className="flex align-center ">
+              <SearchOutlinedIcon></SearchOutlinedIcon>
+            </button> */}
+             <div className="search-field">
+                <SearchOutlinedIcon />
+                <input id="standard-basic" label="Search" name="txt"
+                     autoComplete="off" placeholder="Search" />
+            </div>
+            <div></div>
             <button className="flex align-center tooltip">
               <AccountCircleOutlinedIcon></AccountCircleOutlinedIcon>{" "}
               <span className="tooltiptext">Filter By Person</span> Person
