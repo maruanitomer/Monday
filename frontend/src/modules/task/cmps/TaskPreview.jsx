@@ -2,7 +2,7 @@ import ChatBubbleOutlineRoundedIcon from "@material-ui/icons/ChatBubbleOutlineRo
 import ExpandMoreRoundedIcon from "@material-ui/icons/ExpandMoreRounded";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import { Status } from "./Status";
-import { Popper } from "../../../shared/cmps/Popper";
+import { Popper } from "../../../shared";
 export const TaskPreview = ({
   task,
   onRemoveTask,
@@ -40,6 +40,7 @@ export const TaskPreview = ({
           <AccountCircleIcon />
         </button>
         <Popper
+          y={-3}
           button={
             <div
               style={{ backgroundColor: task.status.color, color: "#ffffff" }}
@@ -77,9 +78,10 @@ export const TaskPreview = ({
             </div>
           }
         />
-        <div>
+        {/* <div>
           <input type="date" />
-        </div>
+        </div> */}
+        <span>Date</span>
       </div>
     </div>
   );

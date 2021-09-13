@@ -1,20 +1,19 @@
-
 import { removeBoard } from "../../../store/actions/boardActions";
 import { boardService } from "../service/boardService";
 import { useDispatch } from "react-redux";
 import { BoardNavigationPreview } from "./BoardNavigationPreview";
 
-export const BoardNavigationList = ({ boards }) => {
+export const BoardNavigationList = ({ boards, msg }) => {
   const dispatch = useDispatch();
 
   const onRemoveBoard = async (boardId) => {
-      try {
-        const res = await boardService.remove(boardId); // return id of deleted
-        dispatch(removeBoard(res));
-      } catch (err) {
-        console.log(err);
-      }
-    };
+    try {
+      const res = await boardService.remove(boardId); // return id of deleted
+      dispatch(removeBoard(res));
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div className="board-list-navigate-wrapper">
@@ -33,12 +32,15 @@ export const BoardNavigationList = ({ boards }) => {
           })}
         </div>
       )}
-      {!boards && (
-        <div className="flex column" style={{ padding: "10px" }}>
-          <span>Workspace is empty</span>
-          <span>Create or add boards</span>
-        </div>
-      )}
+      {boards.length === 0 &&
+        (msg ? (
+          <span>{msg}</span>
+        ) : (
+          <div className="flex column" style={{ padding: "10px" }}>
+            <span>Workspace is empty</span>
+            <span>Create or add boards</span>
+          </div>
+        ))}
     </div>
   );
 };

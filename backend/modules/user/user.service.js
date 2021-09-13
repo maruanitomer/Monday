@@ -1,7 +1,6 @@
 
 const dbService = require('../../services/db.service')
-// const logger = require('../../services/logger.service')
-const reviewService = require('../review/review.service')
+const logger = require('../../services/logger.service')
 const ObjectId = require('mongodb').ObjectId
 
 module.exports = {
@@ -10,21 +9,24 @@ module.exports = {
     getByUsername,
     remove,
     update,
-    add
+    add,
+    isExist
 }
-
-async function query(filterBy = {}) {
-    const criteria = _buildCriteria(filterBy)
+async function isExist(username) {
+    const collection = await dbService.getCollection('user')
+    const user = await collection.findOne({ 'username': username })
+    return user;
+}
+async function query(username) {
+    const criteria = _buildCriteria(username)
     try {
         const collection = await dbService.getCollection('user')
         var users = await collection.find(criteria).toArray()
-        users = users.map(user => {
-            delete user.password
-            user.createdAt = ObjectId(user._id).getTimestamp()
-            return user
+        return users = users.map(user => {
+            return user.username
         })
-        return users
     } catch (err) {
+        console.log(err);
         logger.error('cannot find users', err)
         throw err
     }
@@ -88,33 +90,28 @@ async function add(user) {
             username: user.username,
             password: user.password,
             fullname: user.fullname,
-            isAdmin: false
         }
         const collection = await dbService.getCollection('user')
         await collection.insertOne(userToAdd)
-        return userToAdd
+        return { username: userToAdd.username, fullname: userToAdd.fullname }
     } catch (err) {
         logger.error('cannot insert user', err)
         throw err
     }
 }
 
-function _buildCriteria(filterBy) {
+function _buildCriteria(username) {
     const criteria = {}
-    if (filterBy.txt) {
-        const txtCriteria = { $regex: filterBy.txt, $options: 'i' }
-        criteria.$or = [
-            {
-                username: txtCriteria
-            },
-            {
-                fullname: txtCriteria
-            }
-        ]
-    }
-    if (filterBy.minBalance) {
-        criteria.balance = { $gte: filterBy.minBalance }
-    }
+    console.log(username);
+    const txtCriteria = { $regex: username, $options: 'i' }
+    criteria.$or = [
+        {
+            username: txtCriteria
+        },
+        {
+            fullname: txtCriteria
+        }
+    ]
     return criteria
 }
 

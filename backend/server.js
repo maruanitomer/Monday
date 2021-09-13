@@ -9,6 +9,7 @@ const app = express()
 const http = require('http').createServer(app)
 
 const session = expressSession({
+    name: 'SessionCookie',
     secret: 'coding is amazing',
     resave: false,
     saveUninitialized: true,
@@ -29,19 +30,18 @@ if (process.env.NODE_ENV === 'production') {
     app.use(cors(corsOptions))
 }
 
-// const authRoutes = require('./api/auth/auth.routes')
+const authRoutes = require('./modules/auth/auth.routes')
 const boardRoutes = require('./modules/board/boardRoutes')
-// const userRoutes = require('./api/user/user.routes')
-// const reviewRoutes = require('./api/review/review.routes')
-const { connectSockets } = require('./services/socket.service')
+const userRoutes = require('./modules/user/user.routes')
+// const { connectSockets } = require('./services/socket.service')
 
 
 // routes
 const setupAsyncLocalStorage = require('./middlewares/setupAls.middleware')
 app.all('*', setupAsyncLocalStorage)
 
-// app.use('/api/auth', authRoutes)
-// app.use('/api/user', userRoutes)
+app.use('/api/auth', authRoutes)
+app.use('/api/user', userRoutes)
 app.use('/api/board', boardRoutes)
 // connectSockets(http, session)
 
@@ -55,7 +55,7 @@ app.use('/api/board', boardRoutes)
 const logger = require('./services/logger.service')
 const port = process.env.PORT || 3030
 http.listen(port, () => {
-    logger.info('Server is running on port: ' + port)
+    // logger.info('Server is running on port: ' + port)
     console.log('Server is running on port: ' + port)
 })
 

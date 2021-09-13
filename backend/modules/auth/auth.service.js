@@ -11,16 +11,23 @@ async function login(username, password) {
     const isMatch = await bcrypt.compare(password, user.password)
     if (!isMatch)
         throw new Error('Password is incorrect!')
-    delete user.password
-    return user
+    return { username: user.username, fullname: user.fullname }
 }
 
 async function signup(username, password, fullname) {
+
     const saltRounds = 10
     logger.debug(`auth.service - signup with username: ${username}, fullname: ${fullname}`)
     if (!username || !password || !fullname) throw new Error('fullname, username and password are required!')
-    const hash = await bcrypt.hash(password, saltRounds)
-    return userService.add({ username, password: hash, fullname })
+    const existUser = await userService.isExist(username)
+    if (!existUser) {
+        const hash = await bcrypt.hash(password, saltRounds)
+        return userService.add({ username, password: hash, fullname })
+    }
+    else
+        throw new Error('Username exists')
+
+
 }
 
 module.exports = {

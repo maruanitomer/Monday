@@ -1,9 +1,16 @@
-import { bottom } from "@popperjs/core";
+import { bottom, end, start } from "@popperjs/core";
 import { useState } from "react";
 import { usePopper } from "react-popper";
 import { useClickOutside } from "../hooks/clickOutSide";
 
-export const Popper = ({ button, popper }) => {
+export const Popper = ({
+  button,
+  popper,
+  placementChange,
+  disappearOnPopperClick = true,
+  x,
+  y,
+}) => {
   const [buttonElement, setButtonElement] = useState();
   const [popperElement, setPopperElement] = useState();
   const [isOpen, setIsOpen] = useState(false);
@@ -12,12 +19,32 @@ export const Popper = ({ button, popper }) => {
   });
 
   let { styles, attributes } = usePopper(buttonElement, popperElement, {
-    placement: bottom,
+    placement: placementChange ? placementChange : bottom,
+    modifiers: [
+      {
+        name: "offset",
+        options: {
+          offset: [y ? y : 0, x ? x : 0],
+        },
+      },
+    ],
   });
 
   return (
-    <div ref={domNode} onClick={() => setIsOpen(!isOpen)}>
-      <div ref={setButtonElement}>{button}</div>
+    <div
+      ref={domNode}
+      onClick={() => {
+        disappearOnPopperClick && setIsOpen(!isOpen);
+      }}
+    >
+      <div
+        ref={setButtonElement}
+        onClick={() => {
+          !disappearOnPopperClick && setIsOpen(!isOpen);
+        }}
+      >
+        {button}
+      </div>
       {isOpen && (
         <div
           ref={setPopperElement}

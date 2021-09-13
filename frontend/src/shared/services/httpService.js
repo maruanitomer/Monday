@@ -33,10 +33,12 @@ async function ajax(endpoint, method, data = null) {
         })
         return res.data
     } catch (err) {
-        console.log(err);
-        if (err.response && err.response.status === 401) {
-            window.location.assign('/#/login')
+        if (err.response && err.response.status === 403) {
+            window.location.assign('/sign')
+            throw new Error(err.response.data)
         }
-        throw err
+        if (err.response && err.response.status === 401)
+            throw new Error(err.response.data)
+
     }
 }

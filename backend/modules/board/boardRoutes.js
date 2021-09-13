@@ -1,8 +1,9 @@
 const express = require('express')
+const { requireAuth } = require('../../middlewares/requireAuth.middleware')
 const { getBoard, getBoards, deleteBoard, updateBoard, addBoard } = require('./boardController')
 const router = express.Router()
 
-router.get('/', getBoards)
+router.get('/', requireAuth, getBoards)
 router.post('/', addBoard)
 router.get('/:id', getBoard)
 router.put('/:board', updateBoard)

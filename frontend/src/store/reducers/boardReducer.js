@@ -27,7 +27,6 @@ export function boardReducer(state = initialState, action) {
       return { ...state, boards: [...state.boards, action.payload] };
     case types.REMOVE_BOARD:
       return {
-        ...state,
         currBoard: state.currBoard._id === action.payload ? null : state.currBoard,
         boards: state.boards.filter((board) => board._id !== action.payload),
       };

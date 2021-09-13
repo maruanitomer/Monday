@@ -84,7 +84,7 @@ input {
 
 .grid-tasks-layout {
   display: grid;
-  grid-template-columns: 0.026fr 0.612fr 0.0841fr 0.12fr 0.12fr 0.0379fr;
+  grid-template-columns: rem(26px) minmax(50px , 60vw) rem(84.1px) rem(120px) rem(120px);
   grid-template-areas: "start title person status date last";
   align-items: center;
   grid-gap: rem(5px);

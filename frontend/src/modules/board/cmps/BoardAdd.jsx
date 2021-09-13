@@ -1,13 +1,16 @@
 import { FormControlLabel, Radio, RadioGroup } from "@material-ui/core";
 import React, { useState } from "react";
+import { userService } from "../../user/service/userService";
 
 export const BoardAdd = ({ toggleModal, onAdd, types }) => {
   const [board, setboard] = useState({
     title: "",
     cards: [],
     members: [],
-    groups:[],
+    groups: [],
     type: "items",
+    description: "Hello this is generic description, change me please",
+    ownedBy: userService.getLoggedinUser().username,
   });
 
   const inputHandler = (ev) => {
@@ -17,6 +20,7 @@ export const BoardAdd = ({ toggleModal, onAdd, types }) => {
     boardCopy[targetName] = value;
     setboard({ ...boardCopy });
   };
+
   return (
     <div className="flex column align-center">
       <h1>Create board</h1>
