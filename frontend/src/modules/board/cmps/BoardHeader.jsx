@@ -15,6 +15,7 @@ import FormatColorFillSharpIcon from "@material-ui/icons/FormatColorFillSharp";
 import BorderColorOutlinedIcon from "@material-ui/icons/BorderColorOutlined";
 import { utilService } from "../../../shared/services/utilService";
 import { Popper } from "../../../shared";
+import { SmallSearchField } from "../../../shared/cmps/SmallSearchField";
 import { InviteUsers } from "../../../shared/cmps/InviteUsers";
 import { useEffect, useState } from "react";
 import { useClickOutside } from "../../../shared/hooks/clickOutSide";
@@ -176,12 +177,7 @@ export const BoardHeader = ({ board, onEditBoard }) => {
             {/* <button className="flex align-center ">
               <SearchOutlinedIcon></SearchOutlinedIcon>
             </button> */}
-             <div className="search-field">
-                <SearchOutlinedIcon />
-                <input id="standard-basic" label="Search" name="txt"
-                     autoComplete="off" placeholder="Search" />
-            </div>
-            <div></div>
+            <SmallSearchField ></SmallSearchField>
             <button className="flex align-center tooltip">
               <AccountCircleOutlinedIcon></AccountCircleOutlinedIcon>{" "}
               <span className="tooltiptext">Filter By Person</span> Person
