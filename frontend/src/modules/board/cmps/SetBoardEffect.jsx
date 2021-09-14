@@ -8,9 +8,7 @@ export const OnSetBoards = (filter) => {
   useEffect(() => {
     const getBoards = async () => {
       try {
-        console.log(filter)
         const res = await boardService.query(filter);
-        console.log(res);
         dispatch(loadBoards(res));
       } catch {}
     };

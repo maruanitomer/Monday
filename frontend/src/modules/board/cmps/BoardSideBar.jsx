@@ -29,7 +29,13 @@ export const BoardSideBar = ({ boards, toggleModal, setFilter }) => {
     });
   };
   useEffect(() => {
-    setFilter(typeFilter)
+    var filter;
+    Object.entries(typeFilter).forEach(([key, value]) => {
+      if (!filter) filter = []
+      if (value)
+        filter.push(key)
+    })
+    setFilter(filter)
   }, [typeFilter])
 
   useEffect(() => {

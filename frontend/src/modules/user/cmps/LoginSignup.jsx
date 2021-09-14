@@ -88,7 +88,6 @@ export const LoginSignup = () => {
         })
         .catch((err) => setMsg(err));
   };
-  console.log(msg);
   if (loggedInUser)
     return (
       <div className="login">

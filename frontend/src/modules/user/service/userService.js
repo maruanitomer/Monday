@@ -57,7 +57,6 @@ async function logout() {
 }
 
 function getUserById(id) {
-    console.log(id);
     return axios.get(`${BASE_URL}/user/${id}`)
         .then(res => res.data)
         .then((user) => {

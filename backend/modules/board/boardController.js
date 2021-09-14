@@ -9,11 +9,9 @@ module.exports = {
 }
 async function getBoards(req, res) {
     try {
-        console.log(req.query)
-        // const {type } = req.params
         const filterBy = {
             username: req.session.user.username,
-            type: null
+            type: req.query.type || null
         }
         const boards = await boardService.query(filterBy)
         res.send(boards)

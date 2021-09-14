@@ -25,7 +25,7 @@ export const Board = ({ match }) => {
   const [toggleUpdates, setToggleUpdates] = useState(false);
   const [task, setTask] = useState();
   const [loggedinUser, setLoggedinUser] = useState();
-const [filter, setFilter] = useState();
+  const [filter, setFilter] = useState(null);
 
   useEffect(() => {
     const user = userService.getLoggedinUser();
@@ -99,7 +99,7 @@ const [filter, setFilter] = useState();
   };
   // var className;
   // toggleUpdates? className="50%" : className="100%";
-  
+
   return (
     <div className="board-layout flex">
       {/* <div className="flex coulmn"> */}
@@ -134,13 +134,13 @@ const [filter, setFilter] = useState();
               onEditBoard={onEditBoard}
             ></BoardHeader>
             {currBoard && (
-                <BoardPreview
-                  onEditBoard={onEditBoard}
-                  board={currBoard}
-                  groups={currBoard.groups}
-                  onOpenUpdates={onOpenUpdates}
-                  toggleUpdates = {toggleUpdates}
-                />
+              <BoardPreview
+                onEditBoard={onEditBoard}
+                board={currBoard}
+                groups={currBoard.groups}
+                onOpenUpdates={onOpenUpdates}
+                toggleUpdates={toggleUpdates}
+              />
             )}
             {toggleUpdates && (
               <TaskUpdates

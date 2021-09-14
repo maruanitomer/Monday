@@ -30,7 +30,7 @@ async function ajax(endpoint, method, data = null, params = null) {
             url: `${BASE_URL}${endpoint}`,
             method,
             data,
-             params
+            params
         })
         return res.data
     } catch (err) {

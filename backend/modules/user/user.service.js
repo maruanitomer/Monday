@@ -102,7 +102,6 @@ async function add(user) {
 
 function _buildCriteria(username) {
     const criteria = {}
-    console.log(username);
     const txtCriteria = { $regex: username, $options: 'i' }
     criteria.$or = [
         {

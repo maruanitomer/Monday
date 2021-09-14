@@ -7,12 +7,10 @@ export const boardService = {
     remove,
     edit
 }
-async function query(filter) {
+async function query(type) {
     try {
-        return httpService.get('board',undefined,filter)
+        return httpService.get('board',undefined,{type})
     } catch (err) {
-        console.log("enter");
-        console.log(err);
         console.log(err.message);
     }
 }

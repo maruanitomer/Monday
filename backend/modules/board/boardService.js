@@ -17,24 +17,6 @@ async function query(filterBy) {
         // with filter
         const criteria = _buildCriteria(filterBy)
         var boards = await collection.find(criteria).toArray()
-
-        // to get TimeStamp for each 
-        // toys = toys.map(toy => {
-        //     toy.createdAt = ObjectId(toy._id).getTimestamp()
-        //     return toy
-        // })
-
-
-        //SORTBY
-        // if (filterBy.sortBy === 'name')
-        //     toys.sort((a, b) => {
-        //         if (a.name < b.name) { return -1; }
-        //         if (a.name > b.name) { return 1; }
-        //         return 0;
-        //     })
-        // else if (filterBy.sortBy === 'price')
-        //     toys.sort((a, b) => a.price - b.price)
-
         return boards
     }
     catch (err) {
@@ -87,14 +69,14 @@ async function add(board) {
 
 //build the filter by
 function _buildCriteria(filterBy) {
-    const criteria = {
+    var criteria = {
         '$or': [
             { members: { $in: [filterBy.username] } }
             , { ownedBy: { $eq: filterBy.username } }
         ]
     }
-    if (filterBy.type) {
-        criteria.type = { $eq: filterBy.type }
+    if (filterBy.type && filterBy.type.length > 0) {
+        criteria.type = { $in: filterBy.type }
     }
     return criteria
 }

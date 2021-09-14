@@ -1,3 +1,4 @@
+import zIndex from "@material-ui/core/styles/zIndex";
 import { bottom, end, start } from "@popperjs/core";
 import { useState } from "react";
 import { usePopper } from "react-popper";
@@ -47,14 +48,14 @@ export const Popper = ({
       </div>
       {isOpen && (
         <div
-        style={{zIndex:'2'}}
           ref={setPopperElement}
-          style={styles.popper}
+          style={{ zIndex: '2', ...styles.popper }}
           {...attributes.popper}
         >
           {popper}
         </div>
-      )}
-    </div>
+      )
+      }
+    </div >
   );
 };
