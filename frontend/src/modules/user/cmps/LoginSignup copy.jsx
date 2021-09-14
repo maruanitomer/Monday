@@ -1,12 +1,12 @@
-import { TextField } from "@material-ui/core";
+import { Button, TextField } from "@material-ui/core";
 import { useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { userService } from "../service/userService";
 
 export const LoginSignup = () => {
-  // const strongPasswordRegex = useRef(
-  //   new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})")
-  // );
+  const strongPasswordRegex = useRef(
+    new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})")
+  );
   const [loginCred, setLoginCred] = useState({
     username: "",
     password: "",
@@ -88,115 +88,102 @@ export const LoginSignup = () => {
         })
         .catch((err) => setMsg(err));
   };
-  console.log(msg);
-  if (loggedInUser)
-    return (
-      <div className="login">
-        <h1> Hello {loggedInUser.fullname}</h1>
-        <button onClick={doLogout}>Logout</button>
-      </div>
-    );
 
   return (
-    <div className="login">
+    <div
+      className="login-signup-wrapper flex column align-center"
+      style={{ backgroundColor: "blue" }}
+    >
       <h1 style={{ color: "red" }}>{msg} </h1>
-      {logSignToggler ? (
+      {loggedInUser ? (
         <div>
-          <h1>Welcome to our Monday App</h1>
-          <h4 className="continue">login to continue</h4>
+          <h1> Hello {loggedInUser.fullname}</h1>
+          <button onClick={doLogout}>Logout</button>
         </div>
-      ) : (
-        <div>
-          <h1>Join our Monday App</h1>
-          <h4 className="continue">signup to continue</h4>
-        </div>
-      )}
-      {logSignToggler ? (
-        <form className="frm" onSubmit={doLogin}>
-          {/* <input type="text" name="username" placeholder="Username" autoFocus /> */}
-          <TextField
-            style={{ width: "100%" }}
-            variant="outlined"
-            type="text"
-            name="username"
-            value={loginCred.username}
-            onChange={onChangeHandler}
-          />
-          <br />
-          <TextField
-            style={{ width: "100%", margin: "10px 0px 20px 0px" }}
-            name="password"
-            type="password"
-            variant="outlined"
-            value={loginCred.password}
-            onChange={onChangeHandler}
-          />
-          <br />
-          <div className="flex align-senter">
-            <button className="rounded" type="submit">
-              Continue
-            </button>
-            <button
-              onClick={() => {
-                clearInputs();
-                setLogSignToggler(false);
-              }}
-              className="register-btn"
-              style={{ marginInlineStart: "20px" }}
-            >
-              {" "}
-              Register Here
-            </button>
+      ) : logSignToggler ? (
+        // Login form
+        <form className="flex column align-center" onSubmit={doLogin}>
+          <h2>Login</h2>
+          <div className="flex align-center">
+            <span>Username</span>
+            <TextField
+              className="input"
+              variant="outlined"
+              type="text"
+              name="username"
+              value={loginCred.username}
+              onChange={onChangeHandler}
+            />
           </div>
+          <div className="flex align-center">
+            <span>Password</span>
+            <TextField
+              className="input"
+              name="password"
+              type="password"
+              variant="outlined"
+              value={loginCred.password}
+              onChange={onChangeHandler}
+            />
+          </div>
+          <Button variant="outlined" type="submit">
+            Login
+          </Button>
+          <span
+            onClick={() => {
+              clearInputs();
+              setLogSignToggler(false);
+            }}
+          >
+            Click here to join us!
+          </span>
         </form>
       ) : (
-        <div className="sign-up">
-          <form className="flex column justify-center" onSubmit={doSignup}>
+        // Signup form
+        <form className="flex column align-center" onSubmit={doSignup}>
+          <h2>Signup</h2>
+          <div className="flex align-center">
+            <span>Fullname</span>
             <TextField
-              style={{ margin: "5px 0px" }}
               type="text"
               name="fullname"
               variant="outlined"
               value={signupCred.fullname}
               onChange={onChangeHandler}
             />
+          </div>
+          <div className="flex align-center">
+            <span>Username</span>
             <TextField
-              style={{ margin: "5px 0px" }}
               variant="outlined"
               type="text"
               name="username"
               value={signupCred.username}
               onChange={onChangeHandler}
             />
+          </div>
+          <div className="flex align-center">
+            <span>Password</span>
             <TextField
-              style={{ margin: "5px 0px" }}
               variant="outlined"
               name="password"
               type="password"
               value={signupCred.password}
               onChange={onChangeHandler}
             />
-            <button
-              type="sumbit"
-              className="regitser-button"
-              style={{ marginBlockStart: "10px" }}
-            >
-              Continue
-            </button>
-            <hr />
-            <h4>
-              Already a member?{" "}
-              <span
-                onClick={() => {
-                  clearInputs();
-                  setLogSignToggler(true);
-                }}
-              >
-                Sign In
-              </span>
-            </h4>
-          </form>
-        </div>
+          </div>
+          <Button variant="outlined" type="submit">
+            Signup
+          </Button>
+          <span
+            onClick={() => {
+              clearInputs();
+              setLogSignToggler(true);
+            }}
+          >
+            Click here to login
+          </span>
+        </form>
       )}
     </div>
   );
