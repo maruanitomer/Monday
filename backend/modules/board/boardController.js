@@ -10,12 +10,10 @@ module.exports = {
 async function getBoards(req, res) {
     try {
         console.log(req.query)
-        console.log(req.body)
-        console.log(req.params)
         // const {type } = req.params
         const filterBy = {
-          username: req.session.user.username,
-          type: null
+            username: req.session.user.username,
+            type: null
         }
         const boards = await boardService.query(filterBy)
         res.send(boards)
@@ -40,7 +38,7 @@ async function updateBoard(req, res) {
     try {
         const board = req.body
         const updatedBoard = await boardService.update(board)
-        return updatedBoard
+        return res.send(updatedBoard)
     }
     catch (err) {
         res.status(405).send(err)
@@ -59,8 +57,8 @@ async function addBoard(req, res) {
 async function deleteBoard(req, res) {
     try {
         const { id } = req.params
-         const idToRemoved =  await boardService.remove(id)
-        res.send(idToRemoved)
+        await boardService.remove(id)
+        res.send('Removed Success')
     }
     catch (err) {
         res.status(405).send(err)

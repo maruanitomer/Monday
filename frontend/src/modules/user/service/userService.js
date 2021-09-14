@@ -27,6 +27,8 @@ async function getUsernames(username) {
 async function login(credentials) {
     try {
         const user = await httpService.post('user/login', credentials)
+        if (!user) console.log(user)
+        else
         return _handleLogin(user);
     }
     catch (err) {

@@ -47,6 +47,7 @@ export const Popper = ({
       </div>
       {isOpen && (
         <div
+        style={{zIndex:'2'}}
           ref={setPopperElement}
           style={styles.popper}
           {...attributes.popper}

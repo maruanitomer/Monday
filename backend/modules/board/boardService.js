@@ -17,7 +17,7 @@ async function query(filterBy) {
         // with filter
         const criteria = _buildCriteria(filterBy)
         var boards = await collection.find(criteria).toArray()
-       
+
         // to get TimeStamp for each 
         // toys = toys.map(toy => {
         //     toy.createdAt = ObjectId(toy._id).getTimestamp()
@@ -65,11 +65,11 @@ async function remove(id) {
 
 async function update(board) {
     try {
-        const boardToAdd = { ...board };
-        delete boardToAdd._id
+        const updatedBoard = { ...board };
+        delete updatedBoard._id
         const collection = await dbService.getCollection('board')
-        await collection.updateOne({ '_id': ObjectId(board._id) }, { $set: boardToAdd })
-        return boardToAdd;
+        await collection.updateOne({ '_id': ObjectId(board._id) }, { $set: updatedBoard })
+        return updatedBoard
     } catch (err) {
         throw err
     }
@@ -87,12 +87,12 @@ async function add(board) {
 
 //build the filter by
 function _buildCriteria(filterBy) {
-    const criteria =  {
+    const criteria = {
         '$or': [
-        {members: {$in:[filterBy.username]}}
-        ,{ownedBy: {$eq: filterBy.username}}
+            { members: { $in: [filterBy.username] } }
+            , { ownedBy: { $eq: filterBy.username } }
         ]
-     }
+    }
     if (filterBy.type) {
         criteria.type = { $eq: filterBy.type }
     }

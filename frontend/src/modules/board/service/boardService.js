@@ -9,15 +9,17 @@ export const boardService = {
 }
 async function query(filter) {
     try {
-        console.log(filter)
-        return httpService.get('board', {params: {filter: 3}})
-} catch (err) {
-        throw new Error('couldn\'t find boards')
+        return httpService.get('board',undefined,filter)
+    } catch (err) {
+        console.log("enter");
+        console.log(err);
+        console.log(err.message);
     }
 }
 
 async function getById(id) {
     try {
+
         return httpService.get(`board/${id}`, id)
     } catch (err) {
         throw new Error('couldn\'t find boards')
@@ -34,7 +36,7 @@ async function save(board) {
 }
 async function remove(id) {
     try {
-        await httpService.delete(`board/${id}`)
+        await httpService.delete(`board/${id}`, id)
         return id;
     }
     catch (err) {
