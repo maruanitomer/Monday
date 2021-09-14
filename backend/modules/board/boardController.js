@@ -9,16 +9,15 @@ module.exports = {
 }
 async function getBoards(req, res) {
     try {
-        // const { price, name, type, inStock, sortBy } = req.query
-        // const filterBy = {
-        //     price: price || 0,
-        //     name: name || '',
-        //     inStock: inStock || 'All',
-        //     type: type || 'All',
-        //     sortBy: sortBy || 'name'
-        // }
-        // const toys = await boardService.query(filterBy)
-        const boards = await boardService.query()
+        console.log(req.query)
+        console.log(req.body)
+        console.log(req.params)
+        // const {type } = req.params
+        const filterBy = {
+          username: req.session.user.username,
+          type: null
+        }
+        const boards = await boardService.query(filterBy)
         res.send(boards)
     }
     catch (err) {
@@ -40,10 +39,8 @@ async function getBoard(req, res) {
 async function updateBoard(req, res) {
     try {
         const board = req.body
-        boardService.update(board).then((updatedBoard) => {
-            return res.send(updatedBoard)
-        })
-
+        const updatedBoard = await boardService.update(board)
+        return updatedBoard
     }
     catch (err) {
         res.status(405).send(err)
@@ -62,8 +59,8 @@ async function addBoard(req, res) {
 async function deleteBoard(req, res) {
     try {
         const { id } = req.params
-        await boardService.remove(id)
-        res.send('Removed Success')
+         const idToRemoved =  await boardService.remove(id)
+        res.send(idToRemoved)
     }
     catch (err) {
         res.status(405).send(err)

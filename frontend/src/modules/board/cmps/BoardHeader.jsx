@@ -173,7 +173,7 @@ export const BoardHeader = ({ board, onEditBoard }) => {
         <div className="board-header-view-bar">
           <div className="monday-header flex">
             {/* <button onClick={onAddGroup}>New Item</button> */}
-            <button class="basic-small-button" onClick={onAddGroup}>New Item</button>
+            <button className="basic-small-button" onClick={onAddGroup}>New Item</button>
             {/* <button className="flex align-center ">
               <SearchOutlinedIcon></SearchOutlinedIcon>
             </button> */}

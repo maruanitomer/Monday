@@ -10,14 +10,14 @@ module.exports = {
     remove
 }
 
-async function query() {
-    // const criteria = _buildCriteria(filterBy)
+async function query(filterBy) {
     try {
         //QUERY
         const collection = await dbService.getCollection('board')
         // with filter
-        // var toys = await collection.find(criteria).toArray()
-        var boards = await collection.find().toArray()
+        const criteria = _buildCriteria(filterBy)
+        var boards = await collection.find(criteria).toArray()
+       
         // to get TimeStamp for each 
         // toys = toys.map(toy => {
         //     toy.createdAt = ObjectId(toy._id).getTimestamp()
@@ -87,20 +87,14 @@ async function add(board) {
 
 //build the filter by
 function _buildCriteria(filterBy) {
-    const criteria = {}
-    if (filterBy.name) {
-        criteria.name = { $regex: filterBy.name, $options: 'i' }
-    }
-    if (filterBy.type !== 'All') {
+    const criteria =  {
+        '$or': [
+        {members: {$in:[filterBy.username]}}
+        ,{ownedBy: {$eq: filterBy.username}}
+        ]
+     }
+    if (filterBy.type) {
         criteria.type = { $eq: filterBy.type }
-    }
-    if (filterBy.inStock !== 'All') {
-        const inStockCriteria = filterBy.inStock === 'true'
-        criteria.inStock = inStockCriteria
-
-    }
-    if (filterBy.price) {
-        criteria.price = { $gte: filterBy.price * 1 }
     }
     return criteria
 }

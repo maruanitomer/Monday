@@ -3,16 +3,17 @@ import { useDispatch } from "react-redux";
 import { boardService } from "../service/boardService";
 import { loadBoards } from "../../../store/actions/boardActions";
 
-export const OnSetBoards = () => {
+export const OnSetBoards = (filter) => {
   const dispatch = useDispatch();
   useEffect(() => {
     const getBoards = async () => {
       try {
-        const res = await boardService.query();
+        console.log(filter)
+        const res = await boardService.query(filter);
         console.log(res);
         dispatch(loadBoards(res));
       } catch {}
     };
     getBoards();
-  }, [dispatch]);
+  }, [dispatch,filter]);
 };

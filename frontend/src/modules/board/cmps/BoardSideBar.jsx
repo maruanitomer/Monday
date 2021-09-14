@@ -9,20 +9,29 @@ import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 
-export const BoardSideBar = ({ boards, toggleModal }) => {
+export const BoardSideBar = ({ boards, toggleModal, setFilter }) => {
   const [filteredBoards, setFilteredBoards] = useState(boards);
 
-  const [filterArray, setfilterArray] = useState({
-    gilad: true,
-    jason: false,
-    antoine: false,
+  const [typeFilter, setTypeFilter] = useState({
+    "Employees": false,
+    "Campaigns": false,
+    "Projects": false,
+    "Creatives": false,
+    "Clients": false,
+    "Tasks": false,
   });
+
+
   const handleChange = (event) => {
-    setfilterArray({
-      ...filterArray,
+    setTypeFilter({
+      ...typeFilter,
       [event.target.name]: event.target.checked,
     });
   };
+  useEffect(() => {
+    setFilter(typeFilter)
+  }, [typeFilter])
+
   useEffect(() => {
     setFilteredBoards(boards);
   }, [boards]);
@@ -34,7 +43,6 @@ export const BoardSideBar = ({ boards, toggleModal }) => {
     setFilteredBoards(boards.filter((board) => regex.test(board.title)));
   };
 
-  const { gilad, jason, antoine } = filterArray;
 
   return (
     <section className="side-bar-container flex column">
@@ -65,36 +73,20 @@ export const BoardSideBar = ({ boards, toggleModal }) => {
               style={{ border: "2px solid black", backgroundColor: "white" }}
             >
               <FormGroup>
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={gilad}
-                      onChange={handleChange}
-                      name="gilad"
-                    />
-                  }
-                  label="Gilad Gray"
-                />
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={jason}
-                      onChange={handleChange}
-                      name="jason"
-                    />
-                  }
-                  label="Jason Killian"
-                />
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={antoine}
-                      onChange={handleChange}
-                      name="antoine"
-                    />
-                  }
-                  label="Antoine Llorca"
-                />
+                {Object.entries(typeFilter).map(([typeName, typeValue], idx) => {
+                  return <FormControlLabel
+                    key={idx}
+                    control={
+                      <Checkbox
+                        checked={typeValue}
+                        onChange={handleChange}
+                        name={typeName}
+                      />
+                    }
+                    label={typeName}
+                  />
+                }
+                )}
               </FormGroup>
             </div>
           }
@@ -112,12 +104,11 @@ export const BoardSideBar = ({ boards, toggleModal }) => {
           />
         </div>
       </div>
+
       <BoardNavigationList
         boards={filteredBoards}
         msg={
-          boards.length > 0 && filteredBoards.length === 0
-            ? "No results found"
-            : ""
+          boards.length > 0 && filteredBoards.length === 0 && "No results found"
         }
       ></BoardNavigationList>
     </section>

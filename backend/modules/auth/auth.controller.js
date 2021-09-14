@@ -20,7 +20,6 @@ async function signup(req, res) {
         const addedUsername = await authService.signup(username, password, fullname)
         logger.info(`auth.route - new account created: ${addedUsername}`)
         req.session.user = addedUsername
-        console.log(req.session.user);
         res.json(addedUsername)
     } catch (err) {
         console.log(err);
