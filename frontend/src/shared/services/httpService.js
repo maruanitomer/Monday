@@ -1,4 +1,5 @@
 import Axios from 'axios'
+import { storageService } from './StorageService'
 
 const BASE_URL = process.env.NODE_ENV === 'production'
     ? '/api/'
@@ -35,8 +36,8 @@ async function ajax(endpoint, method, data = null, params = null) {
         return res.data
     } catch (err) {
         if (err.response && err.response.status === 403) {
+            storageService.clear();
             window.location.assign('/sign')
-            throw new Error(err.response.data)
         }
         if (err.response && err.response.status === 401)
             throw new Error(err.response.data)

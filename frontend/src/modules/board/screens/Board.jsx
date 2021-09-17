@@ -24,20 +24,25 @@ export const Board = ({ match }) => {
   const dispatch = useDispatch();
   const [toggleUpdates, setToggleUpdates] = useState(false);
   const [task, setTask] = useState();
-  const [loggedinUser, setLoggedinUser] = useState();
   const [filter, setFilter] = useState(null);
 
-  useEffect(() => {
+
+
+  const checkUser = () => {
     const user = userService.getLoggedinUser();
-    if (user) setLoggedinUser(user);
-    else window.location.assign("/sign");
+    if (!user) window.location.assign("/sign");
+  }
+
+
+  useEffect(() => {
+    checkUser()
   }, []);
 
   OnSetBoards(filter);
 
   useEffect(() => {
     const getBoard = async () => {
-      if (boards.length !== 0) {
+      if (boards && boards.length !== 0) {
         try {
           let boardId = match.params.boardId;
           if (boardId && (!currBoard || boardId !== currBoard._id)) {
@@ -126,7 +131,7 @@ export const Board = ({ match }) => {
       <MainNav />
 
       <BoardSideBar toggleModal={toggleModal} boards={boards} setFilter={setFilter}></BoardSideBar>
-      {boards.length !== 0 ? (
+      {boards && boards.length !== 0 ? (
         <div className="flex">
           <div className="board-container flex column ">
             <BoardHeader

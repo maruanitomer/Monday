@@ -89,3 +89,17 @@ input {
   align-items: center;
   grid-gap: rem(5px);
 }
+
+.edit-menu{
+  border-radius: rem(8px);
+  background-color: white;
+  box-shadow: 0 4px 17px 6px rgb(184, 184, 184);
+  button{
+    font-family: 'Oswald', sans-serif;
+    color: rgb(88, 88, 88);
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    padding: rem(10px);
+  }
+}

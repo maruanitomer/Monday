@@ -1,6 +1,8 @@
 import ChatBubbleOutlineRoundedIcon from "@material-ui/icons/ChatBubbleOutlineRounded";
 import ExpandMoreRoundedIcon from "@material-ui/icons/ExpandMoreRounded";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteForever from "@material-ui/icons/DeleteForever";
 import { Status } from "./Status";
 import { Popper } from "../../../shared";
 export const TaskPreview = ({
@@ -21,9 +23,9 @@ export const TaskPreview = ({
         <Popper
           button={<ExpandMoreRoundedIcon />}
           popper={
-            <div className="flex column" style={{ backgroundColor: "red" }}>
-              <button onClick={() => onRemoveTask(task._id)}>Delete</button>
-              <button>Rename</button>
+            <div className="flex column edit-menu">
+              <button onClick={() => onRemoveTask(task._id)}><DeleteForever /> Delete</button>
+              <button ><EditIcon /> Rename</button>
             </div>
           }
         />

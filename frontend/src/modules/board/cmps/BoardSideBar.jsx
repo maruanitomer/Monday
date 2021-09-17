@@ -76,7 +76,7 @@ export const BoardSideBar = ({ boards, toggleModal, setFilter }) => {
           popper={
             <div
               className="flex column"
-              style={{ border: "2px solid black", backgroundColor: "white" }}
+              style={{ border: "2px solid black", backgroundColor: "white" ,padding:'5px'}}
             >
               <FormGroup>
                 {Object.entries(typeFilter).map(([typeName, typeValue], idx) => {
@@ -111,12 +111,12 @@ export const BoardSideBar = ({ boards, toggleModal, setFilter }) => {
         </div>
       </div>
 
-      <BoardNavigationList
+      {boards && <BoardNavigationList
         boards={filteredBoards}
         msg={
           boards.length > 0 && filteredBoards.length === 0 && "No results found"
         }
-      ></BoardNavigationList>
+      ></BoardNavigationList>}
     </section>
   );
 };

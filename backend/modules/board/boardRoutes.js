@@ -4,10 +4,10 @@ const { getBoard, getBoards, deleteBoard, updateBoard, addBoard } = require('./b
 const router = express.Router()
 
 router.get('/', requireAuth, getBoards)
-router.post('/', addBoard)
-router.get('/:id', getBoard)
-router.put('/:board', updateBoard)
-router.delete('/:id', deleteBoard)
+router.post('/',requireAuth, addBoard)
+router.get('/:id',requireAuth, getBoard)
+router.put('/:board',requireAuth, updateBoard)
+router.delete('/:id',requireAuth, deleteBoard)
 
 
 module.exports = router

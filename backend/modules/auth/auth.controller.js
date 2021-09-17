@@ -8,9 +8,9 @@ async function login(req, res) {
         req.session.user = user
         res.json(user)
     } catch (err) {
-        logger.error('Failed to Login ' + err)
+        // console.log("err", err)
+        // res.redirect("localhost:3000/sign");
         res.status(401).send(err.message)
-
     }
 }
 

@@ -6,12 +6,11 @@ import { loadBoards } from "../../../store/actions/boardActions";
 export const OnSetBoards = (filter) => {
   const dispatch = useDispatch();
   useEffect(() => {
-    const getBoards = async () => {
-      try {
-        const res = await boardService.query(filter);
+    try {
+      boardService.query(filter).then((res) => {
         dispatch(loadBoards(res));
-      } catch {}
-    };
-    getBoards();
-  }, [dispatch,filter]);
+      });
+    } catch { }
+  }, [dispatch, filter]);
 };
+

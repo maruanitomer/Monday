@@ -17,8 +17,7 @@ async function getBoards(req, res) {
         res.send(boards)
     }
     catch (err) {
-        if (err.response && err.response.status !== 403)
-            res.status(404).send(err);
+      res.send(err)
     }
 }
 async function getBoard(req, res) {

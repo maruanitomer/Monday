@@ -28,6 +28,7 @@ export const TaskUpdates = ({ task, onEditBoard, close }) => {
       top: "0%",
       backgroundColor: "#fff",
       width: "45vw",
+      zIndex: '2'
     },
   });
   const classes = useStyles();

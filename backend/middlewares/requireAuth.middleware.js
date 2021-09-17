@@ -2,7 +2,9 @@ const logger = require('../services/logger.service')
 
 async function requireAuth(req, res, next) {
   if (!req.session || !req.session.user) {
-    res.status(403).send("log in please")
+    const err = new Error("Not authorized! Go back!");
+    err.status = 403;
+    return next(err);
   }
   next()
 }
