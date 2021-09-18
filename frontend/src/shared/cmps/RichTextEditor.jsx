@@ -5,7 +5,6 @@ import {
   getDefaultKeyBinding,
   RichUtils,
   convertToRaw,
-  convertFromRaw,
 } from "draft-js";
 import "../../assets/shared/cmps/RichTextEditor.scss";
 import draftToHtml from "draftjs-to-html";

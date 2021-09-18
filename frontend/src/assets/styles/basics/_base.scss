@@ -8,6 +8,22 @@ html {
   // @include from-mobile-layout {
   //   font-size: 16px;
   // }
+  ::-webkit-scrollbar{
+    width: 8px;
+    height: 8px;
+    }
+    ::-webkit-scrollbar-thumb{
+    background: #BBD5ED;
+    border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover{
+    background: #C7DBE8;
+    }
+    ::-webkit-scrollbar-track{
+    background: #F7F7F7;
+    border-radius: 0px;
+    box-shadow: inset -2.1px 3.4px 1px 0px #EBEBEB;
+    }
 }
 body {
   margin: 0;
@@ -84,18 +100,19 @@ input {
 
 .grid-tasks-layout {
   display: grid;
-  grid-template-columns: rem(26px) minmax(50px , 60vw) rem(84.1px) rem(120px) rem(120px);
+  grid-template-columns: rem(26px) minmax(50px, 60vw) rem(84.1px) rem(120px) rem(120px);
   grid-template-areas: "start title person status date last";
   align-items: center;
   grid-gap: rem(5px);
 }
 
-.edit-menu{
+.edit-menu {
   border-radius: rem(8px);
   background-color: white;
   box-shadow: 0 4px 17px 6px rgb(184, 184, 184);
-  button{
-    font-family: 'Oswald', sans-serif;
+
+  button {
+    font-family: "Oswald", sans-serif;
     color: rgb(88, 88, 88);
     font-weight: bold;
     display: flex;

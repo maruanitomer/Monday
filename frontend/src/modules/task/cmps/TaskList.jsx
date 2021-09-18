@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { Draggable, Droppable } from "react-beautiful-dnd";
 import { utilService } from "../../../shared/services/utilService";
+import { activitesActions } from "../../../shared/services/activitiesActions";
 import { TaskPreview } from "./TaskPreview";
 
 export const TaskList = ({ tasks, group, onEditBoard, onOpenUpdates }) => {
@@ -16,10 +17,7 @@ export const TaskList = ({ tasks, group, onEditBoard, onOpenUpdates }) => {
       text: "Set Piority",
       color: "#cccccc",
     },
-    dueDate: {
-      start: "",
-      end: "",
-    },
+    endDate: null,
   };
   const addInput = useRef(null);
   const [taskToAdd, SetTaskToAdd] = useState(initialTask);
@@ -33,15 +31,17 @@ export const TaskList = ({ tasks, group, onEditBoard, onOpenUpdates }) => {
 
   const onRemoveTask = (id) => {
     //REMOVE TASK
+    const taskToDelete = group.tasks.find((task) => task._id === id)
     group.tasks = group.tasks.filter((task) => task._id !== id);
-    onEditBoard();
+    onEditBoard({ type: activitesActions.REMOVE_TASK, task: taskToDelete });
   };
   const onAddTask = () => {
-    //ADD TASK
+  //ADD TASK
     const copyTask = { ...taskToAdd };
     copyTask._id = utilService.makeId();
+    copyTask.endDate = new Date();
     group.tasks.push(copyTask);
-    onEditBoard();
+    onEditBoard({ type: activitesActions.ADD_TASK, task: copyTask });
     SetTaskToAdd(initialTask);
     addInput.current.value = "";
   };

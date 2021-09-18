@@ -1,5 +1,4 @@
-import zIndex from "@material-ui/core/styles/zIndex";
-import { bottom, end, start } from "@popperjs/core";
+import { bottom } from "@popperjs/core";
 import { useState } from "react";
 import { usePopper } from "react-popper";
 import { useClickOutside } from "../hooks/clickOutSide";
@@ -33,7 +32,7 @@ export const Popper = ({
 
   return (
     <div
-      ref={domNode}
+    ref={domNode}
       onClick={() => {
         disappearOnPopperClick && setIsOpen(!isOpen);
       }}
@@ -49,7 +48,7 @@ export const Popper = ({
       {isOpen && (
         <div
           ref={setPopperElement}
-          style={{ zIndex: '2', ...styles.popper }}
+          style={{ zIndex: '5', ...styles.popper }}
           {...attributes.popper}
         >
           {popper}

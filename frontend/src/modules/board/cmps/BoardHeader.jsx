@@ -3,7 +3,6 @@ import PersonOutlineIcon from "@material-ui/icons/PersonOutline";
 import TrendingUpIcon from "@material-ui/icons/TrendingUp";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import HomeWorkOutlinedIcon from "@material-ui/icons/HomeWorkOutlined";
-import SearchOutlinedIcon from "@material-ui/icons/SearchOutlined";
 import AccountCircleOutlinedIcon from "@material-ui/icons/AccountCircleOutlined";
 import FilterListOutlinedIcon from "@material-ui/icons/FilterListOutlined";
 import ImportExportIcon from "@material-ui/icons/ImportExport";
@@ -19,6 +18,8 @@ import { SmallSearchField } from "../../../shared/cmps/SmallSearchField";
 import { InviteUsers } from "../../../shared/cmps/InviteUsers";
 import { useEffect, useState } from "react";
 import { useClickOutside } from "../../../shared/hooks/clickOutSide";
+import { Activities } from "./Activities";
+import { activitesActions } from "../../../shared/services/activitiesActions";
 
 export const BoardHeader = ({ board, onEditBoard }) => {
   const [descriptionInput, setDescriptionInput] = useState(board?.description);
@@ -33,7 +34,7 @@ export const BoardHeader = ({ board, onEditBoard }) => {
       tasks: [],
     };
     board.groups.unshift(group);
-    onEditBoard();
+    onEditBoard({ type: activitesActions.ADD_GROUP });
   };
   useEffect(() => {
     if (board) {
@@ -103,14 +104,22 @@ export const BoardHeader = ({ board, onEditBoard }) => {
             <Popper
               button={
                 <button className="flex align-center">
-                  Invite<PersonOutlineIcon></PersonOutlineIcon>
+                  Invite <PersonOutlineIcon></PersonOutlineIcon>
                 </button>
               }
               popper={<InviteUsers board={board} onEditBoard={onEditBoard} />}
             />
-            <button className="flex align-center">
-              Activity <TrendingUpIcon></TrendingUpIcon>
-            </button>
+            <Popper
+              button={
+                <button className="flex align-center">
+                  Activity <TrendingUpIcon></TrendingUpIcon>
+                </button>
+              }
+              popper={
+                <Activities activities={board.activities} />
+              }
+            />
+
             <button>+ Add to Board</button>
             <button>
               <MoreHorizIcon></MoreHorizIcon>
@@ -149,14 +158,14 @@ export const BoardHeader = ({ board, onEditBoard }) => {
           }}
         >
           <div
-            style={{margin:"5px"}}
+            style={{ margin: "5px" }}
             className="flex justify-space-between align-center"
           >
-            <button style={{padding:"10px", maxWidth:"180px" }} className="flex align-center">
+            <button style={{ padding: "10px", maxWidth: "180px" }} className="flex align-center">
               <HomeWorkOutlinedIcon></HomeWorkOutlinedIcon> Main Table
             </button>
-            <span style={{height:"50px",marginInlineStart:"5px", marginInlineEnd:"5px"}}></span>
-            <button style={{padding:"10px", maxWidth:"180px"}}>+ Add View</button>
+            <span style={{ height: "50px", marginInlineStart: "5px", marginInlineEnd: "5px" }}></span>
+            <button style={{ padding: "10px", maxWidth: "180px" }}>+ Add View</button>
           </div>
           <div className="flex">
             <div className="integrations-button-content flex">

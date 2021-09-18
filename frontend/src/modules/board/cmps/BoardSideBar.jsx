@@ -4,7 +4,7 @@ import SearchOutlinedIcon from "@material-ui/icons/SearchOutlined";
 import HomeIcon from "@material-ui/icons/Home";
 import { useEffect, useState } from "react";
 import { Popper } from "../../../shared";
-import { end, right } from "@popperjs/core";
+import { right } from "@popperjs/core";
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
@@ -36,7 +36,7 @@ export const BoardSideBar = ({ boards, toggleModal, setFilter }) => {
         filter.push(key)
     })
     setFilter(filter)
-  }, [typeFilter])
+  }, [typeFilter,setFilter])
 
   useEffect(() => {
     setFilteredBoards(boards);

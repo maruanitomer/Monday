@@ -17,6 +17,8 @@ import { TaskUpdates } from "../../task/cmps/TaskUpdates";
 import { MainNav } from "../../index";
 import emptypage from "../../../assets/imgs/emptypage.png";
 import { userService } from "../../user/service/userService";
+import { utilService } from "../../../shared";
+import { activitesActions } from "../../../shared/services/activitiesActions";
 
 export const Board = ({ match }) => {
   const [modal, setModal] = useState(false);
@@ -25,18 +27,17 @@ export const Board = ({ match }) => {
   const [toggleUpdates, setToggleUpdates] = useState(false);
   const [task, setTask] = useState();
   const [filter, setFilter] = useState(null);
+  const [user] = useState(userService.getLoggedinUser());
 
 
-
-  const checkUser = () => {
-    const user = userService.getLoggedinUser();
-    if (!user) window.location.assign("/sign");
-  }
 
 
   useEffect(() => {
-    checkUser()
-  }, []);
+    if (!user)
+      window.location.assign(
+        '/sign'
+      )
+  }, [user]);
 
   OnSetBoards(filter);
 
@@ -89,14 +90,33 @@ export const Board = ({ match }) => {
       console.log(err);
     }
   };
-  const onEditBoard = async () => {
-    try {
-      // UPDATING THE BOARD (SERVER + STORE)
-      const res = await boardService.edit(currBoard._id, currBoard);
-      dispatch(editBoard(res));
-    } catch (err) {
-      console.log(err);
+  const onEditBoard = async (action) => {
+    // UPDATING THE BOARD (SERVER + STORE)
+    if (action) {
+
+      if (!currBoard.activities) currBoard.activities = []
+
+      switch (action.type) {
+        case activitesActions.REMOVE_TASK:
+          currBoard.activities.unshift({ id: utilService.makeId(), text: `${user.username} has removed the task - ${action.task.title}` })
+          break;
+        case activitesActions.ADD_TASK:
+          currBoard.activities.unshift({ id: utilService.makeId(), text: `${user.username} has added the task - ${action.task.title}` })
+          break;
+        case activitesActions.REMOVE_GROUP:
+          currBoard.activities.unshift({ id: utilService.makeId(), text: `${user.username} has removed the group - ${action.group.title}` })
+          break;
+        case activitesActions.ADD_GROUP:
+          currBoard.activities.unshift({ id: utilService.makeId(), text: `${user.username} has added new group` })
+          break;
+        default:
+          break;
+      }
     }
+
+    boardService.edit(currBoard._id, currBoard).then((res) => {
+      dispatch(editBoard(res));
+    }).catch(err => console.log(err))
   };
   const onOpenUpdates = (task) => {
     setTask(task);
@@ -107,7 +127,6 @@ export const Board = ({ match }) => {
 
   return (
     <div className="board-layout flex">
-      {/* <div className="flex coulmn"> */}
       {modal && (
         <PopUpModal
           toggleModal={toggleModal}
@@ -131,7 +150,7 @@ export const Board = ({ match }) => {
       <MainNav />
 
       <BoardSideBar toggleModal={toggleModal} boards={boards} setFilter={setFilter}></BoardSideBar>
-      {boards && boards.length !== 0 ? (
+      {boards && boards.length > 0 ? (
         <div className="flex">
           <div className="board-container flex column ">
             <BoardHeader
@@ -156,7 +175,6 @@ export const Board = ({ match }) => {
             )}
           </div>
         </div>
-
       ) : (
         <div className="emptypage-logo-wrapper">
           <div className="emptypage-img-container">

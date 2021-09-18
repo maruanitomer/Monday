@@ -1,16 +1,19 @@
 import { TaskList } from "../../task";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useClickOutside } from "../../../shared/hooks/clickOutSide";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import { Popper } from "../../index";
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteForever from "@material-ui/icons/DeleteForever";
+import { activitesActions } from "../../../shared/services/activitiesActions";
 export const GroupPreview = ({ group, board, onEditBoard, onOpenUpdates }) => {
   const onRemoveGroup = (id) => {
     //REMOVE Group
+    const groupToDelete = board.groups.find(group => group._id === id)
     board.groups = board.groups.filter((group) => group._id !== id);
-    onEditBoard();
+    onEditBoard({ type: activitesActions.REMOVE_GROUP, group: groupToDelete });
   };
+  const titleRef = useRef(null);
 
   const [toggleName, setToggleName] = useState(true);
   const [groupTitle, setGroupTitle] = useState(group.title);
@@ -26,6 +29,10 @@ export const GroupPreview = ({ group, board, onEditBoard, onOpenUpdates }) => {
       }
     }
   });
+  useEffect(() => {
+    if (titleRef.current)
+      titleRef.current.focus()
+  }, [toggleName])
 
   return (
     <div style={{ marginBottom: "30px" }}>
@@ -41,9 +48,9 @@ export const GroupPreview = ({ group, board, onEditBoard, onOpenUpdates }) => {
                   onRemoveGroup(group._id);
                 }}
               >
-               <DeleteForever/> Delete
+                <DeleteForever /> Delete
               </button>
-              <button><EditIcon/> Rename</button>
+              <button onClick={() => setToggleName(!toggleName)}><EditIcon /> Rename</button>
             </div>
           }
         />
@@ -63,6 +70,7 @@ export const GroupPreview = ({ group, board, onEditBoard, onOpenUpdates }) => {
                 name="title"
                 onChange={inputHandler}
                 value={groupTitle}
+                ref={titleRef}
               />
             </div>
           )}

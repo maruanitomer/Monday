@@ -3,20 +3,48 @@ import ExpandMoreRoundedIcon from "@material-ui/icons/ExpandMoreRounded";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteForever from "@material-ui/icons/DeleteForever";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 import { Status } from "./Status";
 import { Popper } from "../../../shared";
+import { forwardRef } from "react";
+import { bottom} from "@popperjs/core";
 export const TaskPreview = ({
   task,
   onRemoveTask,
   onEditBoard,
   onOpenUpdates,
 }) => {
+
   const onEditStatus = (text, color) => {
     if (task.status.text === text && task.status.color === color) return;
     task.status = { text, color };
     onEditBoard();
   };
 
+  const parsedDate = () => {
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"
+    ];
+    const date = new Date(task.endDate)
+    return `${monthNames[date.getUTCMonth()].slice(0, 3)}  ${date.getUTCDate()}`
+  }
+
+
+
+  const onEditDate = (date) => {
+    task.endDate = date
+    onEditBoard()
+  }
+
+  const ExampleCustomInput = forwardRef(({ onClick }, ref) => (
+    <div className="flex justify-center align-center" onClick={onClick} ref={ref}>
+      <span>
+        {parsedDate()}
+      </span>
+    </div>
+  ));
   return (
     <div>
       <div className="task-grid ">
@@ -80,10 +108,21 @@ export const TaskPreview = ({
             </div>
           }
         />
-        {/* <div>
-          <input type="date" />
-        </div> */}
-        <span>Date</span>
+        <DatePicker popperModifiers={[
+          {
+            name: "offset",
+            options: {
+              offset: [-20, -5],
+              padding: 0
+            },
+          }
+        ]}
+          popperPlacement={bottom}
+          selected={new Date(task.endDate)}
+          onChange={(date) => onEditDate(date)}
+          customInput={<ExampleCustomInput />}
+        />
+
       </div>
     </div>
   );

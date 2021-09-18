@@ -17,8 +17,8 @@ async function isExist(username) {
     const user = await collection.findOne({ 'username': username })
     return user;
 }
-async function query(username) {
-    const criteria = _buildCriteria(username)
+async function query(filter) {
+    const criteria = _buildCriteria(filter)
     try {
         const collection = await dbService.getCollection('user')
         var users = await collection.find(criteria).toArray()
@@ -100,9 +100,9 @@ async function add(user) {
     }
 }
 
-function _buildCriteria(username) {
+function _buildCriteria(filter) {
     const criteria = {}
-    const txtCriteria = { $regex: username, $options: 'i' }
+    const txtCriteria = { $regex: filter, $options: 'i' }
     criteria.$or = [
         {
             username: txtCriteria

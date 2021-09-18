@@ -14,9 +14,9 @@ export const userService = {
     , getUsernames
 }
 
-async function getUsernames(username) {
+async function getUsernames(filter) {
     try {
-        const users = await httpService.get('user', username)
+        const users = await httpService.get('user',null, {filter})
         return users
     }
     catch (err) {
