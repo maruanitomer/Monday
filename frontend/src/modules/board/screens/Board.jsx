@@ -6,12 +6,14 @@ import { PopUpModal } from "../../../shared/cmps/PopUpModal";
 import { BoardAdd } from "../cmps/BoardAdd";
 import { makeStyles } from "@material-ui/core";
 import { BoardHeader } from "../cmps/BoardHeader";
-import { OnSetBoards } from "../cmps/SetBoardEffect";
 import { boardService } from "../service/boardService";
+import { RotateLoader } from "react-spinners";
+
 import {
   addBoard,
   editBoard,
   loadBoard,
+  loadBoards,
 } from "../../../store/actions/boardActions";
 import { TaskUpdates } from "../../task/cmps/TaskUpdates";
 import { MainNav } from "../../index";
@@ -28,9 +30,7 @@ export const Board = ({ match }) => {
   const [task, setTask] = useState();
   const [filter, setFilter] = useState(null);
   const [user] = useState(userService.getLoggedinUser());
-
-
-
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (!user)
@@ -39,23 +39,34 @@ export const Board = ({ match }) => {
       )
   }, [user]);
 
-  OnSetBoards(filter);
+
 
   useEffect(() => {
-    const getBoard = async () => {
-      if (boards && boards.length !== 0) {
-        try {
-          let boardId = match.params.boardId;
-          if (boardId && (!currBoard || boardId !== currBoard._id)) {
-            const board = await boardService.getById(boardId);
-            dispatch(loadBoard(board));
-          } else if (!currBoard) dispatch(loadBoard(boards[0]));
-        } catch (err) {
-          console.log(err);
-        }
+    const getBoards = () => {
+      boardService.query(filter).then((res) => {
+        dispatch(loadBoards(res));
+        setTimeout(() => setLoading(true), 2000)
+      })
+    }
+    if (!loading) {
+      getBoards();
+    }
+  }, [filter, dispatch, loading])
+
+
+
+
+  useEffect(() => {
+    if (boards && boards.length !== 0) {
+      let boardId = match.params.boardId;
+      if (boardId && (!currBoard || boardId !== currBoard._id)) {
+        boardService.getById(boardId).then(board => {
+          dispatch(loadBoard(board));
+        });
+      } else if (!currBoard) {
+        dispatch(loadBoard(boards[0]));
       }
-    };
-    getBoard();
+    }
   }, [boards, match.params, dispatch, currBoard]);
 
 
@@ -125,7 +136,7 @@ export const Board = ({ match }) => {
   // var className;
   // toggleUpdates? className="50%" : className="100%";
 
-  return (
+  return loading ? (
     <div className="board-layout flex">
       {modal && (
         <PopUpModal
@@ -150,7 +161,7 @@ export const Board = ({ match }) => {
       <MainNav />
 
       <BoardSideBar toggleModal={toggleModal} boards={boards} setFilter={setFilter}></BoardSideBar>
-      {boards && boards.length > 0 ? (
+      {(boards && boards.length > 0 ? (
         <div className="flex">
           <div className="board-container flex column ">
             <BoardHeader
@@ -181,8 +192,9 @@ export const Board = ({ match }) => {
             <img src={emptypage} alt="icon"></img>
           </div>
         </div>
-      )
-      }
+      ))}
     </div >
-  );
+  ) : <div className="flex align-center justify-center" style={{ height: '100vh' }}>
+    <RotateLoader color={'#0398fc'} size={30} margin={40}></RotateLoader>
+  </div>
 };

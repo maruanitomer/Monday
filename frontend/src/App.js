@@ -8,14 +8,15 @@ export function App() {
       <Switch>
         {routes.map((route) => (
           <Route
+            exact={route.exact}
             key={route.path}
-            exact
             component={route.component}
             path={route.path}
           />
         ))}
       </Switch>
     </BrowserRouter>
+
   );
 }
 

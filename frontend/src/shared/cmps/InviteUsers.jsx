@@ -1,4 +1,4 @@
-import {  TextField } from "@material-ui/core";
+import { TextField } from "@material-ui/core";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import { useEffect, useState } from "react";
 import { userService } from "../../modules/user/service/userService";
@@ -6,18 +6,18 @@ import { userService } from "../../modules/user/service/userService";
 export const InviteUsers = ({ board, onEditBoard }) => {
   const [usernames, setUsernames] = useState(null);
   const [usernameToDelete] = useState(userService.getLoggedinUser());
-  const [filter,setFilter] = useState('')
-    useEffect(() => {
-      const getUsernames = async () => {
-        try {
-          let users = await userService.getUsernames(filter);
-          users = users.filter((user) => user !== usernameToDelete.username);
-          setUsernames(users);
-        } catch { }
-      };
-      getUsernames();
-    }, [filter,usernameToDelete]);
-  
+  const [filter, setFilter] = useState('')
+  useEffect(() => {
+    const getUsernames = async () => {
+      try {
+        let users = await userService.getUsernames(filter);
+        users = users.filter((user) => user !== usernameToDelete.username);
+        setUsernames(users);
+      } catch { }
+    };
+    getUsernames();
+  }, [filter, usernameToDelete]);
+
 
   const onInvite = (user) => {
     board.members.push(user)
@@ -36,7 +36,7 @@ export const InviteUsers = ({ board, onEditBoard }) => {
         label="Username"
         InputProps={{
           startAdornment: (
-              <AccountCircle />
+            <AccountCircle style={{ marginRight: '2px' }} />
           ),
         }}
         onClick={(ev) => ev.stopPropagation()}

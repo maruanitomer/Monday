@@ -14,7 +14,6 @@ async function getUser(req, res) {
 async function getUsers(req, res) {
     try {
         const filter = req.query?.filter || ''
-        console.log(filter)
         const users = await userService.query(filter)
         res.send(users)
     } catch (err) {

@@ -4,31 +4,19 @@ import { Register } from "./modules/user/screens/Register";
 
 export const routes = [
   {
+    exact: true,
     path: "/",
     component: Board,
   },
   {
-    path: "/board",
+    exact: true,
+    path: ['/board', '/board/:boardId'],
     component: Board,
   },
   {
-    path: "/board/:boardId",
-    component: Board,
-  },
-  {
+    exact: true,
     path: "/sign",
     component: Register
   }
-  // {
-  //     path: '/toy/edit/:id',
-  //     component: ToyEdit,
-  // },
-  // {
-  //     path: '/toy/details/:id',
-  //     component: ToyDetails,
-  // },
-  // {
-  //     path: '/about',
-  //     component: About,
-  // },
+
 ];

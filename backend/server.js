@@ -1,3 +1,4 @@
+const { requireAuth } = require('./middlewares/requireAuth.middleware')
 const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
@@ -43,7 +44,7 @@ app.all('*', setupAsyncLocalStorage)
 
 app.use('/api/auth', authRoutes)
 app.use('/api/user', userRoutes)
-app.use('/api/board', boardRoutes)
+app.use('/api/board',requireAuth, boardRoutes)
 // connectSockets(http, session)
 
 // Make every server-side-route to match the index.html
