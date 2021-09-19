@@ -8,7 +8,6 @@ import { makeStyles } from "@material-ui/core";
 import { BoardHeader } from "../cmps/BoardHeader";
 import { boardService } from "../service/boardService";
 import { RotateLoader } from "react-spinners";
-
 import {
   addBoard,
   editBoard,
@@ -21,6 +20,8 @@ import emptypage from "../../../assets/imgs/emptypage.png";
 import { userService } from "../../user/service/userService";
 import { utilService } from "../../../shared";
 import { activitesActions } from "../../../shared/services/activitiesActions";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const Board = ({ match }) => {
   const [modal, setModal] = useState(false);
@@ -29,31 +30,29 @@ export const Board = ({ match }) => {
   const [toggleUpdates, setToggleUpdates] = useState(false);
   const [task, setTask] = useState();
   const [filter, setFilter] = useState(null);
-  const [user] = useState(userService.getLoggedinUser());
+  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    if (!user)
-      window.location.assign(
-        '/sign'
-      )
-  }, [user]);
-
 
 
   useEffect(() => {
-    const getBoards = () => {
+    userService.getLoggedinUser().then((user) => {
+      setUser(user)
+      if (!user)
+        window.location.assign(
+          '/sign'
+        )
+    })
+  }, [])
+
+  useEffect(() => {
+    if (!loading) {
       boardService.query(filter).then((res) => {
         dispatch(loadBoards(res));
         setTimeout(() => setLoading(true), 2000)
       })
     }
-    if (!loading) {
-      getBoards();
-    }
   }, [filter, dispatch, loading])
-
-
 
 
   useEffect(() => {
@@ -125,7 +124,7 @@ export const Board = ({ match }) => {
       }
     }
 
-    boardService.edit(currBoard._id, currBoard).then((res) => {
+    boardService.edit(currBoard).then((res) => {
       dispatch(editBoard(res));
     }).catch(err => console.log(err))
   };
@@ -137,63 +136,79 @@ export const Board = ({ match }) => {
   // toggleUpdates? className="50%" : className="100%";
 
   return loading ? (
-    <div className="board-layout flex">
-      {modal && (
-        <PopUpModal
-          toggleModal={toggleModal}
-          popup={classes.popup}
-          isDark //isDark={True}
-        >
-          <BoardAdd
-            types={[
-              "Employees",
-              "Campaigns",
-              "Projects",
-              "Creatives",
-              "Clients",
-              "Tasks",
-            ]}
-            onAdd={onAddBoard}
+    <div>
+      <ToastContainer
+        limit={3}
+        position="bottom-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+      <div className="board-layout flex">
+        {modal && (
+          <PopUpModal
             toggleModal={toggleModal}
-          />
-        </PopUpModal>
-      )}
-      <MainNav />
+            popup={classes.popup}
+            isDark //isDark={True}
+          >
+            <BoardAdd
+              types={[
+                "Employees",
+                "Campaigns",
+                "Projects",
+                "Creatives",
+                "Clients",
+                "Tasks",
+              ]}
+              onAdd={onAddBoard}
+              toggleModal={toggleModal}
+            />
+          </PopUpModal>
+        )}
+        <MainNav />
 
-      <BoardSideBar toggleModal={toggleModal} boards={boards} setFilter={setFilter}></BoardSideBar>
-      {(boards && boards.length > 0 ? (
-        <div className="flex">
-          <div className="board-container flex column ">
-            <BoardHeader
-              board={currBoard}
-              onEditBoard={onEditBoard}
-            ></BoardHeader>
-            {currBoard && (
-              <BoardPreview
-                onEditBoard={onEditBoard}
+
+        <BoardSideBar toggleModal={toggleModal} boards={boards} setFilter={setFilter}></BoardSideBar>
+        {(boards && boards.length > 0 ? (
+          <div className="flex">
+            <div className="board-container flex column ">
+              <BoardHeader
                 board={currBoard}
-                groups={currBoard.groups}
-                onOpenUpdates={onOpenUpdates}
-                toggleUpdates={toggleUpdates}
-              />
-            )}
-            {toggleUpdates && (
-              <TaskUpdates
-                task={task}
                 onEditBoard={onEditBoard}
-                close={() => setToggleUpdates(false)}
-              />
-            )}
+              ></BoardHeader>
+              {currBoard && (
+                <BoardPreview
+                  onEditBoard={onEditBoard}
+                  board={currBoard}
+                  groups={currBoard.groups}
+                  onOpenUpdates={onOpenUpdates}
+                  toggleUpdates={toggleUpdates}
+                />
+              )}
+              {toggleUpdates && (
+                <TaskUpdates
+                  task={task}
+                  onEditBoard={onEditBoard}
+                  close={() => setToggleUpdates(false)}
+                />
+              )}
+            </div>
           </div>
-        </div>
-      ) : (
-        <div className="emptypage-logo-wrapper">
-          <div className="emptypage-img-container">
-            <img src={emptypage} alt="icon"></img>
+        ) : (
+          <div className="emptypage-logo-wrapper">
+            <div className="emptypage-img-container">
+              <img src={emptypage} alt="icon"></img>
+            </div>
           </div>
-        </div>
-      ))}
-    </div >
+        ))}
+      </div >
+
+    </div>
   ) : <div className="flex align-center justify-center" style={{ height: '100vh' }}>
     <RotateLoader color={'#0398fc'} size={30} margin={40}></RotateLoader>
   </div>

@@ -11,7 +11,7 @@ async function login(username, password) {
     const isMatch = await bcrypt.compare(password, user.password)
     if (!isMatch)
         throw new Error('Password is incorrect!')
-    return { username: user.username, fullname: user.fullname }
+    return { _id: user._id, username: user.username, fullname: user.fullname }
 }
 
 async function signup(username, password, fullname) {

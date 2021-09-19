@@ -1,27 +1,35 @@
 import { TextField } from "@material-ui/core";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { boardService } from "../../modules/board/service/boardService";
 import { userService } from "../../modules/user/service/userService";
+import { editBoard, loadBoard } from "../../store/actions/boardActions";
 
-export const InviteUsers = ({ board, onEditBoard }) => {
+export const InviteUsers = ({ board }) => {
   const [usernames, setUsernames] = useState(null);
-  const [usernameToDelete] = useState(userService.getLoggedinUser());
   const [filter, setFilter] = useState('')
+  const dispatch = useDispatch()
+
+
   useEffect(() => {
     const getUsernames = async () => {
       try {
         let users = await userService.getUsernames(filter);
-        users = users.filter((user) => user !== usernameToDelete.username);
+        users = users.filter((user) => !board.members.includes(user._id) && user._id !== board.ownedBy);
         setUsernames(users);
       } catch { }
     };
     getUsernames();
-  }, [filter, usernameToDelete]);
+  }, [filter,board.ownedBy,board.members]);
 
 
-  const onInvite = (user) => {
-    board.members.push(user)
-    onEditBoard()
+  const onInvite = (userId) => {
+    boardService.addMember(board, userId).then((res) => {
+      dispatch(editBoard(res));
+      dispatch(loadBoard(res));
+      console.log("adding user succeed" + res.members);
+    })
   }
 
 
@@ -43,10 +51,10 @@ export const InviteUsers = ({ board, onEditBoard }) => {
         onChange={inputHandler}
       />
       <div className="flex column align-center user-list" >
-        {usernames &&
-          usernames.map((username) => {
-            return <button key={username} onClick={() => onInvite(username)}>{username}</button>;
-          })}
+        {(usernames && usernames.length > 0) ?
+          usernames.map((user) => {
+            return <button key={user._id} onClick={() => onInvite(user._id)}>{user.username}</button>;
+          }) : <span>No users to invite</span>}
       </div>
     </div>
   );

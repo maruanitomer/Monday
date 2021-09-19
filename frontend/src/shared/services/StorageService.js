@@ -15,9 +15,9 @@ function store(key, value) {
 
 }
 
-function load(key, defaultValue = null) {
+async function load(key, defaultValue = null) {
     var value = sessionStorage.getItem(key);
     if (!value) return defaultValue
-    else return JSON.parse(value);
+    else return Promise.resolve(JSON.parse(value));
 }
 

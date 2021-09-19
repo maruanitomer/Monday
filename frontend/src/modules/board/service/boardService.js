@@ -5,11 +5,12 @@ export const boardService = {
     save,
     getById,
     remove,
-    edit
+    edit,
+    addMember
 }
 async function query(type) {
     try {
-        return httpService.get('board',undefined,{type})
+        return httpService.get('board', undefined, { type })
     } catch (err) {
         console.log(err.message);
     }
@@ -34,17 +35,27 @@ async function save(board) {
 }
 async function remove(id) {
     try {
-        await httpService.delete(`board/${id}`, id)
+        await httpService.delete(`board/${id}`)
         return id;
     }
     catch (err) {
-        throw new Error('couldn\'t add board')
+        // console.log(err.message);
+        throw err.message
     }
 }
-async function edit(id, board) {
+async function edit(board) {
     try {
-        await httpService.put(`board/${id}`, board)
-        return board;
+        const newBoard = await httpService.put(`board`, board)
+        return newBoard;
+    }
+    catch (err) {
+        throw new Error('failed on board editting')
+    }
+}
+async function addMember(board, memberId) {
+    try {
+        const newBoard = await httpService.put(`board/member`, { board, memberId })
+        return newBoard
     }
     catch (err) {
         throw new Error('failed on board editting')

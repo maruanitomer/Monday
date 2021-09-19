@@ -27,7 +27,7 @@ export const httpService = {
 
 async function ajax(endpoint, method, data = null, params = null) {
     try {
-        console.log("SERVER REQUEST TO "+ endpoint + " METHOD " + method)
+        console.log("SERVER REQUEST TO " + endpoint + " METHOD " + method)
         const res = await axios({
             url: `${BASE_URL}${endpoint}`,
             method,
@@ -36,12 +36,19 @@ async function ajax(endpoint, method, data = null, params = null) {
         })
         return res.data
     } catch (err) {
-        if (err.response && err.response.status === 403) {
-            storageService.clear();
-            window.location.assign('/sign')
-        }
-        if (err.response && err.response.status === 401)
-            throw new Error(err.response.data)
+        if (err.response)
+            switch (err.response.status) {
+                case 403:
+                    storageService.clear();
+                    window.location.assign('/sign')
+                    break;
+                case 401:
+                    throw new Error(err.response.data)
+                case 405:
+                    throw new Error(err.response.data)
+                default:
+                    throw err;
 
+            }
     }
 }

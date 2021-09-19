@@ -12,6 +12,7 @@ module.exports = {
     add,
     isExist
 }
+
 async function isExist(username) {
     const collection = await dbService.getCollection('user')
     const user = await collection.findOne({ 'username': username })
@@ -23,10 +24,9 @@ async function query(filter) {
         const collection = await dbService.getCollection('user')
         var users = await collection.find(criteria).toArray()
         return users = users.map(user => {
-            return user.username
+            return { _id: user._id, username: user.username }
         })
     } catch (err) {
-        console.log(err);
         logger.error('cannot find users', err)
         throw err
     }
@@ -37,8 +37,6 @@ async function getById(userId) {
         const collection = await dbService.getCollection('user')
         const user = await collection.findOne({ '_id': ObjectId(userId) })
         delete user.password
-
-
         return user
     } catch (err) {
         logger.error(`while finding user ${userId}`, err)

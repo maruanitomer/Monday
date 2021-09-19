@@ -7,7 +7,8 @@ module.exports = {
     getById,
     update,
     add,
-    remove
+    remove,
+    addMember
 }
 
 async function query(filterBy) {
@@ -35,30 +36,39 @@ async function getById(id) {
         throw 'No Board with this id exist'
     }
 }
-async function remove(id) {
-    try {
-        const collection = await dbService.getCollection('board')
+async function remove(id, userId) {
+    const collection = await dbService.getCollection('board')
+    const board = await collection.findOne({ '_id': ObjectId(id) })
+    if (ObjectId(userId).equals(board.ownedBy)) {
         await collection.deleteOne({ '_id': ObjectId(id) })
+        return board._id
     }
-    catch {
-        throw 'No Board with this id exist'
-    }
+    else throw Error('Denied! Your\'e not the owner of the board')
 }
 
 async function update(board) {
     try {
         const updatedBoard = { ...board };
         delete updatedBoard._id
+        delete updatedBoard.ownedBy
+        updatedBoard.ownedBy = ObjectId(board.ownedBy)
+        updatedBoard.members = updatedBoard.members.map((id) => ObjectId(id))
         const collection = await dbService.getCollection('board')
         await collection.updateOne({ '_id': ObjectId(board._id) }, { $set: updatedBoard })
-        return updatedBoard
+        return board
     } catch (err) {
         throw err
     }
 }
+async function addMember(board, memberId) {
+    board.members.push(memberId)
+    const newBoard = await update(board)
+    return newBoard
+}
 
-async function add(board) {
+async function add(board, ownedById) {
     try {
+        board.ownedBy = ObjectId(ownedById)
         const collection = await dbService.getCollection('board')
         await collection.insertOne(board)
         return board
@@ -71,8 +81,8 @@ async function add(board) {
 function _buildCriteria(filterBy) {
     var criteria = {
         '$or': [
-            { members: { $in: [filterBy.username] } }
-            , { ownedBy: { $eq: filterBy.username } }
+            { members: { $in: [ObjectId(filterBy._id)] } }
+            , { ownedBy: { $eq: ObjectId(filterBy._id) } }
         ]
     }
     if (filterBy.type && filterBy.type.length > 0) {

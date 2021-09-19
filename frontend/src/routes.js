@@ -1,6 +1,6 @@
 import { Board } from "./modules/board";
+import { LoginSignup } from "./modules/user/cmps/LoginSignup";
 // import { LoginSignup } from "./modules/user/cmps/LoginSignup";
-import { Register } from "./modules/user/screens/Register";
 
 export const routes = [
   {
@@ -16,7 +16,7 @@ export const routes = [
   {
     exact: true,
     path: "/sign",
-    component: Register
+    component: LoginSignup
   }
 
 ];

@@ -1,6 +1,5 @@
 import { FormControlLabel, Radio, RadioGroup } from "@material-ui/core";
 import React, { useState } from "react";
-import { userService } from "../../user/service/userService";
 
 export const BoardAdd = ({ toggleModal, onAdd, types }) => {
   const [board, setboard] = useState({
@@ -10,7 +9,6 @@ export const BoardAdd = ({ toggleModal, onAdd, types }) => {
     groups: [],
     type: "items",
     description: "Hello this is generic description, change me please",
-    ownedBy: userService.getLoggedinUser().username,
   });
 
   const inputHandler = (ev) => {
