@@ -17,6 +17,10 @@ export const routes = [
     exact: true,
     path: "/sign",
     component: LoginSignup
+  },
+  {
+    //NEEDS TO BE NOT FOUND
+    component: LoginSignup
   }
 
 ];

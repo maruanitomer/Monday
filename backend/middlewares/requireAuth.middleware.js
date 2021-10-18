@@ -4,7 +4,7 @@ async function requireAuth(req, res, next) {
   if (!req.session || !req.session.user) {
     const err = new Error("Not authorized! Go back!");
     err.status = 403;
-    return next(err);
+    next(err)
   }
   next()
 }
@@ -21,9 +21,11 @@ async function requireAdmin(req, res, next) {
 }
 
 
+
 // module.exports = requireAuth
 
 module.exports = {
   requireAuth,
   requireAdmin
 }
+

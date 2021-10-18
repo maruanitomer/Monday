@@ -33,7 +33,9 @@ async function getById(id) {
 
     }
     catch {
-        throw 'No Board with this id exist'
+        const err = new Error('No Board with this id exist')
+        err.status = 404
+        throw err
     }
 }
 async function remove(id, userId) {

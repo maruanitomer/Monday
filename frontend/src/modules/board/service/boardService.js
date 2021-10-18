@@ -10,27 +10,26 @@ export const boardService = {
 }
 async function query(type) {
     try {
-        return httpService.get('board', undefined, { type })
+        return await httpService.get('board', undefined, { type })
     } catch (err) {
-        console.log(err.message);
+        throw err.message;
     }
 }
 
 async function getById(id) {
     try {
-
-        return httpService.get(`board/${id}`, id)
+        return await httpService.get(`board/${id}`, id)
     } catch (err) {
-        throw new Error('couldn\'t find boards')
+        throw err.message;
     }
 }
 
 async function save(board) {
     try {
-        return httpService.post('board', board)
+        return await httpService.post('board', board)
     }
     catch (err) {
-        throw new Error('couldn\'t add board')
+        throw err.message;
     }
 }
 async function remove(id) {
@@ -39,7 +38,6 @@ async function remove(id) {
         return id;
     }
     catch (err) {
-        // console.log(err.message);
         throw err.message
     }
 }
@@ -49,7 +47,7 @@ async function edit(board) {
         return newBoard;
     }
     catch (err) {
-        throw new Error('failed on board editting')
+        throw err.message
     }
 }
 async function addMember(board, memberId) {
@@ -58,7 +56,7 @@ async function addMember(board, memberId) {
         return newBoard
     }
     catch (err) {
-        throw new Error('failed on board editting')
+        throw err.message
     }
 }
 

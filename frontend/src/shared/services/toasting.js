@@ -1,6 +1,5 @@
 import { toast } from 'react-toastify';
-
-export const toasting = (type, msg, timer) => {
+const toasting = (type, msg, timer) => {
     switch (type) {
         case 0:
             toast.error(msg, {
@@ -24,6 +23,9 @@ export const toasting = (type, msg, timer) => {
                 progress: undefined,
             });
             break;
+        default:
+            break;
     }
 }
 
+export default toasting;

@@ -2,7 +2,7 @@ import { removeBoard } from "../../../store/actions/boardActions";
 import { boardService } from "../service/boardService";
 import { useDispatch } from "react-redux";
 import { BoardNavigationPreview } from "./BoardNavigationPreview";
-import { toasting } from "../../../shared/services/toasting";
+import toasting from "../../../shared/services/toasting";
 
 export const BoardNavigationList = ({ boards, msg }) => {
   const dispatch = useDispatch();

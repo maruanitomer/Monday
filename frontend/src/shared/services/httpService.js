@@ -41,14 +41,19 @@ async function ajax(endpoint, method, data = null, params = null) {
                 case 403:
                     storageService.clear();
                     window.location.assign('/sign')
-                    break;
-                case 401:
                     throw new Error(err.response.data)
-                case 405:
-                    throw new Error(err.response.data)
+                case 404:
+                    throw new Error(err.response.data);
                 default:
-                    throw err;
-
+                    throw new Error(err.response.data);
             }
+        else {
+            if (err.message === 'Network Error') {
+                throw new Error("Network connection failed")
+            }
+            else {
+                throw err.message;
+            }
+        }
     }
 }

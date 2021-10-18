@@ -30,23 +30,21 @@ export const GroupList = ({ groups, board, onEditBoard, onOpenUpdates, toggleUpd
   };
   var width = toggleUpdates ? '60% ' : '100%';
   return (
-    <section className="group-list-wrapper">
-      <div style={{ position: 'absolute' , maxWidth:width , zIndex:'1'}}>
-        <DragDropContext onDragEnd={onDragEndHandler}>
-          {groups &&
-            groups.map((group) => {
-              return (
-                <GroupPreview
-                  onEditBoard={onEditBoard}
-                  key={group._id}
-                  board={board}
-                  group={group}
-                  onOpenUpdates={onOpenUpdates}
-                ></GroupPreview>
-              );
-            })}
-        </DragDropContext>
-      </div>
+    <section className="group-list-wrapper" style={{ maxWidth: width }}>
+      <DragDropContext onDragEnd={onDragEndHandler}>
+        {groups &&
+          groups.map((group) => {
+            return (
+              <GroupPreview
+                onEditBoard={onEditBoard}
+                key={group._id}
+                board={board}
+                group={group}
+                onOpenUpdates={onOpenUpdates}
+              ></GroupPreview>
+            );
+          })}
+      </DragDropContext>
     </section>
   );
 };

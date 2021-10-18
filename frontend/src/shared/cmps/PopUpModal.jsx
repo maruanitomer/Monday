@@ -1,18 +1,21 @@
 import React from "react";
 
-export const PopUpModal = ({ popup, isDark = false, ...props }) => {
+export const PopUpModal = ({ toggle, popup, isDark = true, ...props }) => {
   let className = isDark ? "modal darkModal" : "modal";
 
   return (
-    <div
-      className={className}
-      onClick={(ev) => {
-        props.toggleModal(ev);
-      }}
-    >
+    <>
+      <div
+        hidden={toggle}
+        className={className}
+        onClick={(ev) => {
+          props.toggleModal(ev);
+        }}
+      >
+      </div>
       <div className={popup} onClick={(ev) => ev.stopPropagation()}>
         {props.children}
       </div>
-    </div>
+    </>
   );
 };

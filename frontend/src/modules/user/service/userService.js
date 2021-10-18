@@ -16,17 +16,18 @@ export const userService = {
 
 async function getUsernames(filter) {
     try {
-        const users = await httpService.get('user',null, {filter})
+        const users = await httpService.get('user', null, { filter })
         return users
     }
     catch (err) {
-        console.log(err);
+        throw err.message;
     }
 }
 
 async function login(credentials) {
     try {
         const user = await httpService.post('user/login', credentials)
+        if (!user) return Error("Some error occurred")
         return _handleLogin(user);
     }
     catch (err) {
@@ -37,7 +38,7 @@ async function login(credentials) {
 async function signup(credentials) {
     try {
         const user = await httpService.post('user/signup', credentials)
-        if(!user) return Error("Some error occurred")
+        if (!user) return Error("Some error occurred")
         return _handleLogin(user);
     }
     catch (err) {

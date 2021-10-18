@@ -5,7 +5,7 @@ import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import { Popper } from "../../index";
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteForever from "@material-ui/icons/DeleteForever";
-import { activitesActions } from "../../../shared/services/activitiesActions";
+import { activitesActions } from "../../../shared/services/activityService";
 export const GroupPreview = ({ group, board, onEditBoard, onOpenUpdates }) => {
   const onRemoveGroup = (id) => {
     //REMOVE Group

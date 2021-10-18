@@ -19,7 +19,7 @@ import { InviteUsers } from "../../../shared/cmps/InviteUsers";
 import { useEffect, useState } from "react";
 import { useClickOutside } from "../../../shared/hooks/clickOutSide";
 import { Activities } from "./Activities";
-import { activitesActions } from "../../../shared/services/activitiesActions";
+import { activitesActions } from "../../../shared/services/activityService";
 
 export const BoardHeader = ({ board, onEditBoard }) => {
   const [descriptionInput, setDescriptionInput] = useState(board?.description);

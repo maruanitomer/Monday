@@ -3,8 +3,9 @@ import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { userService } from "../service/userService";
 import register from "../../../assets/imgs/register.png";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import toasting from "../../../shared/services/toasting";
 
 
 
@@ -23,33 +24,6 @@ export const LoginSignup = () => {
   });
 
 
-
-  const toasting = (type, msg) => {
-    switch (type) {
-      case 0:
-        toast.error(msg, {
-          position: "bottom-center",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-        break;
-      case 1:
-        toast.success(msg, {
-          position: "bottom-center",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-        break;
-    }
-  }
 
 
   const history = useHistory();
@@ -139,7 +113,7 @@ export const LoginSignup = () => {
   return mounted && (
     <div>
       <ToastContainer
-      limit={2}
+        limit={2}
         position="bottom-center"
         autoClose={5000}
         hideProgressBar={false}

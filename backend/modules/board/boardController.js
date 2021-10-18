@@ -18,17 +18,18 @@ async function getBoards(req, res) {
         res.send(boards)
     }
     catch (err) {
+        console.log("err");
         res.send(err)
     }
 }
-async function getBoard(req, res) {
+async function getBoard(req, res, next) {
     try {
         const { id } = req.params
         const board = await boardService.getById(id)
         res.send(board)
     }
     catch (err) {
-        res.status(404).send(err);
+        next(err)
     }
 
 }
@@ -65,7 +66,7 @@ async function addBoard(req, res) {
         res.send(savedBoard)
     }
     catch (err) {
-        return err
+        res.status(405).send(err.message)
     }
 }
 async function deleteBoard(req, res) {

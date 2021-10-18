@@ -4,12 +4,13 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 export function App() {
   return (
+
     <BrowserRouter>
       <Switch>
-        {routes.map((route) => (
+        {routes.map((route,idx) => (
           <Route
             exact={route.exact}
-            key={route.path}
+            key={idx}
             component={route.component}
             path={route.path}
           />

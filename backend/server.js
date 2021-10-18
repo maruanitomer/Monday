@@ -41,10 +41,18 @@ const userRoutes = require('./modules/user/user.routes')
 // routes
 const setupAsyncLocalStorage = require('./middlewares/setupAls.middleware')
 app.all('*', setupAsyncLocalStorage)
-
 app.use('/api/auth', authRoutes)
 app.use('/api/user', userRoutes)
 app.use('/api/board', requireAuth, boardRoutes)
+app.use((err, req, res, next) => {
+    if (err.status == 404) {
+        res.status(404).send(err.message)
+    }
+    else
+        res.status(err.status).end(err.message)
+
+})
+
 // connectSockets(http, session)
 
 // Make every server-side-route to match the index.html

@@ -4,26 +4,28 @@
   box-sizing: border-box;
 }
 html {
+  touch-action: none;
+
   font-size: 14px;
   // @include from-mobile-layout {
   //   font-size: 16px;
   // }
-  ::-webkit-scrollbar{
+  ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
-    }
-    ::-webkit-scrollbar-thumb{
-    background: #BBD5ED;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #bbd5ed;
     border-radius: 10px;
-    }
-    ::-webkit-scrollbar-thumb:hover{
-    background: #C7DBE8;
-    }
-    ::-webkit-scrollbar-track{
-    background: #F7F7F7;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #c7dbe8;
+  }
+  ::-webkit-scrollbar-track {
+    background: #f7f7f7;
     border-radius: 0px;
-    box-shadow: inset -2.1px 3.4px 1px 0px #EBEBEB;
-    }
+    box-shadow: inset -2.1px 3.4px 1px 0px #ebebeb;
+  }
 }
 body {
   margin: 0;

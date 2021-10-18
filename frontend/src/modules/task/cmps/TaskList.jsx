@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { Draggable, Droppable } from "react-beautiful-dnd";
 import { utilService } from "../../../shared/services/utilService";
-import { activitesActions } from "../../../shared/services/activitiesActions";
+import { activitesActions } from "../../../shared/services/activityService";
 import { TaskPreview } from "./TaskPreview";
 
 export const TaskList = ({ tasks, group, onEditBoard, onOpenUpdates }) => {

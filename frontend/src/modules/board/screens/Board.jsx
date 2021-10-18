@@ -7,6 +7,7 @@ import { BoardAdd } from "../cmps/BoardAdd";
 import { makeStyles } from "@material-ui/core";
 import { BoardHeader } from "../cmps/BoardHeader";
 import { boardService } from "../service/boardService";
+import { CSSTransition } from 'react-transition-group';
 import { RotateLoader } from "react-spinners";
 import {
   addBoard,
@@ -19,9 +20,11 @@ import { MainNav } from "../../index";
 import emptypage from "../../../assets/imgs/emptypage.png";
 import { userService } from "../../user/service/userService";
 import { utilService } from "../../../shared";
-import { activitesActions } from "../../../shared/services/activitiesActions";
+import { addActivity } from "../../../shared/services/activityService";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Fragment } from "react";
+import toasting from "../../../shared/services/toasting";
 
 export const Board = ({ match }) => {
   const [modal, setModal] = useState(false);
@@ -50,7 +53,7 @@ export const Board = ({ match }) => {
       boardService.query(filter).then((res) => {
         dispatch(loadBoards(res));
         setTimeout(() => setLoading(true), 2000)
-      })
+      }).catch(err => toasting(0, err))
     }
   }, [filter, dispatch, loading])
 
@@ -61,6 +64,8 @@ export const Board = ({ match }) => {
       if (boardId && (!currBoard || boardId !== currBoard._id)) {
         boardService.getById(boardId).then(board => {
           dispatch(loadBoard(board));
+        }).catch(err => {
+          toasting(0, err)
         });
       } else if (!currBoard) {
         dispatch(loadBoard(boards[0]));
@@ -78,13 +83,11 @@ export const Board = ({ match }) => {
   //Modal Generic CSS
   const useStyles = makeStyles({
     popup: {
-      backgroundColor: "white",
       position: "absolute",
       top: "50%",
       left: "50%",
       transform: "translate(-50%, -50%)",
-      width: "40vw",
-      height: "40vh",
+      zIndex: '11'
     },
   });
   const classes = useStyles();
@@ -92,38 +95,16 @@ export const Board = ({ match }) => {
   //Adding new Board
   const onAddBoard = async (board, ev) => {
     ev.stopPropagation();
-    try {
-      const res = await boardService.save(board);
+    boardService.save(board).then((res) => {
+      if (!res) toasting(0, "Some errors occurred")
       dispatch(addBoard(res));
       toggleModal(ev);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  const onEditBoard = async (action) => {
+      toasting(1, "Added board successfully")
+    }).catch(() => toasting(0, "Some errors occurred"))
+  }
+  const onEditBoard = async (action = null) => {
     // UPDATING THE BOARD (SERVER + STORE)
-    if (action) {
-
-      if (!currBoard.activities) currBoard.activities = []
-
-      switch (action.type) {
-        case activitesActions.REMOVE_TASK:
-          currBoard.activities.unshift({ id: utilService.makeId(), text: `${user.username} has removed the task - ${action.task.title}` })
-          break;
-        case activitesActions.ADD_TASK:
-          currBoard.activities.unshift({ id: utilService.makeId(), text: `${user.username} has added the task - ${action.task.title}` })
-          break;
-        case activitesActions.REMOVE_GROUP:
-          currBoard.activities.unshift({ id: utilService.makeId(), text: `${user.username} has removed the group - ${action.group.title}` })
-          break;
-        case activitesActions.ADD_GROUP:
-          currBoard.activities.unshift({ id: utilService.makeId(), text: `${user.username} has added new group` })
-          break;
-        default:
-          break;
-      }
-    }
-
+    if (action) addActivity(action, currBoard, user)
     boardService.edit(currBoard).then((res) => {
       dispatch(editBoard(res));
     }).catch(err => console.log(err))
@@ -135,81 +116,97 @@ export const Board = ({ match }) => {
   // var className;
   // toggleUpdates? className="50%" : className="100%";
 
-  return loading ? (
-    <div>
-      <ToastContainer
-        limit={3}
-        position="bottom-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
-      <div className="board-layout flex">
-        {modal && (
+  return <Fragment>
+
+    <ToastContainer
+      limit={3}
+      position="bottom-center"
+      autoClose={5000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+    />
+    {loading ? (
+      <div>
+        <div className="board-layout flex">
+
+          {/* Add Board Popup */}
+
           <PopUpModal
+            toggle={!modal}
             toggleModal={toggleModal}
             popup={classes.popup}
-            isDark //isDark={True}
+            isDark
           >
-            <BoardAdd
-              types={[
-                "Employees",
-                "Campaigns",
-                "Projects",
-                "Creatives",
-                "Clients",
-                "Tasks",
-              ]}
-              onAdd={onAddBoard}
-              toggleModal={toggleModal}
-            />
+            <CSSTransition
+              in={modal}
+              timeout={300}
+              classNames="add-board-container"
+              unmountOnExit
+              onEnter={() => setModal(true)}
+              onExited={() => setModal(false)}
+            >
+              <BoardAdd
+                types={[
+                  "Employees",
+                  "Campaigns",
+                  "Projects",
+                  "Creatives",
+                  "Clients",
+                  "Tasks",
+                ]}
+                onAdd={onAddBoard}
+                toggleModal={toggleModal}
+              />
+            </CSSTransition>
           </PopUpModal>
-        )}
-        <MainNav />
 
 
-        <BoardSideBar toggleModal={toggleModal} boards={boards} setFilter={setFilter}></BoardSideBar>
-        {(boards && boards.length > 0 ? (
-          <div className="flex">
-            <div className="board-container flex column ">
-              <BoardHeader
-                board={currBoard}
-                onEditBoard={onEditBoard}
-              ></BoardHeader>
-              {currBoard && (
-                <BoardPreview
-                  onEditBoard={onEditBoard}
+          <MainNav />
+
+
+          <BoardSideBar toggleModal={toggleModal} boards={boards} setFilter={setFilter}></BoardSideBar>
+          {(boards && boards.length > 0 ? (
+            <div className="flex">
+              <div className="board-container flex column ">
+                <BoardHeader
                   board={currBoard}
-                  groups={currBoard.groups}
-                  onOpenUpdates={onOpenUpdates}
-                  toggleUpdates={toggleUpdates}
-                />
-              )}
-              {toggleUpdates && (
-                <TaskUpdates
-                  task={task}
                   onEditBoard={onEditBoard}
-                  close={() => setToggleUpdates(false)}
-                />
-              )}
+                ></BoardHeader>
+                {currBoard ? (
+                  <BoardPreview
+                    onEditBoard={onEditBoard}
+                    board={currBoard}
+                    groups={currBoard.groups}
+                    onOpenUpdates={onOpenUpdates}
+                    toggleUpdates={toggleUpdates}
+                  />
+                ) : <h1>Not found</h1>}
+                {toggleUpdates && (
+                  <TaskUpdates
+                    task={task}
+                    onEditBoard={onEditBoard}
+                    close={() => setToggleUpdates(false)}
+                  />
+                )}
+              </div>
             </div>
-          </div>
-        ) : (
-          <div className="emptypage-logo-wrapper">
-            <div className="emptypage-img-container">
-              <img src={emptypage} alt="icon"></img>
+          ) : (
+            <div className="emptypage-logo-wrapper">
+              <div className="emptypage-img-container">
+                <img src={emptypage} alt="icon"></img>
+              </div>
             </div>
-          </div>
-        ))}
-      </div >
+          ))}
+        </div >
 
-    </div>
-  ) : <div className="flex align-center justify-center" style={{ height: '100vh' }}>
-    <RotateLoader color={'#0398fc'} size={30} margin={40}></RotateLoader>
-  </div>
+      </div>
+    ) : <div className="flex align-center justify-center" style={{ height: '100vh' }}>
+      <RotateLoader color={'#0398fc'} size={30} margin={40}></RotateLoader>
+    </div>}
+  </Fragment>
 };

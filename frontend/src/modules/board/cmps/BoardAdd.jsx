@@ -20,26 +20,28 @@ export const BoardAdd = ({ toggleModal, onAdd, types }) => {
   };
 
   return (
-    <div className="flex column align-center">
+    <div className="flex column align-center add-board-container">
       <h1>Create board</h1>
       <input
         type="text"
         name="title"
-        placeholder="New Board"
+        placeholder="Board name..."
         value={board.title}
         onChange={inputHandler}
       />
-      <button
-        className="btn-x"
-        onClick={(ev) => {
-          toggleModal(ev);
-        }}
-      >
-        X
-      </button>
+
+
+      <div className="close-container" onClick={(ev) => {
+        toggleModal(ev);
+      }}>
+        <div className="leftright"></div>
+        <div className="rightleft"></div>
+      </div>
+
+
       <RadioGroup
+        className="radio-group"
         id="type-radiogroup"
-        style={{ flexDirection: "row" }}
         defaultValue="Items"
         name="type"
         onChange={inputHandler}
@@ -55,23 +57,14 @@ export const BoardAdd = ({ toggleModal, onAdd, types }) => {
           );
         })}
       </RadioGroup>
-
-      <button
-        className="btn-cancel"
-        onClick={(ev) => {
-          toggleModal(ev);
-        }}
-      >
-        Cancel
-      </button>
-      <button
-        className="btn-add"
-        onClick={(ev) => {
-          onAdd(board, ev);
-        }}
-      >
-        Create Board
-      </button>
-    </div>
-  );
+        <button
+          className="btn-add"
+          onClick={(ev) => {
+            onAdd(board, ev);
+          }}
+        >
+          Create
+        </button>
+      </div>
+      );
 };

@@ -1,5 +1,8 @@
 .group-list-wrapper {
-    
+    position: absolute;
+    z-index: 1;
+    overflow-y: scroll;
+    height: 80vh;
     .title {
         grid-area: title;
         padding: rem(5px);
